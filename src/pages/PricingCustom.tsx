@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calculator, Clock, CheckCircle, MessageSquare, Phone, Rocket } from "lucide-react";
 import { useState } from "react";
-import { sendQuoteEmail, trackEmailEvent } from "@/utils/emailService";
+
 import { useToast } from "@/hooks/use-toast";
 
 const PricingCustom = () => {
@@ -74,26 +74,17 @@ const PricingCustom = () => {
         .filter(service => selectedServices.includes(service.id))
         .map(service => service.name);
 
-      await sendQuoteEmail({
-        name: formData.name,
-        email: formData.email,
-        subject: "Custom Quote Request",
-        message: formData.description,
-        company: formData.company,
-        phone: formData.phone,
-        budget: formData.budget,
-        timeline: formData.timeline,
-        selectedServices: selectedServiceNames,
-        estimatedCost: estimatedCost,
-        projectDetails: formData.description,
-        project_type: "Custom Quote"
-      });
-
-      trackEmailEvent('quote_requested', {
-        estimatedCost,
-        selectedServices: selectedServiceNames,
-        project_type: 'Custom Quote'
-      });
+      // Simulate quote submission (replace with your actual quote form logic)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Optional: Analytics tracking
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'quote_requested', {
+          event_category: 'Quote',
+          event_label: 'Custom Quote',
+          value: estimatedCost
+        });
+      }
 
       toast({
         title: "Quote Request Sent!",

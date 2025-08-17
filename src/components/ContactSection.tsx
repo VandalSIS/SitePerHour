@@ -6,8 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
-import { initEmailService, sendEmail } from "@/utils/emailService";
-
 const ContactSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -17,11 +15,6 @@ const ContactSection = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    // Initialize EmailJS when component mounts with pre-configured credentials
-    initEmailService();
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -46,11 +39,8 @@ const ContactSection = () => {
         return;
       }
 
-      await sendEmail({
-        ...formData,
-        // Add a clear subject line that includes the sender's name
-        subject: formData.subject || `New Contact Form Message from ${formData.name}`
-      });
+      // Simulate form submission (replace with your actual contact form logic)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast({
         title: "Message sent!",

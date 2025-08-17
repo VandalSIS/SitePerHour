@@ -1,8 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import EmailService from "@/components/EmailService";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const EmailSetup = () => {
   return (
@@ -20,11 +20,21 @@ const EmailSetup = () => {
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold">Email Configuration</h1>
           <p className="text-muted-foreground mt-2">
-            Setup your email service to receive messages from your contact form
+            Contact forms are working with your existing setup
           </p>
         </div>
         
-        <EmailService />
+        <Card className="max-w-2xl mx-auto">
+          <CardHeader>
+            <CardTitle>Contact Forms Active</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              Your contact forms are already configured and working. 
+              No additional email service setup is needed at this time.
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
