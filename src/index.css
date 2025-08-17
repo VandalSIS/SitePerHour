@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 214 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 196 100% 46%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 215 100% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 214 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 215 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+.container-custom {
+  @apply max-w-[1200px] mx-auto px-4 md:px-6;
+}
+
+.section-spacing {
+  @apply py-16 md:py-24;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 3D Card Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+@keyframes bubble-gum1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  20% { transform: translateY(-20px) scale(1.1); }
+  40% { transform: translateY(10px) scale(0.95); }
+  60% { transform: translateY(-15px) scale(1.05); }
+  80% { transform: translateY(5px) scale(1); }
+}
+@keyframes bubble-gum2 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  25% { transform: translateY(-25px) translateX(10px) scale(1.1);}
+  50% { transform: translateY(15px) translateX(-10px) scale(0.9);}
+  75% { transform: translateY(-10px) translateX(5px) scale(1.05);}
+}
+@keyframes bubble-gum3 {
+  0%, 100% { transform: translateX(0) scale(1);}
+  30% { transform: translateX(15px) scale(1.08);}
+  60% { transform: translateX(-10px) scale(0.92);}
+}
+@keyframes bubble-gum4 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-18px) scale(1.12);}
+}
+@keyframes bubble-gum5 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  40% { transform: translateY(-30px) scale(1.15);}
+  80% { transform: translateY(10px) scale(0.9);}
+}
+@keyframes bubble-gum6 {
+  0%, 100% { transform: translateX(0) scale(1);}
+  60% { transform: translateX(20px) scale(1.1);}
+}
+@keyframes bubble-gum7 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1);}
+  30% { transform: translateY(-18px) translateX(10px) scale(1.12);}
+  60% { transform: translateY(12px) translateX(-8px) scale(0.95);}
+}
+@keyframes bubble-gum8 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1) rotate(0deg);}
+  40% { transform: translateY(-22px) translateX(12px) scale(1.08) rotate(8deg);}
+  80% { transform: translateY(10px) translateX(-10px) scale(0.92) rotate(-8deg);}
+}
+@keyframes bubble-gum9 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  50% { transform: translateY(-14px) scale(1.15);}
+}
+@keyframes bubble-gum10 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1);}
+  25% { transform: translateY(-10px) translateX(8px) scale(1.1);}
+  75% { transform: translateY(8px) translateX(-8px) scale(0.9);}
+}
+@keyframes bubble-gum11 {
+  0%, 100% { transform: translateY(0) scale(1);}
+  60% { transform: translateY(-20px) scale(1.13);}
+}
+
+/* Faster, lively durations */
+.animate-bubble-gum1 { animation: bubble-gum1 7s infinite cubic-bezier(0.68,-0.55,0.27,1.55); }
+.animate-bubble-gum2 { animation: bubble-gum2 8s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 1s; }
+.animate-bubble-gum3 { animation: bubble-gum3 6s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 0.5s; }
+.animate-bubble-gum4 { animation: bubble-gum4 7.5s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 1.5s; }
+.animate-bubble-gum5 { animation: bubble-gum5 9s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 2s; }
+.animate-bubble-gum6 { animation: bubble-gum6 8.5s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 0.7s; }
+.animate-bubble-gum7 { animation: bubble-gum7 10s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 1.2s; }
+.animate-bubble-gum8 { animation: bubble-gum8 7.5s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 1.7s; }
+.animate-bubble-gum9 { animation: bubble-gum9 6.5s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 1s; }
+.animate-bubble-gum10 { animation: bubble-gum10 8.5s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 2.2s; }
+.animate-bubble-gum11 { animation: bubble-gum11 7.8s infinite cubic-bezier(0.68,-0.55,0.27,1.55) 0.9s; }

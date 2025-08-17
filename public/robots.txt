@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# Block access to sensitive directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# Allow specific important pages
+Allow: /pricing/
+Allow: /services/
+Allow: /blog/
+Allow: /contact
+
+User-agent: TelegramBot
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign
+
+User-agent: Twitterbot
+Allow: /
+
+X-Robots-Tag: noai, noimageai
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap location
+Sitemap: https://siteperhour.vercel.app/sitemap.xml
+
+# Crawl delay (optional - be gentle with our server)
+Crawl-delay: 1
