@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import path from "path";
 
 // https://vitejs.dev/config/
@@ -19,13 +19,13 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Optimize build for production
     target: 'esnext',
-    minify: 'terser',
-    terserOptions: {
+    minify: mode === 'production' ? 'terser' : false,
+    terserOptions: mode === 'production' ? {
       compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
+        drop_console: true,
+        drop_debugger: true,
       },
-    },
+    } : undefined,
     rollupOptions: {
       output: {
         manualChunks: {
