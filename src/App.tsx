@@ -21,6 +21,7 @@ import ServiceMaintenance from "./pages/ServiceMaintenance";
 import ServiceWebDevelopment from "./pages/ServiceWebDevelopment";
 import Blog from "./pages/Blog";
 import { Analytics } from '@vercel/analytics/react';
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/contact" element={<ContactSection />} />

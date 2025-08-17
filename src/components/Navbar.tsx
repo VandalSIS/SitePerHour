@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,11 +19,33 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToElement = (elementId: string) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+    const handleNavigation = (href: string) => {
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setPricingDropdownOpen(false);
+    
+    if (href.startsWith('#')) {
+      // If we're on a different page, navigate to home first, then scroll
+      if (location.pathname !== '/') {
+        // First scroll to top, then navigate
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        navigate('/');
+        // Wait for navigation to complete, then scroll to section
+        setTimeout(() => {
+          const elementId = href.substring(1);
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      } else {
+        // We're already on home page, just scroll to section
+        const elementId = href.substring(1);
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
@@ -61,26 +85,31 @@ const Navbar = () => {
       }`}
     >
       <div className="container-custom py-4 flex items-center justify-between">
-        <a href="#home" className="text-2xl font-heading font-bold text-white">
+        <Link to="/" className="text-2xl font-heading font-bold text-white">
           Your<span className="text-primary">Name</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             link.href.startsWith('#') ? (
-              <a 
+              <button
                 key={link.name}
-                href={link.href}
+                onClick={() => handleNavigation(link.href)}
                 className="text-muted-foreground hover:text-white transition-colors font-medium"
               >
                 {link.name}
-              </a>
+              </button>
             ) : (
               <Link
                 key={link.name}
                 to={link.href}
                 className="text-muted-foreground hover:text-white transition-colors font-medium"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setServicesDropdownOpen(false);
+                  setPricingDropdownOpen(false);
+                }}
               >
                 {link.name}
               </Link>
@@ -100,18 +129,22 @@ const Navbar = () => {
               <div className="absolute top-full left-0 mt-2 w-56 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
                 {servicesLinks.map((link) => (
                   link.href.startsWith('#') ? (
-                    <a
+                    <button
                       key={link.name}
-                      href={link.href}
-                      className="block px-4 py-2 text-muted-foreground hover:text-white hover:bg-primary/10 transition-colors"
+                      onClick={() => handleNavigation(link.href)}
+                      className="block w-full text-left px-4 py-2 text-muted-foreground hover:text-white hover:bg-primary/10 transition-colors"
                     >
                       {link.name}
-                    </a>
+                    </button>
                   ) : (
                     <Link
                       key={link.name}
                       to={link.href}
                       className="block px-4 py-2 text-muted-foreground hover:text-white hover:bg-primary/10 transition-colors"
+                      onClick={() => {
+                        setServicesDropdownOpen(false);
+                        setPricingDropdownOpen(false);
+                      }}
                     >
                       {link.name}
                     </Link>
@@ -137,6 +170,10 @@ const Navbar = () => {
                     key={link.name}
                     to={link.href}
                     className="block px-4 py-2 text-muted-foreground hover:text-white hover:bg-primary/10 transition-colors"
+                    onClick={() => {
+                      setPricingDropdownOpen(false);
+                      setServicesDropdownOpen(false);
+                    }}
                   >
                     {link.name}
                   </Link>
@@ -145,8 +182,11 @@ const Navbar = () => {
             )}
           </div>
 
-          <Button className="bg-primary hover:bg-primary/80">
-            <a href="#contact">Get in Touch</a>
+          <Button 
+            className="bg-primary hover:bg-primary/80"
+            onClick={() => handleNavigation('#contact')}
+          >
+            Get in Touch
           </Button>
         </nav>
         
@@ -165,20 +205,23 @@ const Navbar = () => {
           <div className="container-custom py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               link.href.startsWith('#') ? (
-                <a 
+                <button
                   key={link.name}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-white py-2 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => handleNavigation(link.href)}
+                  className="text-muted-foreground hover:text-white py-2 transition-colors w-full text-left"
                 >
                   {link.name}
-                </a>
+                </button>
               ) : (
                 <Link
                   key={link.name}
                   to={link.href}
                   className="text-muted-foreground hover:text-white py-2 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setServicesDropdownOpen(false);
+                    setPricingDropdownOpen(false);
+                  }}
                 >
                   {link.name}
                 </Link>
@@ -190,20 +233,23 @@ const Navbar = () => {
               <p className="text-white font-semibold mb-2">Services</p>
               {servicesLinks.map((link) => (
                 link.href.startsWith('#') ? (
-                  <a
+                  <button
                     key={link.name}
-                    href={link.href}
-                    className="block text-muted-foreground hover:text-white py-1 pl-4 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => handleNavigation(link.href)}
+                    className="block w-full text-left text-muted-foreground hover:text-white py-1 pl-4 transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </button>
                 ) : (
                   <Link
                     key={link.name}
                     to={link.href}
                     className="block text-muted-foreground hover:text-white py-1 pl-4 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setServicesDropdownOpen(false);
+                      setPricingDropdownOpen(false);
+                    }}
                   >
                     {link.name}
                   </Link>
@@ -219,17 +265,22 @@ const Navbar = () => {
                   key={link.name}
                   to={link.href}
                   className="block text-muted-foreground hover:text-white py-1 pl-4 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setServicesDropdownOpen(false);
+                    setPricingDropdownOpen(false);
+                  }}
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
 
-            <Button className="bg-primary hover:bg-primary/80 w-full">
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+            <Button 
+              className="bg-primary hover:bg-primary/80 w-full"
+              onClick={() => handleNavigation('#contact')}
+            >
                 Get in Touch
-              </a>
             </Button>
           </div>
         </div>

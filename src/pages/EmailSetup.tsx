@@ -3,10 +3,17 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import SEOHead from "@/components/SEOHead";
 
 const EmailSetup = () => {
   return (
     <div className="min-h-screen bg-background text-foreground py-8">
+      <SEOHead
+        title="Email Configuration"
+        description="Email service configuration for contact forms. Manage your website's email settings and contact form integrations."
+        keywords="email configuration, contact forms, email service setup, website configuration"
+        canonicalUrl="/email-setup"
+      />
       <div className="container-custom">
         <div className="mb-8">
           <Link to="/">

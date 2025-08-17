@@ -9,6 +9,13 @@ import { Calendar, Clock, User, Search, ArrowRight, TrendingUp } from "lucide-re
 import { Link } from "react-router-dom";
 
 const Blog = () => {
+  const seoData = {
+    title: "Blog",
+    description: "Stay updated with the latest trends in web development, AI technology, e-commerce solutions, and digital innovation. Expert insights and tutorials from SitePerHour.",
+    keywords: "web development blog, AI technology, e-commerce tutorials, web3 development, React tutorials, modern web development, digital innovation, programming insights",
+    canonicalUrl: "/blog",
+    ogImage: "/images/360_F_871603234_fTMmjlUOpt4F9mDudj8wjyzkt0khEtSZ.jpg"
+  };
   const featuredPost = {
     id: 1,
     title: "Why Web3 is Revolutionizing the Internet: A Developer's Perspective",
