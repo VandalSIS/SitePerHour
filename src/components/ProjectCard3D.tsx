@@ -2,6 +2,7 @@ import { useState, useRef, ReactNode, useEffect } from 'react';
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import LazyImage from "./LazyImage";
 
 interface ProjectCard3DProps {
   title: string;
@@ -62,16 +63,19 @@ const ProjectCard3D = ({ title, category, image, description, url, buttonText }:
           transition: 'transform 0.1s ease-out'
         }}
       >
-        <div className="h-60 overflow-hidden bg-muted relative">
-          <div 
-            className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <div className="w-full h-full bg-black/50 flex flex-col justify-end p-6 transform-gpu preserve-3d" style={{ transform: 'translateZ(20px)' }}>
-              <p className="text-primary text-sm font-medium mb-1">{category}</p>
-              <h3 className="text-xl font-bold mb-2">{title}</h3>
-              <p className="text-white/70 text-sm">{description}</p>
-            </div>
+        <div className="aspect-video overflow-hidden bg-muted relative">
+          <LazyImage 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            width={600}
+            height={400}
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4 md:p-6">
+            <p className="text-primary text-xs md:text-sm font-medium mb-1">{category}</p>
+            <h3 className="text-white text-lg md:text-xl font-bold mb-2 line-clamp-2">{title}</h3>
+            <p className="text-white/80 text-xs md:text-sm line-clamp-2">{description}</p>
           </div>
         </div>
         <CardFooter ref={footerRef} className="p-4 bg-card transform-gpu preserve-3d relative overflow-hidden" style={{ transform: 'translateZ(30px)' }}>

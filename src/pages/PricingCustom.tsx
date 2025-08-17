@@ -148,7 +148,15 @@ const PricingCustom = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/20">
+      <section 
+        className="pt-32 pb-16 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_2_full-service-psychedelic-illustrated-fes_FviPESpoS3yNgZ1lDFs7ow_4fFsKLR4RrSArj5GnsbR5A.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="mb-4 bg-primary/10 text-primary">CUSTOM QUOTE</Badge>

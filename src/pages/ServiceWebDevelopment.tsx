@@ -110,15 +110,29 @@ const ServiceWebDevelopment = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/20">
-        <div className="container-custom">
+      <section 
+        className="pt-32 pb-16 relative overflow-hidden"
+        style={{
+          backgroundImage: `url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0002_1_website-builder-poster-psychedelic-retro_gsZSZBqIQlWHIBKQ_Zvqdg_bqBxMixBQBqAS26DXoEZ9A.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Professional overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/65 to-black/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40"></div>
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-4 bg-primary/10 text-primary">WEB DEVELOPMENT</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Custom Web
-              <span className="text-primary block">Development</span>
+            {/* Banner visibility enhancement */}
+            <div className="absolute -inset-8 bg-black/25 rounded-3xl backdrop-blur-sm border border-white/10"></div>
+            <div className="relative z-10">
+            <Badge className="mb-6 bg-primary/20 text-primary border border-primary/30 text-sm px-4 py-2">WEB DEVELOPMENT</Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <span className="text-white drop-shadow-2xl">Custom Web</span>
+              <span className="text-primary block drop-shadow-2xl">Development</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               Build powerful, scalable web applications with modern technologies. From simple websites 
               to complex SaaS platforms, we create digital solutions that drive your business forward.
             </p>
@@ -145,6 +159,7 @@ const ServiceWebDevelopment = () => {
             <Button size="lg" className="bg-primary hover:bg-primary/90">
               <a href="#contact">Start Your Project</a>
             </Button>
+            </div>
           </div>
         </div>
       </section>

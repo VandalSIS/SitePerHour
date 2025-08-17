@@ -6,21 +6,21 @@ const ProjectsSection = () => {
     {
       title: "E-commerce Website",
       category: "Web Development",
-      image: "/images/ecomerce.avif",
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0002_2_website-builder-poster-psychedelic-retro_THwcgJBjSyafiagtGoEoow_bqBxMixBQBqAS26DXoEZ9A.jpeg",
       description: "A fully responsive e-commerce platform built with React and Node.js.",
       url: "https://haskelshop.com/"
     },
     {
       title: "Corporate Rebrand",
       category: "UI/UX Design",
-      image: "/images/rebranding.avif",
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_3_a-vibrant-vintage-gig-poster-digital-pai_V9dDfs_DTnKXAQlXcuI72A_Rd-c5ybsRD2rQFytjm4nwg.jpeg",
       description: "Complete visual identity redesign for a services company.",
       url: "https://perhour.great-site.net/"
     },
     {
       title: "Mobile App",
       category: "App Development",
-      image: "/images/mobile_app.avif",
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0003_2_maintenance-poster-bold-illustrated-post_a0BHHD5vS9G9Ym_Bk2jOXw_v6c7ShXzToCLCQ528Px0BQ.jpeg",
       description: "A cross-platform mobile application for tracking fitness goals.",
       url: "https://your-app-site.com",
       buttonText: "In Progress"
@@ -28,7 +28,7 @@ const ProjectsSection = () => {
     {
       title: "Marketing Website",
       category: "Web Design",
-      image: "/images/marketing.avif",
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_4_a-vintage-gig-poster-style-digital-paint_yWsNaephQmOYiqKwzF_25Q_Rd-c5ybsRD2rQFytjm4nwg.jpeg",
       description: "SEO-optimized landing pages for a SaaS product launch.",
       url: "http://www.vanellaromedomus.com/en/home-page-eng/"
     }
@@ -45,7 +45,7 @@ const ProjectsSection = () => {
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <ProjectCard3D
               key={index}

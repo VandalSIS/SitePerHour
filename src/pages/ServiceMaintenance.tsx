@@ -127,15 +127,29 @@ const ServiceMaintenance = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/20">
-        <div className="container-custom">
+      <section 
+        className="pt-32 pb-16 relative overflow-hidden"
+        style={{
+          backgroundImage: `url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0003_1_a-bold-illustrated-poster-in-a-retro-fut_E6MdBC5LRa65g7QdOE_M0A_v6c7ShXzToCLCQ528Px0BQ.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Professional overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30"></div>
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-4 bg-primary/10 text-primary">WEBSITE MAINTENANCE</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Keep Your Website
-              <span className="text-primary block">Running Perfectly</span>
+            {/* Banner visibility enhancement */}
+            <div className="absolute -inset-8 bg-black/20 rounded-3xl backdrop-blur-sm border border-white/10"></div>
+            <div className="relative z-10">
+            <Badge className="mb-6 bg-primary/20 text-primary border border-primary/30 text-sm px-4 py-2">WEBSITE MAINTENANCE</Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <span className="text-white drop-shadow-2xl">Keep Your Website</span>
+              <span className="text-primary block drop-shadow-2xl">Running Perfectly</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               Focus on your business while we handle the technical details. Our comprehensive maintenance 
               services ensure your website stays secure, fast, and up-to-date 24/7.
             </p>
@@ -162,6 +176,7 @@ const ServiceMaintenance = () => {
             <Button size="lg" className="bg-primary hover:bg-primary/90">
               <a href="#contact">Protect Your Website Today</a>
             </Button>
+            </div>
           </div>
         </div>
       </section>

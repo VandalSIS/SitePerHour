@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Calendar, Clock, User, Search, ArrowRight, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import LazyImage from "@/components/LazyImage";
 
 const Blog = () => {
   const seoData = {
@@ -14,7 +15,7 @@ const Blog = () => {
     description: "Stay updated with the latest trends in web development, AI technology, e-commerce solutions, and digital innovation. Expert insights and tutorials from SitePerHour.",
     keywords: "web development blog, AI technology, e-commerce tutorials, web3 development, React tutorials, modern web development, digital innovation, programming insights",
     canonicalUrl: "/blog",
-    ogImage: "/images/360_F_871603234_fTMmjlUOpt4F9mDudj8wjyzkt0khEtSZ.jpg"
+    ogImage: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_1_seo-growth-poster-vintage-gig-poster-dig_Kcqmc1KAQZOxRy84D5pdSA_Rd-c5ybsRD2rQFytjm4nwg.jpeg"
   };
   const featuredPost = {
     id: 1,
@@ -24,7 +25,7 @@ const Blog = () => {
     date: "2024-01-15",
     readTime: "8 min read",
     category: "Web3",
-    image: "/images/360_F_871603234_fTMmjlUOpt4F9mDudj8wjyzkt0khEtSZ.jpg",
+    image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
     featured: true
   };
 
@@ -37,7 +38,7 @@ const Blog = () => {
       date: "2024-01-12",
       readTime: "6 min read",
       category: "AI Technology",
-      image: "/images/software-development-programming-coding-vector-29570719.jpg"
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0003_3_maintenance-poster-bold-illustrated-post_bzCd3WrVQXeQFppwn0WZGg_v6c7ShXzToCLCQ528Px0BQ.jpeg"
     },
     {
       id: 3,
@@ -47,7 +48,7 @@ const Blog = () => {
       date: "2024-01-10",
       readTime: "10 min read",
       category: "E-commerce",
-      image: "/images/ecomerce.avif"
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0003_4_a-bold-illustrated-poster-in-a-retro-fut_zNsJMddkRPCEUn-mIvEUMQ_v6c7ShXzToCLCQ528Px0BQ.jpeg"
     },
     {
       id: 4,
@@ -57,7 +58,7 @@ const Blog = () => {
       date: "2024-01-08",
       readTime: "7 min read",
       category: "Web Development",
-      image: "/images/Screenshot 2025-05-20 142446.png"
+      image: "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_3_a-vibrant-vintage-gig-poster-digital-pai_V9dDfs_DTnKXAQlXcuI72A_Rd-c5ybsRD2rQFytjm4nwg.jpeg"
     },
     {
       id: 5,
@@ -127,15 +128,29 @@ const Blog = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/20">
-        <div className="container-custom">
+      <section 
+        className="pt-32 pb-16 relative overflow-hidden"
+        style={{
+          backgroundImage: `url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_1_seo-growth-poster-vintage-gig-poster-dig_Kcqmc1KAQZOxRy84D5pdSA_Rd-c5ybsRD2rQFytjm4nwg.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Professional overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35"></div>
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-4 bg-primary/10 text-primary">TECH BLOG</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Latest Insights on
-              <span className="text-primary block">Web Technology</span>
+            {/* Banner visibility enhancement */}
+            <div className="absolute -inset-8 bg-black/20 rounded-3xl backdrop-blur-sm border border-white/10"></div>
+            <div className="relative z-10">
+            <Badge className="mb-6 bg-primary/20 text-primary border border-primary/30 text-sm px-4 py-2">TECH BLOG</Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <span className="text-white drop-shadow-2xl">Latest Insights on</span>
+              <span className="text-primary block drop-shadow-2xl">Web Technology</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               Stay ahead of the curve with expert insights on web development, AI technology, 
               Web3 innovations, and the latest trends shaping the digital landscape.
             </p>
@@ -148,6 +163,7 @@ const Blog = () => {
                   className="pl-10"
                 />
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -166,10 +182,14 @@ const Blog = () => {
           <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="aspect-video lg:aspect-auto">
-                <img 
+                <LazyImage 
                   src={featuredPost.image} 
                   alt={featuredPost.title}
                   className="w-full h-full object-cover"
+                  width={800}
+                  height={600}
+                  quality={90}
+                  loading="eager"
                 />
               </div>
               <CardContent className="p-8">
@@ -252,10 +272,13 @@ const Blog = () => {
                 {blogPosts.map((post) => (
                   <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                     <div className="aspect-video">
-                      <img 
+                      <LazyImage 
                         src={post.image} 
                         alt={post.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        width={600}
+                        height={400}
+                        quality={85}
                       />
                     </div>
                     <CardContent className="p-6">

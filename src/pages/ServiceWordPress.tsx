@@ -106,7 +106,15 @@ const ServiceWordPress = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/20">
+      <section 
+        className="pt-32 pb-16 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0002_4_a-psychedelic-retro-poster-showcasing-a-_6muHnJF_QVi-4oMDI7d7Dg_bqBxMixBQBqAS26DXoEZ9A.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="mb-4 bg-primary/10 text-primary">WORDPRESS DEVELOPMENT</Badge>

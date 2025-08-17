@@ -1,4 +1,5 @@
 import { CheckCircle } from "lucide-react";
+import LazyImage from "./LazyImage";
 
 const AboutSection = () => {
   const skills = [
@@ -44,15 +45,16 @@ const AboutSection = () => {
             </div>
           </div>
           
-          <div className="order-1 md:order-2 aspect-square bg-muted rounded-2xl overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 mix-blend-overlay"></div>
-            <div className="w-full h-full relative">
-                <img
-                    src="/images/software-development-programming-coding-vector-29570719.jpg"
-                    alt="Coding illustration"
-                    className="w-full h-full object-cover"
-                />
-            </div>
+          <div className="order-1 md:order-2 aspect-square md:aspect-auto md:h-[500px] lg:h-[600px] bg-muted rounded-2xl overflow-hidden relative shadow-lg">
+            <LazyImage
+              src="https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_2_seo-growth-poster-vintage-gig-poster-dig_RDd2FWM7Tx6TUpDWC1hEQw_Rd-c5ybsRD2rQFytjm4nwg.jpeg"
+              alt="SEO Growth and Web Development"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              width={600}
+              height={600}
+              quality={90}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
           </div>
         </div>
       </div>
