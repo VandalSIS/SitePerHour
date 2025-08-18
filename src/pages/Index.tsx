@@ -27,7 +27,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
-        title="Professional Web Development Services - Custom Websites & E-commerce Solutions"
+        title="SitePerHour - Professional Web Development Services | Custom Websites & E-commerce"
         description="Expert web development services including custom websites, Shopify stores, WordPress development, CMS solutions, and ongoing maintenance. Transform your business with professional web solutions."
         keywords="web development, custom websites, e-commerce development, Shopify development, WordPress development, CMS solutions, website maintenance, professional web design"
         canonicalUrl="/"

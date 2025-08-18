@@ -12,13 +12,13 @@
   "categories": ["business", "productivity", "technology"],
   "icons": [
     {
-      "src": "/images/download.jpeg",
+      "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
       "sizes": "192x192",
       "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/download.jpeg",
+      "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any maskable"

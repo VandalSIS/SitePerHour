@@ -13,12 +13,12 @@ const SEOHead = ({
   title, 
   description, 
   keywords, 
-  ogImage = "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_1_seo-growth-poster-vintage-gig-poster-dig_Kcqmc1KAQZOxRy84D5pdSA_Rd-c5ybsRD2rQFytjm4nwg.jpeg",
+  ogImage = "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
   canonicalUrl,
   structuredData 
 }: SEOHeadProps) => {
   const siteUrl = "https://siteperhour.vercel.app";
-  const fullTitle = `${title} | SitePerHour - Professional Web Development Services`;
+  const fullTitle = title; // Use the title as provided, no extra suffix
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl;
 
   return (
