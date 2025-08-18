@@ -12,13 +12,13 @@
   "categories": ["business", "productivity", "technology"],
   "icons": [
     {
-      "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+      "src": "/images/download.jpeg",
       "sizes": "192x192",
       "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+      "src": "/images/download.jpeg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any maskable"
@@ -32,7 +32,7 @@
       "url": "/#services",
       "icons": [
         {
-          "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+          "src": "/images/download.jpeg",
           "sizes": "96x96",
           "type": "image/jpeg"
         }
@@ -45,7 +45,7 @@
       "url": "/pricing/custom",
       "icons": [
         {
-          "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+          "src": "/images/download.jpeg",
           "sizes": "96x96",
           "type": "image/jpeg"
         }
@@ -58,7 +58,7 @@
       "url": "/#contact",
       "icons": [
         {
-          "src": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+          "src": "/images/download.jpeg",
           "sizes": "96x96",
           "type": "image/jpeg"
         }
