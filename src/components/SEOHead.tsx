@@ -13,7 +13,7 @@ const SEOHead = ({
   title, 
   description, 
   keywords, 
-  ogImage = "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_1_seo-growth-poster-vintage-gig-poster-dig_Kcqmc1KAQZOxRy84D5pdSA_Rd-c5ybsRD2rQFytjm4nwg.jpeg",
+  ogImage = "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_3_full-service-psychedelic-illustrated-fes_ScSqOHueQD6606GBpdHbDA_4fFsKLR4RrSArj5GnsbR5A.jpeg",
   canonicalUrl,
   structuredData 
 }: SEOHeadProps) => {

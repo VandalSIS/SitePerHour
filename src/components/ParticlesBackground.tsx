@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const ParticlesBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,55 +68,42 @@ const ParticlesBackground = () => {
         ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
         ctx.fill();
 
-        // Add glow effect only on desktop for performance
-        if (!window.matchMedia('(max-width: 767px)').matches) {
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
-        }
+        // Optional: Add glow effect
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
       }
     }
 
-    // Create particles - optimize count for mobile devices
+    // Create particles - more particles for larger screens
     const particles: Particle[] = [];
-    const baseCount = isMobile ? 15 : 30; // Reduce particles on mobile
+    const baseCount = 30;
     const screenSizeFactor = Math.min(window.innerWidth, window.innerHeight) / 1000;
-    const particleCount = isMobile 
-      ? Math.floor(baseCount * 0.5) + 10 // Minimal particles on mobile
-      : Math.floor(baseCount * screenSizeFactor) + baseCount;
+    const particleCount = Math.floor(baseCount * screenSizeFactor) + baseCount;
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
-    // Animation loop with mobile optimization
-    let lastTime = 0;
-    const targetFPS = isMobile ? 30 : 60; // Lower FPS on mobile
-    const frameInterval = 1000 / targetFPS;
-    
-    const animate = (currentTime: number) => {
+    // Animation loop
+    const animate = () => {
       if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      if (currentTime - lastTime >= frameInterval) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach(particle => {
-          particle.update();
-          particle.draw();
-        });
-        
-        lastTime = currentTime;
-      }
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
 
       requestAnimationFrame(animate);
     };
 
-    animate(0);
+    animate();
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', setCanvasSize);
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <canvas
