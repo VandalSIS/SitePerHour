@@ -110,22 +110,28 @@ const ServiceShopify = () => {
       
       {/* Hero Section */}
       <section 
-        className="pt-32 pb-16 relative"
+        className="pt-32 pb-16 relative overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0002_3_a-psychedelic-retro-poster-design-showca_LhVZLQB_QB6tBYCGaSg1qg_bqBxMixBQBqAS26DXoEZ9A.jpeg')`,
+          backgroundImage: `url('https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0002_3_a-psychedelic-retro-poster-design-showca_LhVZLQB_QB6tBYCGaSg1qg_bqBxMixBQBqAS26DXoEZ9A.jpeg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
         }}
       >
-        <div className="container-custom">
+        {/* Professional overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/65 to-black/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40"></div>
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-4 bg-primary/10 text-primary">SHOPIFY DEVELOPMENT</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Professional
-              <span className="text-primary block">Shopify Stores</span>
+            {/* Banner visibility enhancement */}
+            <div className="absolute -inset-8 bg-black/25 rounded-3xl backdrop-blur-sm border border-white/10"></div>
+            <div className="relative z-10">
+            <Badge className="mb-6 bg-primary/20 text-primary border border-primary/30 text-sm px-4 py-2">SHOPIFY DEVELOPMENT</Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <span className="text-white drop-shadow-2xl">Professional</span>
+              <span className="text-primary block drop-shadow-2xl">Shopify Stores</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               Transform your business with a custom Shopify store designed to convert visitors into customers. 
               We create beautiful, fast, and optimized e-commerce experiences that drive sales.
             </p>
@@ -152,6 +158,7 @@ const ServiceShopify = () => {
             <Button size="lg" className="bg-primary hover:bg-primary/90">
               <a href="#contact">Start Your Shopify Store</a>
             </Button>
+            </div>
           </div>
         </div>
       </section>

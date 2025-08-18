@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,10 @@ const Navbar = () => {
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  
+  // Timeout refs for delayed dropdown closing
+  const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pricingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +22,45 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (servicesTimeoutRef.current) {
+        clearTimeout(servicesTimeoutRef.current);
+      }
+      if (pricingTimeoutRef.current) {
+        clearTimeout(pricingTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Helper functions for dropdown management with delays
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) {
+      clearTimeout(servicesTimeoutRef.current);
+    }
+    setServicesDropdownOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 300); // 300ms delay before closing
+  };
+
+  const handlePricingEnter = () => {
+    if (pricingTimeoutRef.current) {
+      clearTimeout(pricingTimeoutRef.current);
+    }
+    setPricingDropdownOpen(true);
+  };
+
+  const handlePricingLeave = () => {
+    pricingTimeoutRef.current = setTimeout(() => {
+      setPricingDropdownOpen(false);
+    }, 300); // 300ms delay before closing
+  };
 
     const handleNavigation = (href: string) => {
     setMobileMenuOpen(false);
@@ -119,14 +162,17 @@ const Navbar = () => {
           {/* Services Dropdown */}
           <div 
             className="relative"
-            onMouseEnter={() => setServicesDropdownOpen(true)}
-            onMouseLeave={() => setServicesDropdownOpen(false)}
+            onMouseEnter={handleServicesEnter}
+            onMouseLeave={handleServicesLeave}
           >
             <button className="text-muted-foreground hover:text-white transition-colors font-medium flex items-center gap-1">
               Services <ChevronDown className="h-4 w-4" />
             </button>
             {servicesDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
+              <>
+                {/* Invisible bridge for easier mouse navigation */}
+                <div className="absolute top-full left-0 w-56 h-2 z-40"></div>
+                <div className="absolute top-full left-0 mt-1 w-56 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
                 {servicesLinks.map((link) => (
                   link.href.startsWith('#') ? (
                     <button
@@ -150,21 +196,25 @@ const Navbar = () => {
                     </Link>
                   )
                 ))}
-              </div>
+                </div>
+              </>
             )}
           </div>
 
           {/* Pricing Dropdown */}
           <div 
             className="relative"
-            onMouseEnter={() => setPricingDropdownOpen(true)}
-            onMouseLeave={() => setPricingDropdownOpen(false)}
+            onMouseEnter={handlePricingEnter}
+            onMouseLeave={handlePricingLeave}
           >
             <button className="text-muted-foreground hover:text-white transition-colors font-medium flex items-center gap-1">
               Pricing <ChevronDown className="h-4 w-4" />
             </button>
             {pricingDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
+              <>
+                {/* Invisible bridge for easier mouse navigation */}
+                <div className="absolute top-full left-0 w-48 h-2 z-40"></div>
+                <div className="absolute top-full left-0 mt-1 w-48 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
                 {pricingLinks.map((link) => (
                   <Link
                     key={link.name}
@@ -178,7 +228,8 @@ const Navbar = () => {
                     {link.name}
                   </Link>
                 ))}
-              </div>
+                </div>
+              </>
             )}
           </div>
 
