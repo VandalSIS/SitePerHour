@@ -171,8 +171,16 @@ const Navbar = () => {
             {servicesDropdownOpen && (
               <>
                 {/* Invisible bridge for easier mouse navigation */}
-                <div className="absolute top-full left-0 w-56 h-2 z-40"></div>
-                <div className="absolute top-full left-0 mt-1 w-56 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
+                <div 
+                  className="absolute top-full left-0 w-56 h-2 z-40"
+                  onMouseEnter={handleServicesEnter}
+                  onMouseLeave={handleServicesLeave}
+                ></div>
+                <div 
+                  className="absolute top-full left-0 mt-1 w-56 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50"
+                  onMouseEnter={handleServicesEnter}
+                  onMouseLeave={handleServicesLeave}
+                >
                 {servicesLinks.map((link) => (
                   link.href.startsWith('#') ? (
                     <button
@@ -213,8 +221,16 @@ const Navbar = () => {
             {pricingDropdownOpen && (
               <>
                 {/* Invisible bridge for easier mouse navigation */}
-                <div className="absolute top-full left-0 w-48 h-2 z-40"></div>
-                <div className="absolute top-full left-0 mt-1 w-48 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50">
+                <div 
+                  className="absolute top-full left-0 w-48 h-2 z-40"
+                  onMouseEnter={handlePricingEnter}
+                  onMouseLeave={handlePricingLeave}
+                ></div>
+                <div 
+                  className="absolute top-full left-0 mt-1 w-48 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg py-2 z-50"
+                  onMouseEnter={handlePricingEnter}
+                  onMouseLeave={handlePricingLeave}
+                >
                 {pricingLinks.map((link) => (
                   <Link
                     key={link.name}

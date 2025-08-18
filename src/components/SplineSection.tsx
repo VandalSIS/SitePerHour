@@ -35,7 +35,7 @@ const SplineSection = () => {
             <li>• Click and drag to rotate view</li>
             <li>• Scroll to zoom in/out</li>
             <li>• Double click to focus</li>
-            <li>• Right click to pan</li>
+            <li>• Right click to pans</li>
           </ul>
         </div>
       </div>

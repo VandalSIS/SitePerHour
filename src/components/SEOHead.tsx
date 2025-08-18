@@ -20,6 +20,7 @@ const SEOHead = ({
   const siteUrl = "https://siteperhour.vercel.app";
   const fullTitle = `${title} | SitePerHour - Professional Web Development Services`;
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : siteUrl;
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
   return (
     <Helmet>
@@ -37,16 +38,19 @@ const SEOHead = ({
       {/* Open Graph Tags */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+      <meta property="og:image" content={fullOgImage} />
       <meta property="og:url" content={fullCanonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="SitePerHour" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+      <meta name="twitter:image" content={fullOgImage} />
       
       {/* Additional SEO Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,6 +58,9 @@ const SEOHead = ({
       <meta name="distribution" content="global" />
       <meta name="revisit-after" content="7 days" />
       <meta name="rating" content="general" />
+      <meta name="googlebot" content="index, follow" />
+      <meta name="bingbot" content="index, follow" />
+      <meta name="slurp" content="index, follow" />
       
       {/* Structured Data */}
       {structuredData && (
