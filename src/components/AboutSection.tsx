@@ -1,40 +1,35 @@
 import { CheckCircle } from "lucide-react";
 import LazyImage from "./LazyImage";
+import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
+  const { t } = useTranslation();
+
   const skills = [
-    "React & TypeScript Development",
-    "E-commerce & Shopify Solutions",
-    "WordPress & CMS Development",
-    "AI-Powered Web Applications",
-    "SEO & Performance Optimization",
-    "Web3 & Blockchain Integration"
+    t('about.skills.react'),
+    t('about.skills.ecommerce'),
+    t('about.skills.wordpress'),
+    t('about.skills.ai'),
+    t('about.skills.seo'),
+    t('about.skills.web3'),
   ];
 
   return (
     <section id="about" className="section-spacing bg-secondary">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <p className="text-primary font-medium mb-2">About SitePerHour</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Expert Web Development & Digital Solutions</h2>
+          <p className="text-primary font-medium mb-2">{t('about.badge')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold">{t('about.title')}</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Transforming businesses with cutting-edge web technologies, AI integration, and modern development practices
+            {t('about.subtitle')}
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h3 className="text-2xl font-bold mb-4">Leading Web Development Agency</h3>
-            <p className="text-muted-foreground mb-6">
-              With extensive experience in modern web development, we specialize in creating high-performance 
-              websites, e-commerce platforms, and web applications using cutting-edge technologies like React, 
-              Node.js, AI, and Web3. Our solutions drive business growth and deliver exceptional user experiences.
-            </p>
-            <p className="text-muted-foreground mb-6">
-              We serve businesses worldwide, from startups to enterprises, providing custom web development, 
-              Shopify stores, WordPress solutions, CMS implementations, and ongoing maintenance. Our expertise 
-              spans across modern frameworks, AI integration, and blockchain technologies.
-            </p>
+            <h3 className="text-2xl font-bold mb-4">{t('about.heading')}</h3>
+            <p className="text-muted-foreground mb-6">{t('about.desc1')}</p>
+            <p className="text-muted-foreground mb-6">{t('about.desc2')}</p>
             <div className="grid grid-cols-2 gap-3">
               {skills.map((skill, index) => (
                 <div key={index} className="flex items-center gap-2">

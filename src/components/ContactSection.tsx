@@ -1,26 +1,20 @@
-import { useState, useEffect } from "react";
-import { Send, Phone, Mail, MapPin, User } from "lucide-react";
-
+import { useState } from "react";
+import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
+
 const ContactSection = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,39 +22,18 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Basic validation
       if (!formData.name || !formData.email || !formData.message) {
-        toast({
-          title: "Error",
-          description: "Please fill out all required fields",
-          variant: "destructive"
-        });
+        toast({ title: "Error", description: t('contact.errorFields'), variant: "destructive" });
         setIsSubmitting(false);
         return;
       }
 
-      // Simulate form submission (replace with your actual contact form logic)
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon."
-      });
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
+
+      toast({ title: t('contact.successTitle'), description: t('contact.successDesc') });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Failed to send message",
-        description: "Please try again later or contact directly via email.",
-        variant: "destructive"
-      });
+      toast({ title: t('contact.errorTitle'), description: t('contact.errorDesc'), variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -69,31 +42,29 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: <Phone className="h-5 w-5 text-primary" />,
-      title: "Phone",
+      title: t('contact.phone'),
       details: "+373 79 33 11 04",
-      name: "Mihail Mihail"
+      name: "Mihail Mihail",
     },
     {
       icon: <Mail className="h-5 w-5 text-primary" />,
-      title: "Email",
-      details: "mihail.mihai2001@gmail.com"
+      title: t('contact.emailLabel'),
+      details: "mihail.mihai2001@gmail.com",
     },
     {
       icon: <MapPin className="h-5 w-5 text-primary" />,
-      title: "Location",
-      details: "Chisinau, Moldova"
-    }
+      title: t('contact.location'),
+      details: "Chisinau, Moldova",
+    },
   ];
 
   return (
     <section id="contact" className="section-spacing">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <p className="text-primary font-medium mb-2">Get In Touch</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Contact Me</h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Have a project in mind or want to know more? Send me a message and I'll get back to you as soon as possible.
-          </p>
+          <p className="text-primary font-medium mb-2">{t('contact.badge')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold">{t('contact.title')}</h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">{t('contact.subtitle')}</p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -102,67 +73,45 @@ const ContactSection = () => {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="block text-sm font-medium">
-                    Name <span className="text-primary">*</span>
+                    {t('contact.name')} <span className="text-primary">*</span>
                   </label>
                   <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className="bg-muted border-border/50"
-                    required
+                    id="name" name="name" value={formData.name} onChange={handleChange}
+                    placeholder={t('contact.namePlaceholder')}
+                    className="bg-muted border-border/50" required
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="block text-sm font-medium">
-                    Email <span className="text-primary">*</span>
+                    {t('contact.email')} <span className="text-primary">*</span>
                   </label>
                   <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    id="email" name="email" type="email" value={formData.email} onChange={handleChange}
                     placeholder="your.email@example.com"
-                    className="bg-muted border-border/50"
-                    required
+                    className="bg-muted border-border/50" required
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <label htmlFor="subject" className="block text-sm font-medium">
-                  Subject
-                </label>
+                <label htmlFor="subject" className="block text-sm font-medium">{t('contact.subject')}</label>
                 <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="What is this about?"
+                  id="subject" name="subject" value={formData.subject} onChange={handleChange}
+                  placeholder={t('contact.subjectPlaceholder')}
                   className="bg-muted border-border/50"
                 />
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="block text-sm font-medium">
-                  Message <span className="text-primary">*</span>
+                  {t('contact.message')} <span className="text-primary">*</span>
                 </label>
                 <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your message..."
-                  className="bg-muted border-border/50 min-h-[150px]"
-                  required
+                  id="message" name="message" value={formData.message} onChange={handleChange}
+                  placeholder={t('contact.messagePlaceholder')}
+                  className="bg-muted border-border/50 min-h-[150px]" required
                 />
               </div>
-              <Button 
-                type="submit" 
-                className="w-full sm:w-auto bg-primary hover:bg-primary/80"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
+              <Button type="submit" className="w-full sm:w-auto bg-primary hover:bg-primary/80" disabled={isSubmitting}>
+                {isSubmitting ? t('contact.sending') : t('contact.send')}
                 <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
@@ -175,10 +124,8 @@ const ContactSection = () => {
                   <div className="bg-muted p-3 rounded-full">{item.icon}</div>
                   <div>
                     <h4 className="font-medium text-white">{item.title}</h4>
+                    {item.name && <p className="text-white font-medium mb-1">{t('contact.nameLabel')}: {item.name}</p>}
                     <p className="text-white">{item.details}</p>
-                    {item.name && (
-                      <p className="text-white font-medium mb-1">Name: {item.name}</p>
-                    )}
                   </div>
                 </CardContent>
               </Card>
