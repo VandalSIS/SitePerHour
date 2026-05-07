@@ -28,7 +28,13 @@ const ContactSection = () => {
         return;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error('Failed');
 
       toast({ title: t('contact.successTitle'), description: t('contact.successDesc') });
       setFormData({ name: "", email: "", subject: "", message: "" });

@@ -74,10 +74,18 @@ const PricingCustom = () => {
         .filter(service => selectedServices.includes(service.id))
         .map(service => service.name);
 
-      // Simulate quote submission (replace with your actual quote form logic)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Optional: Analytics tracking
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          services: selectedServiceNames,
+          estimatedCost,
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed');
+
       if (typeof window !== 'undefined' && (window as any).gtag) {
         (window as any).gtag('event', 'quote_requested', {
           event_category: 'Quote',
