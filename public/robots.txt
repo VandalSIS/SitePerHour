@@ -32,7 +32,7 @@ User-agent: facebookexternalhit
 Allow: /
 
 # Sitemap location
-Sitemap: https://siteperhour.vercel.app/sitemap.xml
+Sitemap: https://siteperhour.com/sitemap.xml
 
 # Crawl delay (optional - be gentle with our server)
 Crawl-delay: 1

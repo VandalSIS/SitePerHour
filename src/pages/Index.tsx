@@ -18,7 +18,7 @@ const Index = () => {
     "provider": {
       "@type": "Organization",
       "name": "SitePerHour",
-      "url": "https://siteperhour.vercel.app"
+      "url": "https://siteperhour.com"
     },
     "areaServed": "Worldwide",
     "serviceType": "Web Development"

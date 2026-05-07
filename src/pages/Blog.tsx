@@ -112,7 +112,7 @@ const Blog = () => {
       "@type": "Organization",
       "name": "SitePerHour"
     },
-    "url": "https://siteperhour.vercel.app/blog"
+    "url": "https://siteperhour.com/blog"
   };
 
   return (
