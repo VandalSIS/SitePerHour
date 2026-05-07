@@ -292,7 +292,7 @@ const PricingMedium = () => {
             </Button>
             <Button size="lg" variant="outline">
               <Phone className="h-4 w-4 mr-2" />
-              <a href="tel:+1234567890">Discuss Your Needs</a>
+              <a href="tel:+37379331104">Discuss Your Needs</a>
             </Button>
           </div>
         </div>

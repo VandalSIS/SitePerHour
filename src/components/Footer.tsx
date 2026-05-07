@@ -1,6 +1,8 @@
 import { Github, Linkedin, Instagram, Twitter } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="w-full bg-gradient-to-tr from-secondary via-background to-primary/10 py-10 px-4 rounded-t-2xl shadow-2xl mt-16 relative overflow-hidden">
       {/* Highly visible, dynamic bubble gum effect bubbles */}
@@ -20,8 +22,8 @@ const Footer = () => {
       <div className="absolute left-1/3 bottom-0 w-16 h-16 bg-blue-300/60 rounded-full blur-2xl opacity-60 animate-bubble-gum14" />
       <div className="absolute right-1/2 top-0 w-20 h-20 bg-pink-200/60 rounded-full blur-2xl opacity-60 animate-bubble-gum15" />
       <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-6 relative z-10">
-        <h3 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">Your<span className="text-primary">Name</span></h3>
-        <p className="text-lg md:text-xl text-white/90 font-medium max-w-md drop-shadow">Building beautiful, functional websites and web applications that help businesses achieve their goals.</p>
+        <h3 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">Site<span className="text-primary">PerHour</span></h3>
+        <p className="text-lg md:text-xl text-white/90 font-medium max-w-md drop-shadow">{t('footer.description')}</p>
         <div className="flex gap-6 mt-2">
           <a href="#" className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300">
             <Github size={32} />
@@ -49,11 +51,11 @@ const Footer = () => {
           <div>Phone: <a href="tel:+37379331104" className="hover:text-primary transition-colors underline underline-offset-4">+373 79 33 11 04</a></div>
         </div>
         <div className="w-full border-t border-border pt-6 mt-6 flex flex-col md:flex-row gap-2 justify-center items-center text-base text-white/80">
-          <span>© 2025 YourName. All rights reserved.</span>
+          <span>© 2026 SitePerHour. {t('footer.allRightsReserved')}</span>
           <span className="hidden md:inline">|</span>
-          <a id="privacy-policy-section" href="/privacy-policy" className="hover:text-primary transition-colors underline underline-offset-4">Privacy Policy</a>
+          <a id="privacy-policy-section" href="/privacy-policy" className="hover:text-primary transition-colors underline underline-offset-4">{t('footer.privacyPolicy')}</a>
           <span>•</span>
-          <a id="terms-section" href="/terms" className="hover:text-primary transition-colors underline underline-offset-4">Terms & Conditions</a>
+          <a id="terms-section" href="/terms" className="hover:text-primary transition-colors underline underline-offset-4">{t('footer.termsConditions')}</a>
         </div>
       </div>
     </footer>

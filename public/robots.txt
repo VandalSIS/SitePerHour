@@ -4,14 +4,15 @@ Allow: /
 # Block access to sensitive directories
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*.json$
 Disallow: /api/
 
-# Allow specific important pages
+# Allow important pages
 Allow: /pricing/
 Allow: /services/
 Allow: /blog/
 Allow: /contact
+Allow: /manifest.json
+Allow: /sitemap.xml
 
 User-agent: TelegramBot
 Allow: /
@@ -19,8 +20,6 @@ Clean-param: utm_source&utm_medium&utm_campaign
 
 User-agent: Twitterbot
 Allow: /
-
-X-Robots-Tag: noai, noimageai
 
 User-agent: Googlebot
 Allow: /
@@ -34,5 +33,5 @@ Allow: /
 # Sitemap location
 Sitemap: https://siteperhour.com/sitemap.xml
 
-# Crawl delay (optional - be gentle with our server)
+# Crawl delay
 Crawl-delay: 1
