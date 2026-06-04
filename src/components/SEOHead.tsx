@@ -47,10 +47,10 @@ const SEOHead = ({
       {/* Canonical URL */}
       <link rel="canonical" href={fullCanonicalUrl} />
 
-      {/* hreflang alternate links */}
+      {/* hreflang — single URL serves all languages via client-side i18n */}
       <link rel="alternate" hrefLang="en" href={`${siteUrl}${canonicalUrl || '/'}`} />
-      <link rel="alternate" hrefLang="ro" href={`${siteUrl}/ro${canonicalUrl || '/'}`} />
-      <link rel="alternate" hrefLang="ru" href={`${siteUrl}/ru${canonicalUrl || '/'}`} />
+      <link rel="alternate" hrefLang="en-US" href={`${siteUrl}${canonicalUrl || '/'}`} />
+      <link rel="alternate" hrefLang="en-GB" href={`${siteUrl}${canonicalUrl || '/'}`} />
       <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${canonicalUrl || '/'}`} />
       
       {/* Open Graph Tags */}
