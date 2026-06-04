@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CTABanner = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
@@ -16,17 +18,26 @@ const CTABanner = () => {
           transition={{ duration: 0.6 }}
           className="relative bg-gradient-to-br from-primary/30 via-purple-600/20 to-primary/30 border border-primary/30 rounded-3xl p-8 md:p-16 text-center overflow-hidden"
         >
-          {/* Decorative blobs */}
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 30, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-20 -left-20 w-80 h-80 bg-primary/30 rounded-full blur-[100px]"
-          />
-          <motion.div
-            animate={{ scale: [1, 1.3, 1], rotate: [0, -30, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]"
-          />
+          {/* Decorative blobs — animated on desktop, static on mobile */}
+          {isMobile ? (
+            <>
+              <div className="absolute -top-20 -left-20 w-80 h-80 bg-primary/30 rounded-full blur-[100px]" />
+              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]" />
+            </>
+          ) : (
+            <>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], rotate: [0, 30, 0] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-20 -left-20 w-80 h-80 bg-primary/30 rounded-full blur-[100px]"
+              />
+              <motion.div
+                animate={{ scale: [1, 1.3, 1], rotate: [0, -30, 0] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]"
+              />
+            </>
+          )}
 
           <div className="relative z-10">
             <motion.h2

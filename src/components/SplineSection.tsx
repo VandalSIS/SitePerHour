@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Sparkles, MousePointer2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+const SPLINE_SCRIPT_SRC = "https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js";
+
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -13,6 +15,33 @@ const useIsMobile = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
   return isMobile;
+};
+
+// Loads the Spline viewer custom element on demand (returns existing promise if already requested)
+let splineScriptPromise: Promise<void> | null = null;
+const loadSplineScript = () => {
+  if (splineScriptPromise) return splineScriptPromise;
+  if (typeof window === "undefined") return Promise.resolve();
+  if (customElements && customElements.get("spline-viewer")) return Promise.resolve();
+
+  splineScriptPromise = new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${SPLINE_SCRIPT_SRC}"]`
+    );
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("Spline load failed")));
+      return;
+    }
+    const script = document.createElement("script");
+    script.type = "module";
+    script.src = SPLINE_SCRIPT_SRC;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("Spline load failed"));
+    document.head.appendChild(script);
+  });
+  return splineScriptPromise;
 };
 
 const SplineSection = () => {
@@ -43,24 +72,35 @@ const SplineSection = () => {
     const container = sectionRef.current?.querySelector(".spline-container");
     if (!container) return;
 
-    const viewer = document.createElement("spline-viewer") as HTMLElement;
-    viewer.setAttribute("url", "https://prod.spline.design/vx1RgeVjLhe8q1H4/scene.splinecode");
-    viewer.style.width = "100%";
-    viewer.style.height = "100%";
-
-    // Spline-viewer emits "load" when scene is ready; fallback timer in case it doesn't fire
+    let cancelled = false;
+    let viewer: HTMLElement | null = null;
+    let fallbackTimer = 0;
     const handleLoad = () => setIsLoaded(true);
-    viewer.addEventListener("load", handleLoad);
-    viewer.addEventListener("load-complete", handleLoad);
-    const fallbackTimer = window.setTimeout(handleLoad, 4000);
 
-    container.appendChild(viewer);
+    loadSplineScript()
+      .then(() => {
+        if (cancelled) return;
+        viewer = document.createElement("spline-viewer") as HTMLElement;
+        viewer.setAttribute("url", "https://prod.spline.design/vx1RgeVjLhe8q1H4/scene.splinecode");
+        viewer.style.width = "100%";
+        viewer.style.height = "100%";
+        viewer.addEventListener("load", handleLoad);
+        viewer.addEventListener("load-complete", handleLoad);
+        fallbackTimer = window.setTimeout(handleLoad, 4000);
+        container.appendChild(viewer);
+      })
+      .catch(() => {
+        // Network failure or blocked — just keep the loader
+      });
 
     return () => {
-      window.clearTimeout(fallbackTimer);
-      viewer.removeEventListener("load", handleLoad);
-      viewer.removeEventListener("load-complete", handleLoad);
-      viewer.remove();
+      cancelled = true;
+      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+      if (viewer) {
+        viewer.removeEventListener("load", handleLoad);
+        viewer.removeEventListener("load-complete", handleLoad);
+        viewer.remove();
+      }
     };
   }, [isInView, isMobile]);
 
@@ -91,16 +131,12 @@ const SplineSection = () => {
 
       {/* On mobile: lightweight static fallback (no spline, prevents jank) */}
       {isMobile ? (
-        <div className="relative h-[50vh] min-h-[400px] mx-4 mb-12 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-purple-500/20 to-background border border-white/10 flex items-center justify-center">
+        <div className="relative h-[40vh] min-h-[320px] mx-4 mb-12 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-purple-500/20 to-background border border-white/10 flex items-center justify-center">
           <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-30" />
-          <motion.div
-            animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="text-center px-6 z-10"
-          >
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-purple-500 blur-2xl opacity-60" />
+          <div className="text-center px-6 z-10">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-purple-500 blur-2xl opacity-60" />
             <p className="text-white/80 text-sm">Open on desktop for the full 3D interactive experience</p>
-          </motion.div>
+          </div>
         </div>
       ) : (
         <div className="relative h-[70vh] min-h-[500px]">

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import ParticlesBackground from "./ParticlesBackground";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const TECH_STACK = [
   "React", "Next.js", "TypeScript", "Tailwind", "WordPress",
@@ -12,6 +13,7 @@ const TECH_STACK = [
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -23,17 +25,26 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
         <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-30" />
 
-        {/* Animated blobs */}
-        <motion.div
-          className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/30 rounded-full blur-[120px]"
-          animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/30 rounded-full blur-[120px]"
-          animate={{ x: [0, -60, 0], y: [0, -40, 0] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {/* Blobs — animated on desktop, static on mobile to save battery + GPU */}
+        {isMobile ? (
+          <>
+            <div className="absolute top-1/4 -left-32 w-80 h-80 bg-primary/30 rounded-full blur-[100px]" />
+            <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]" />
+          </>
+        ) : (
+          <>
+            <motion.div
+              className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/30 rounded-full blur-[120px]"
+              animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/30 rounded-full blur-[120px]"
+              animate={{ x: [0, -60, 0], y: [0, -40, 0] }}
+              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
 
         <ParticlesBackground />
 
@@ -138,13 +149,9 @@ const HeroSection = () => {
         </motion.a>
       </section>
 
-      {/* Tech stack marquee — standalone section, no overlap */}
+      {/* Tech stack marquee — CSS animation (cheaper than framer-motion on mobile) */}
       <section className="relative overflow-hidden border-y border-white/10 bg-black/40 backdrop-blur-md py-5 z-10">
-        <motion.div
-          className="flex gap-12 whitespace-nowrap"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        >
+        <div className="flex gap-12 whitespace-nowrap animate-marquee will-change-transform">
           {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
             <span
               key={i}
@@ -154,7 +161,7 @@ const HeroSection = () => {
               <span className="text-primary/40">•</span>
             </span>
           ))}
-        </motion.div>
+        </div>
       </section>
     </>
   );

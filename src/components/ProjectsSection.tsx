@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight, Sparkles, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type Project = {
   title: string;
@@ -80,12 +81,14 @@ const PROJECTS: Project[] = [
 ];
 
 // WordPress mShots — free, no auth, cached server-side
-const screenshotUrl = (url: string) =>
-  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=675`;
+const screenshotUrl = (url: string, width: number) =>
+  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${Math.round(width * 0.75)}`;
 
 const ProjectThumbnail = ({ project }: { project: Project }) => {
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const isMobile = useIsMobile();
+  const width = isMobile ? 480 : 900;
 
   return (
     <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
@@ -106,9 +109,10 @@ const ProjectThumbnail = ({ project }: { project: Project }) => {
       {/* Live screenshot via mShots */}
       {!imgError && (
         <img
-          src={screenshotUrl(project.url)}
+          src={screenshotUrl(project.url, width)}
           alt={project.title}
           loading="lazy"
+          decoding="async"
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgError(true)}
           className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
