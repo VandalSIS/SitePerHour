@@ -1,18 +1,41 @@
 // Performance optimization utilities for better caching and memory management
 
-// Service Worker registration for caching
+// Service Worker registration with auto-update + stale cache nuke.
+// Prevents users from being stuck on an old shell after we deploy.
 export const registerServiceWorker = () => {
-  if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
+  if (!('serviceWorker' in navigator) || process.env.NODE_ENV !== 'production') return;
+
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        updateViaCache: 'none',
+      });
+
+      // Force check for a new SW version on every page load
+      registration.update().catch(() => {});
+
+      // When a new SW takes control, reload once to pick up new assets
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
+
+      // If a new worker is installed while the page is open, activate it immediately
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        if (!newWorker) return;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            newWorker.postMessage({ type: 'SKIP_WAITING' });
+          }
         });
-    });
-  }
+      });
+    } catch {
+      // Silent — SW is a progressive enhancement
+    }
+  });
 };
 
 // Image lazy loading and optimization
