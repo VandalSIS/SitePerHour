@@ -3,6 +3,11 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ProcessSection from "@/components/ProcessSection";
+import TechStackSection from "@/components/TechStackSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
+import CTABanner from "@/components/CTABanner";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SectionLayout from "@/components/SectionLayout";
@@ -16,19 +21,23 @@ const Index = () => {
       "@type": "ProfessionalService",
       "@id": "https://siteperhour.com/#organization",
       "name": "SitePerHour",
-      "alternateName": ["Site Per Hour", "SitePerHour Web Development"],
-      "description": "Professional web development agency based in Chisinau, Moldova. We build custom websites, Shopify stores, WordPress solutions, and web applications for clients worldwide.",
+      "alternateName": ["Site Per Hour", "SitePerHour Web Development & Digital Marketing"],
+      "description": "Full-service digital agency in Chișinău, Moldova. Web development, mobile apps, Google & Meta Ads, SEO and digital marketing. We deliver websites, e-commerce stores and ad campaigns that convert.",
       "url": "https://siteperhour.com",
-      "logo": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
-      "image": "https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0005_4_a-vibrant-psychedelic-illustrated-festiv_D5lOUmxbTqKV5GydP5fB0w_4fFsKLR4RrSArj5GnsbR5A.jpeg",
+      "logo": "https://siteperhour.com/favicon.ico",
+      "image": "https://siteperhour.com/hero-bg.svg",
       "founder": {
         "@type": "Person",
         "name": "Mihail Mihail",
-        "jobTitle": "Full-Stack Web Developer & Founder"
+        "jobTitle": "Full-Stack Web Developer & Digital Marketing Specialist",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=100005960117941",
+          "https://github.com/JeremyHustlin"
+        ]
       },
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Chisinau",
+        "addressLocality": "Chișinău",
         "addressCountry": "MD"
       },
       "contactPoint": [
@@ -41,11 +50,17 @@ const Index = () => {
         }
       ],
       "areaServed": "Worldwide",
-      "serviceType": ["Web Development", "Shopify Development", "WordPress Development", "CMS Development", "Website Maintenance"],
+      "serviceType": [
+        "Web Development", "Shopify Development", "WordPress Development",
+        "Webflow Development", "Tilda Development", "Mobile App Development",
+        "Google Ads", "Meta Ads (Facebook & Instagram)", "SEO Optimization",
+        "Digital Marketing", "CMS Development", "Website Maintenance",
+        "E-commerce Development", "Branding & UI/UX Design"
+      ],
       "priceRange": "$$",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Web Development Services",
+        "name": "Digital Services Catalog",
         "itemListElement": [
           {
             "@type": "Offer",
@@ -67,11 +82,17 @@ const Index = () => {
             "price": "1997",
             "priceCurrency": "USD",
             "url": "https://siteperhour.com/pricing/premium"
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom Quote (Web, Apps, Ads, SEO)",
+            "url": "https://siteperhour.com/pricing/custom"
           }
         ]
       },
       "sameAs": [
-        "https://github.com/JeremyHustlin"
+        "https://github.com/JeremyHustlin",
+        "https://www.facebook.com/profile.php?id=100005960117941"
       ]
     },
     {
@@ -83,7 +104,15 @@ const Index = () => {
           "name": "Who makes good websites in Moldova?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SitePerHour, founded by Mihail Mihail in Chisinau, Moldova, is a professional web development agency that creates high-quality custom websites, Shopify stores, WordPress solutions, and web applications for businesses worldwide."
+            "text": "SitePerHour, founded by Mihail Mihail in Chișinău, Moldova, is a full-service digital agency that builds high-quality websites, mobile applications, and digital ad campaigns (Google Ads, Meta Ads) for clients in 8+ countries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What services does SitePerHour offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SitePerHour offers full-service digital solutions: web development (React, Next.js, WordPress, Webflow, Shopify, Tilda), mobile and web apps, Google Ads, Meta Ads (Facebook & Instagram), SEO, branding, and ongoing website maintenance."
           }
         },
         {
@@ -91,7 +120,23 @@ const Index = () => {
           "name": "How much does a professional website cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SitePerHour offers web development packages starting from $497 for a basic 5-page website, $997 for a medium package with CMS and e-commerce, and $1,997 for a premium enterprise package with unlimited pages. Custom quotes are also available."
+            "text": "SitePerHour offers transparent pricing: $497 for a basic 5-page website, $997 for a medium CMS/e-commerce package, $1,997 for a premium enterprise build. Custom quotes available for mobile apps, ad campaigns and complex projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you run Google Ads and Meta Ads campaigns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. SitePerHour manages full Google Ads campaigns (Search, Display, YouTube, Shopping) and Meta Ads (Facebook & Instagram) with creative production, audience targeting and ongoing ROAS optimization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What platforms do you build on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We build on React/Next.js, WordPress, WooCommerce, Webflow, Tilda and Shopify — depending on what fits your business best. We've shipped projects on all these stacks for international clients."
           }
         },
         {
@@ -99,31 +144,7 @@ const Index = () => {
           "name": "How long does it take to build a website?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "At SitePerHour, basic websites are delivered in 7-10 days, medium packages in 10-14 days, and premium projects in 14-21 days. Custom projects have flexible timelines based on requirements."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you build Shopify stores?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, SitePerHour specializes in Shopify store development including custom themes, payment integration, mobile optimization, and e-commerce features. Packages start from $1,497."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can you build a WordPress website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, SitePerHour offers full WordPress development services including custom themes, plugin development, WooCommerce integration, and performance optimization. Business websites start from $1,297."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you offer website maintenance?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, SitePerHour offers monthly website maintenance plans starting from $97/month, including security monitoring, updates, backups, and performance optimization."
+            "text": "Basic websites in 7-10 days, medium projects in 10-14 days, premium builds in 14-21 days. Mobile apps and complex web apps have flexible timelines based on scope."
           }
         }
       ]
@@ -133,15 +154,14 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
-        title="SitePerHour - Professional Web Development Services | Custom Websites & E-commerce"
-        description="Expert web development agency in Moldova. Custom websites, Shopify stores, WordPress development, CMS solutions, and maintenance. Fast delivery, modern tech stack, worldwide clients."
-        keywords="web development Moldova, custom websites, e-commerce development, Shopify development, WordPress development, CMS solutions, website maintenance, professional web design, web developer Chisinau, site development"
+        title="SitePerHour — Web Development, Digital Ads & Marketing | Moldova-Based, Global Clients"
+        description="Full-service digital agency: web development (React, WordPress, Webflow, Shopify), mobile apps, Google & Meta Ads, SEO. Based in Chișinău, serving clients in 8+ countries."
+        keywords="web development Moldova, Chisinau web developer, Google Ads Moldova, Meta Ads agency, Facebook Ads, Shopify development, WordPress development, Webflow developer, mobile app development, SEO Moldova, digital marketing, full-stack developer Chisinau, react developer, ecommerce development"
         canonicalUrl="/"
         structuredData={structuredData}
       />
       <Navbar />
       <HeroSection />
-      <SplineSection />
       <SectionLayout>
         <AboutSection />
       </SectionLayout>
@@ -150,6 +170,24 @@ const Index = () => {
       </SectionLayout>
       <SectionLayout>
         <ProjectsSection />
+      </SectionLayout>
+      <SectionLayout>
+        <TechStackSection />
+      </SectionLayout>
+      <SectionLayout>
+        <ProcessSection />
+      </SectionLayout>
+      <SectionLayout>
+        <TestimonialsSection />
+      </SectionLayout>
+      <SectionLayout>
+        <SplineSection />
+      </SectionLayout>
+      <SectionLayout>
+        <FAQSection />
+      </SectionLayout>
+      <SectionLayout>
+        <CTABanner />
       </SectionLayout>
       <SectionLayout>
         <ContactSection />

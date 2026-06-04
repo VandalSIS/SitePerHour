@@ -1,4 +1,4 @@
-import { Github, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Github, Facebook, Mail, Phone } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
@@ -25,17 +25,37 @@ const Footer = () => {
         <h3 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">Site<span className="text-primary">PerHour</span></h3>
         <p className="text-lg md:text-xl text-white/90 font-medium max-w-md drop-shadow">{t('footer.description')}</p>
         <div className="flex gap-6 mt-2">
-          <a href="#" className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300">
+          <a
+            href="https://www.facebook.com/profile.php?id=100005960117941"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300"
+          >
+            <Facebook size={32} />
+          </a>
+          <a
+            href="https://github.com/JeremyHustlin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300"
+          >
             <Github size={32} />
           </a>
-          <a href="#" className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300">
-            <Linkedin size={32} />
+          <a
+            href="mailto:mihail.mihai2001@gmail.com"
+            aria-label="Email"
+            className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300"
+          >
+            <Mail size={32} />
           </a>
-          <a href="#" className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300">
-            <Instagram size={32} />
-          </a>
-          <a href="#" className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300">
-            <Twitter size={32} />
+          <a
+            href="tel:+37379331104"
+            aria-label="Phone"
+            className="text-white hover:text-primary transition-colors transform hover:scale-125 duration-300"
+          >
+            <Phone size={32} />
           </a>
         </div>
         <div className="flex flex-wrap justify-center gap-4 mt-4">

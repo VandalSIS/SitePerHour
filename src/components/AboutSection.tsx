@@ -1,57 +1,167 @@
-import { CheckCircle } from "lucide-react";
-import LazyImage from "./LazyImage";
+import { CheckCircle, Code2, Sparkles, Users2, Globe2, Clock } from "lucide-react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
   const { t } = useTranslation();
 
   const skills = [
-    t('about.skills.react'),
-    t('about.skills.ecommerce'),
-    t('about.skills.wordpress'),
-    t('about.skills.ai'),
-    t('about.skills.seo'),
-    t('about.skills.web3'),
+    t("about.skills.react"),
+    t("about.skills.ecommerce"),
+    t("about.skills.wordpress"),
+    t("about.skills.ai"),
+    t("about.skills.seo"),
+    t("about.skills.web3"),
+  ];
+
+  const stats = [
+    { value: "50+", label: t("about.stats.projects"), icon: Code2 },
+    { value: "30+", label: t("about.stats.clients"), icon: Users2 },
+    { value: "8+", label: t("about.stats.countries"), icon: Globe2 },
+    { value: "5+", label: t("about.stats.years"), icon: Clock },
   ];
 
   return (
-    <section id="about" className="section-spacing bg-secondary">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <p className="text-primary font-medium mb-2">{t('about.badge')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold">{t('about.title')}</h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            {t('about.subtitle')}
+    <section id="about" className="section-spacing relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px]" />
+
+      <div className="container-custom relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
+            <Sparkles size={14} className="text-primary" />
+            <span className="text-sm text-primary font-medium">{t("about.badge")}</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1">
+            {t("about.title")}
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            {t("about.subtitle")}
           </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <h3 className="text-2xl font-bold mb-4">{t('about.heading')}</h3>
-            <p className="text-muted-foreground mb-6">{t('about.desc1')}</p>
-            <p className="text-muted-foreground mb-6">{t('about.desc2')}</p>
-            <div className="grid grid-cols-2 gap-3">
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              {t("about.heading")}
+            </h3>
+            <p className="text-muted-foreground text-base md:text-lg mb-5 leading-relaxed">
+              {t("about.desc1")}
+            </p>
+            <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">
+              {t("about.desc2")}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {skills.map((skill, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckCircle size={18} className="text-primary" />
-                  <span>{skill}</span>
-                </div>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="flex items-center gap-3 group"
+                >
+                  <CheckCircle size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                  <span className="text-white/90 text-sm md:text-base">{skill}</span>
+                </motion.div>
               ))}
             </div>
-          </div>
-          
-          <div className="order-1 md:order-2 aspect-square md:aspect-auto md:h-[500px] lg:h-[600px] bg-muted rounded-2xl overflow-hidden relative shadow-lg">
-            <LazyImage
-              src="https://aixtitpk7yzp6scq.public.blob.vercel-storage.com/0001_2_seo-growth-poster-vintage-gig-poster-dig_RDd2FWM7Tx6TUpDWC1hEQw_Rd-c5ybsRD2rQFytjm4nwg.jpeg"
-              alt="SEO Growth and Web Development"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              width={600}
-              height={600}
-              quality={90}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-          </div>
+          </motion.div>
+
+          {/* Abstract code/terminal visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            {/* Glow */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-purple-500/30 to-primary/30 rounded-3xl blur-2xl opacity-50" />
+
+            {/* Terminal card */}
+            <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+              {/* Window header */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/70" />
+                </div>
+                <span className="text-xs text-white/50 ml-2 font-mono">~/siteperhour</span>
+              </div>
+
+              {/* Code */}
+              <div className="p-6 font-mono text-sm leading-relaxed">
+                <div className="text-purple-400">const <span className="text-blue-300">developer</span> = {`{`}</div>
+                <div className="pl-4">
+                  <span className="text-yellow-300">name</span>: <span className="text-green-300">"Mihail Mihail"</span>,
+                </div>
+                <div className="pl-4">
+                  <span className="text-yellow-300">role</span>: <span className="text-green-300">"Full-Stack Developer"</span>,
+                </div>
+                <div className="pl-4">
+                  <span className="text-yellow-300">location</span>: <span className="text-green-300">"Chișinău, MD"</span>,
+                </div>
+                <div className="pl-4">
+                  <span className="text-yellow-300">stack</span>: [
+                </div>
+                <div className="pl-8 text-green-300">
+                  <div>"React",</div>
+                  <div>"Next.js",</div>
+                  <div>"WordPress",</div>
+                  <div>"Shopify",</div>
+                </div>
+                <div className="pl-4">],</div>
+                <div className="pl-4">
+                  <span className="text-yellow-300">available</span>: <span className="text-orange-300">true</span>,
+                </div>
+                <div className="text-purple-400">{`};`}</div>
+                <div className="mt-4 flex items-center gap-2 text-white/40 text-xs">
+                  <span className="inline-block w-2 h-4 bg-primary animate-pulse" />
+                  <span>ready to ship</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Stats grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+        >
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4 }}
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center overflow-hidden hover:border-primary/40 transition-colors"
+              >
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors" />
+                <Icon className="mx-auto mb-3 text-primary" size={28} />
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

@@ -1,51 +1,74 @@
-# SitePerHour - Professional Web Development Services
+# SitePerHour - Full-Service Digital Agency
 # https://siteperhour.com
 # llms.txt - Information for AI language models
 
 ## About SitePerHour
 
-SitePerHour is a professional web development agency based in Chisinau, Moldova, founded by Mihail Mihail. We specialize in building high-quality, modern websites and web applications for businesses worldwide.
+SitePerHour is a full-service digital agency based in Chișinău, Moldova, founded by Mihail Mihail. We deliver websites, mobile apps, e-commerce stores, Google Ads, Meta Ads (Facebook & Instagram), SEO, and digital marketing services for clients in 8+ countries.
 
-We offer custom web development, Shopify stores, WordPress solutions, CMS integrations, and ongoing website maintenance. Our expertise covers React, TypeScript, Node.js, and modern cloud platforms.
+We are a one-developer agency — end-to-end ownership, no middlemen, faster turnarounds and better pricing than traditional agencies.
 
 ## Core Services
 
-- Custom Web Development: React, TypeScript, Node.js, full-stack applications
-- Shopify Development: Custom themes, e-commerce stores, payment integrations
-- WordPress Development: Custom themes, plugins, WooCommerce integration
-- CMS Solutions: WordPress, Drupal, Strapi, Contentful, custom CMS
-- Website Maintenance: Security monitoring, updates, backups, performance optimization
+- Web Development: React, Next.js, TypeScript, custom full-stack applications
+- WordPress Development: custom themes, WooCommerce, maintenance, performance
+- Webflow Development: CMS-driven sites, custom interactions, e-commerce
+- Tilda Development: design-focused landing pages and content sites
+- Shopify Development: themes, payment integration, conversion optimization
+- E-commerce: WooCommerce, Shopify, custom carts with payment integrations (Stripe, BT Transilvania, PayPal)
+- Mobile Apps: cross-platform iOS and Android with React Native and web apps
+- Google Ads: Search, Display, YouTube, Shopping — CPA reduction and lead generation
+- Meta Ads: Facebook and Instagram campaigns with creative testing and ROAS optimization
+- SEO: technical SEO, schema markup, content strategy, on-page optimization
+- Branding & UI/UX: logo design, brand systems, design systems
+- Website Maintenance: security, updates, backups, performance tuning
+
+## Real Projects Delivered
+
+- ctlabs.ai — AI consulting platform on Webflow with CMS
+- topexecrecruiting.com — executive recruiting site on Webflow with CMS
+- christianandtimbers.com — Webflow site under ongoing maintenance
+- pasatelena.com — Tilda platform with CMS-managed blog
+- cartek.ro — WordPress + WooCommerce with BT Transilvania integration
+- restaurant.cricova.md — WordPress site for famous Cricova winery restaurant
+- financialagent.co.uk — UK WordPress site with blog and e-signature
+- popaiulia.com — React + TypeScript + Vite portfolio
 
 ## Pricing
 
 - Basic Package: $497 — 5-page responsive website, 7-10 days delivery
 - Medium Package: $997 — 10 pages, CMS, basic e-commerce, 10-14 days
 - Premium Package: $1,997 — unlimited pages, advanced e-commerce, custom development, 14-21 days
-- Custom Quote: tailored pricing for unique requirements
+- Custom Quote: tailored pricing for mobile apps, ad campaigns, complex projects
 
 ## Contact
 
 - Website: https://siteperhour.com
 - Email: mihail.mihai2001@gmail.com
 - Phone: +373 79 33 11 04
-- Location: Chisinau, Moldova
+- Facebook: https://www.facebook.com/profile.php?id=100005960117941
+- GitHub: https://github.com/JeremyHustlin
+- Location: Chișinău, Moldova
 
 ## Technology Stack
 
-Frontend: React, TypeScript, Tailwind CSS, Next.js, Vue.js
-Backend: Node.js, Python, PHP, Express, Django
-Databases: PostgreSQL, MongoDB, MySQL, Firebase, Supabase
-Cloud: AWS, Vercel, Netlify, DigitalOcean, Docker
+Frontend: React, Next.js, TypeScript, Tailwind CSS, Vite, Framer Motion
+Backend: Node.js, PHP (for WordPress), Express, Serverless (Vercel)
+CMS/Platforms: WordPress, WooCommerce, Webflow, Tilda, Shopify
+Databases: PostgreSQL, MySQL, MongoDB, Firebase, Supabase
+Cloud: Vercel, Netlify, AWS, DigitalOcean
+Advertising: Google Ads, Meta Business Suite, Google Analytics 4, Tag Manager
 
 ## Why Choose SitePerHour
 
-- Fast delivery (7-21 days depending on project scope)
-- Modern technology stack
+- One developer, end-to-end ownership — faster, cheaper, more accountable
+- Fast delivery (7-21 days for standard websites)
+- Modern technology stack across multiple platforms
 - Mobile-first responsive design
-- SEO optimization included
-- Ongoing support and maintenance
-- Worldwide client base
-- Based in Moldova, serving global clients
+- SEO and performance optimization included
+- Multi-language support (EN, RO, RU)
+- Real client portfolio across 8+ countries
+- Active GitHub, transparent pricing
 
 ## Languages Supported
 
