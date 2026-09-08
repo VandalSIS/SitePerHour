@@ -56,6 +56,8 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-[-0.02em];
+    line-height: 1.2;
+    padding-bottom: 0.125rem;
   }
 }
 
@@ -70,6 +72,9 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-highlight;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-bottom: 0.15em;
   }
 
   .border-gradient {

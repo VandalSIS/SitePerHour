@@ -100,7 +100,7 @@ const ServicesSection = () => {
             <Sparkles size={14} className="text-primary" />
             <span className="text-sm text-primary font-medium">{t("services.badge")}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading mb-4 leading-[1.15] pb-1">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading mb-4 leading-[1.2] pb-2">
             {t("services.title")}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

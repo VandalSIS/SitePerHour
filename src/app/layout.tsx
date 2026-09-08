@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-jakarta",
+  variable: "--font-space-grotesk",
   display: "swap",
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="ro"
-      className={`dark ${GeistSans.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${GeistSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen font-sans">

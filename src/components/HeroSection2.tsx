@@ -74,8 +74,8 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold mb-6 leading-[1.1] pb-2">
-            <span className="block overflow-hidden">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-[1.25] sm:leading-[1.2] tracking-[-0.02em]">
+            <span className="block py-1">
               {titleLine1.split(" ").map((word, i) => (
                 <motion.span
                   key={`l1-${word}-${i}`}
@@ -83,24 +83,24 @@ const HeroSection = () => {
                   initial="hidden"
                   animate="visible"
                   variants={wordVariants}
-                  className="inline-block mr-[0.25em]"
+                  className="inline-block mr-[0.25em] pb-0.5"
                 >
                   {word}
                 </motion.span>
               ))}
             </span>
-            <span className="block overflow-hidden mt-1">
+            <span className="block py-1">
               <motion.span
                 custom={0}
                 initial="hidden"
                 animate="visible"
                 variants={wordVariants}
-                className="text-gradient inline-block"
+                className="text-gradient inline-block pb-1 pt-0.5"
               >
                 {titleLine2}
               </motion.span>
             </span>
-            <span className="block overflow-hidden mt-1">
+            <span className="block py-1">
               {titleLine3.split(" ").map((word, i) => (
                 <motion.span
                   key={`l3-${word}-${i}`}
@@ -108,7 +108,7 @@ const HeroSection = () => {
                   initial="hidden"
                   animate="visible"
                   variants={wordVariants}
-                  className="inline-block mr-[0.25em]"
+                  className="inline-block mr-[0.25em] pb-0.5"
                 >
                   {word}
                 </motion.span>
