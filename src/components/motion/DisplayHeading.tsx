@@ -60,7 +60,7 @@ export default function DisplayHeading({
             animate={revealOnScroll ? (isInView ? "visible" : "hidden") : "visible"}
             variants={wordVariants}
             className={`inline-block mr-[0.28em] last:mr-0 pb-1 ${
-              gradient ? "text-gradient" : ""
+              gradient ? "text-gradient-vivid" : ""
             }`}
           >
             {word}

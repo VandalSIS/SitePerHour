@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useRef } from "react";
-import DisplayHeading from "@/components/motion/DisplayHeading";
+import HeroHeadline from "@/components/motion/HeroHeadline";
 
 const TECH_STACK = [
   "React", "Next.js", "TypeScript", "WordPress", "Shopify",
@@ -23,82 +23,76 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -40 : -140]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const contentScale = useTransform(scrollYProgress, [0, 0.55], [1, 0.96]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -60 : -180]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -30 : -100]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const headlineLines = [
+    { text: t("hero.title1") },
+    { text: t("hero.title2"), gradient: true },
+    { text: t("hero.title3") },
+  ];
 
   return (
     <>
       <section
         ref={sectionRef}
         id="home"
-        className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-8 mesh-gradient dot-grid"
+        className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-24 pb-10 md:pb-14"
       >
-        <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-background" />
+        <div className="absolute inset-0 mesh-gradient opacity-40" />
+        <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-[0.07]" />
 
         {isMobile ? (
           <>
-            <div className="absolute top-1/4 -left-32 w-80 h-80 bg-primary/25 rounded-full blur-[100px]" />
-            <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-accent/25 rounded-full blur-[100px]" />
+            <div className="absolute top-1/3 -left-40 w-72 h-72 bg-primary/15 rounded-full blur-[120px]" />
+            <div className="absolute bottom-1/4 -right-40 w-72 h-72 bg-accent/10 rounded-full blur-[120px]" />
           </>
         ) : (
           <>
             <motion.div
-              className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/25 rounded-full blur-[120px]"
-              animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/3 -left-48 w-[28rem] h-[28rem] bg-primary/12 rounded-full blur-[140px]"
+              animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-              className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/25 rounded-full blur-[120px]"
-              animate={{ x: [0, -60, 0], y: [0, -40, 0] }}
-              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-1/4 -right-48 w-[28rem] h-[28rem] bg-accent/10 rounded-full blur-[140px]"
+              animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
             />
           </>
         )}
 
         <motion.div
-          style={{ y: contentY, opacity: contentOpacity, scale: contentScale }}
-          className="container-custom relative z-10 text-center max-w-6xl mx-auto px-4 flex-1 flex flex-col justify-center will-change-transform"
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="relative z-10 w-full max-w-[min(100%,1440px)] mx-auto px-5 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center will-change-transform"
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-10 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm self-center"
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm self-start"
           >
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-xs md:text-sm text-primary font-medium tracking-wide">
+            <Sparkles size={12} className="text-primary" />
+            <span className="text-[11px] md:text-xs text-muted-foreground font-medium tracking-[0.12em] uppercase">
               {t("hero.badge")}
             </span>
           </motion.div>
 
-          <div className="mb-8">
-            <DisplayHeading as="h1" size="hero" revealOnScroll={false} className="mb-2">
-              {t("hero.title1")}
-            </DisplayHeading>
-            <DisplayHeading
-              as="h1"
-              size="hero"
-              revealOnScroll={false}
-              gradient
-              className="mb-2"
-            >
-              {t("hero.title2")}
-            </DisplayHeading>
-            <DisplayHeading as="h1" size="hero" revealOnScroll={false}>
-              {t("hero.title3")}
-            </DisplayHeading>
-          </div>
+          <motion.div style={{ y: headlineY }} className="will-change-transform">
+            <HeroHeadline lines={headlineLines} />
+          </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-muted-foreground text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-xl mt-8 md:mt-10 mb-8 md:mb-10 leading-relaxed font-medium"
           >
             {t("hero.description")}
           </motion.p>
@@ -106,12 +100,12 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10"
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 group font-semibold"
+              className="bg-white text-background hover:bg-white/90 rounded-full px-7 h-11 text-sm shadow-none group font-semibold"
               onClick={() => scrollTo("contact")}
             >
               {t("hero.cta")}
@@ -120,7 +114,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-8 h-12 text-base border-white/20 hover:bg-white/5 font-semibold"
+              className="rounded-full px-7 h-11 text-sm border-white/15 hover:bg-white/5 font-semibold"
               onClick={() => scrollTo("projects")}
             >
               {t("hero.portfolio")}
@@ -130,21 +124,21 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className="text-xs md:text-sm text-muted-foreground font-mono"
+            transition={{ delay: 1 }}
+            className="text-[11px] md:text-xs text-muted-foreground/70 font-mono tracking-wide uppercase"
           >
             {t("hero.trustedBy")}
           </motion.p>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            className="mt-12 flex flex-col items-center gap-2 text-muted-foreground/60"
-          >
-            <MousePointer2 size={16} className="animate-bounce" />
-            <span className="text-xs">{t("hero.scrollDown")}</span>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-8 left-5 sm:left-8 lg:left-12 z-10 flex items-center gap-2 text-muted-foreground/50"
+        >
+          <MousePointer2 size={14} className="animate-bounce" />
+          <span className="text-[10px] uppercase tracking-[0.2em]">{t("hero.scrollDown")}</span>
         </motion.div>
       </section>
 

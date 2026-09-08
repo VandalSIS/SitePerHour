@@ -71,10 +71,17 @@
   }
 
   .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-primary to-accent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-bottom: 0.08em;
+  }
+
+  .text-gradient-vivid {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-highlight;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
-    padding-bottom: 0.15em;
+    padding-bottom: 0.08em;
   }
 
   .border-gradient {
