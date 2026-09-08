@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SitePerHour — Project Brief &amp; Roadmap 2026</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    .doc {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 32px 80px;
+    }
+    .cover {
+      text-align: center;
+      padding: 60px 24px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      margin-bottom: 48px;
+    }
+    .cover h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .cover h1 span { color: var(--primary); }
+    .cover .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .cover .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .cover .meta span {
+      background: var(--card);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin: 24px 0 12px;
+      color: #e2e8f0;
+    }
+    h4 {
+      font-size: 1rem;
+      margin: 16px 0 8px;
+      color: var(--muted);
+    }
+    p { margin-bottom: 12px; color: #cbd5e1; }
+    ul, ol { margin: 0 0 16px 24px; color: #cbd5e1; }
+    li { margin-bottom: 6px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th {
+      background: var(--card);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: rgba(30, 41, 59, 0.5); }
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-done { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+    .badge-wip { background: rgba(59, 130, 246, 0.2); color: var(--primary); }
+    .badge-todo { background: rgba(148, 163, 184, 0.2); color: var(--muted); }
+    .badge-block { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+    .callout {
+      background: var(--card);
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .callout.warning { border-left-color: var(--warning); }
+    .callout.success { border-left-color: var(--success); }
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc h2 { margin-top: 0; border: none; font-size: 1.2rem; }
+    .toc ol { margin-bottom: 0; }
+    .toc a { color: var(--primary); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .phase {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .phase-header h3 { margin: 0; }
+    .checkbox-list { list-style: none; margin-left: 0; }
+    .checkbox-list li::before { content: "☐ "; color: var(--muted); }
+    .checkbox-list li.done::before { content: "☑ "; color: var(--success); }
+    .page-break { page-break-before: always; }
+    @media print {
+      body { background: white; color: #111; }
+      .doc { padding: 24px; max-width: 100%; }
+      h2 { color: #1d4ed8; }
+      th { background: #f1f5f9; color: #1d4ed8; }
+      td, p, li { color: #333; }
+      .cover { background: #f8fafc; border-color: #e2e8f0; }
+      .phase, .callout, .toc { background: #f8fafc; border-color: #e2e8f0; }
+    }
+    footer.doc-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <header class="cover">
+      <h1>Site<span>PerHour</span></h1>
+      <p class="subtitle">Project Brief &amp; Strategic Roadmap</p>
+      <p style="color:#94a3b8; margin-bottom:20px;">Transformare platformă digitală: de la landing la agenție indexabilă, multilingvă, memorabilă vizual</p>
+      <div class="meta">
+        <span>Document v1.1</span>
+        <span>8 septembrie 2026</span>
+        <span>siteperhour.com</span>
+        <span>Confidențial — SitePerHour</span>
+      </div>
+    </header>
+
+    <nav class="toc">
+      <h2>Cuprins</h2>
+      <ol>
+        <li><a href="#summary">Rezumat executiv</a></li>
+        <li><a href="#current">Situația actuală</a></li>
+        <li><a href="#goals">Obiective &amp; KPI</a></li>
+        <li><a href="#competitive">Audit competitiv</a></li>
+        <li><a href="#positioning">Poziționare &amp; diferențiere</a></li>
+        <li><a href="#tech">Stack tehnologic</a></li>
+        <li><a href="#architecture">Arhitectură site &amp; pagini</a></li>
+        <li><a href="#i18n">Multilingv &amp; geo (localități)</a></li>
+        <li><a href="#services">Servicii &amp; prețuri (de stabilit)</a></li>
+        <li><a href="#seo">SEO, Schema, LLM &amp; AI</a></li>
+        <li><a href="#visual">Experiență vizuală „Wow”</a></li>
+        <li><a href="#roadmap">Roadmap — faze &amp; timeline</a></li>
+        <li><a href="#deliverables">Deliverables per fază</a></li>
+        <li><a href="#input">Ce trebuie decis de Mihail</a></li>
+        <li><a href="#risks">Riscuri &amp; mitigare</a></li>
+        <li><a href="#tools">Instrumente (Ahrefs vs AI)</a></li>
+        <li><a href="#keywords">Strategie cuvinte cheie — ce &amp; când</a></li>
+        <li><a href="#approval">Aprobare &amp; next steps</a></li>
+      </ol>
+    </nav>
+
+    <section id="summary">
+      <h2>1. Rezumat executiv</h2>
+      <p><strong>SitePerHour</strong> este o agenție digitală full-stack operată de <strong>Mihail Mihail</strong>, cu bază în Chișinău, Moldova, care livrează dezvoltare web, e-commerce, aplicații, Google Ads, Meta Ads și SEO pentru clienți în 8+ țări.</p>
+      <div class="callout success">
+        <strong>Obiectiv principal:</strong> Transformarea siteperhour.com din un landing page React (SPA) într-o platformă <strong>Next.js</strong> cu 80–150+ pagini indexabile, 3 limbi pe URL-uri separate, pagini geo locale (Moldova/România), SEO/Schema/LLM optimizat, și experiență vizuală premium (Three.js, Motion) fără penalizare pe mobil.
+      </div>
+      <p><strong>De ce acum:</strong> Auditul competitiv arată că liderul local (WebUp.md) folosește Next.js, 50+ pagini, RO+RU indexabile, pagini geo per oraș, blog și FAQ masiv. SitePerHour are design superior și portofoliu internațional, dar pierde la volum de conținut indexabil și SEO local.</p>
+      <p><strong>Decizie strategică:</strong> Rebuild tehnic (migrare Next.js) + extensie conținut — <em>nu</em> redesign total de la zero. Branding, proiecte reale și avantajul vizual se păstrează.</p>
+    </section>
+
+    <section id="current">
+      <h2>2. Situația actuală</h2>
+      <h3>Stack existent</h3>
+      <table>
+        <tr><th>Componentă</th><th>Tehnologie</th><th>Status</th></tr>
+        <tr><td>Frontend</td><td>React 18 + TypeScript + Vite</td><td><span class="badge badge-done">Live</span></td></tr>
+        <tr><td>Stil</td><td>Tailwind CSS + shadcn/ui</td><td><span class="badge badge-done">Live</span></td></tr>
+        <tr><td>Animații</td><td>Framer Motion</td><td><span class="badge badge-done">Live</span></td></tr>
+        <tr><td>i18n</td><td>react-i18next (client-side switch)</td><td><span class="badge badge-wip">Limitat SEO</span></td></tr>
+        <tr><td>Backend</td><td>Vercel Serverless + Nodemailer</td><td><span class="badge badge-done">Live</span></td></tr>
+        <tr><td>Deploy</td><td>Vercel + domain siteperhour.com</td><td><span class="badge badge-done">Live</span></td></tr>
+        <tr><td>3D</td><td>Spline (lazy) — de eliminat</td><td><span class="badge badge-wip">De înlocuit</span></td></tr>
+        <tr><td>Framework SEO</td><td>Next.js</td><td><span class="badge badge-todo">Nu există</span></td></tr>
+      </table>
+
+      <h3>Ce funcționează bine</h3>
+      <ul>
+        <li>Design dark premium, animații, impresie agency modernă</li>
+        <li>8 proiecte reale internaționale (Webflow, WordPress, Tilda, React)</li>
+        <li>Schema JSON-LD (ProfessionalService, FAQPage)</li>
+        <li>llms.txt pentru vizibilitate AI</li>
+        <li>sitemap.xml, robots.txt, hreflang parțial</li>
+        <li>Formulare contact/quote funcționale</li>
+        <li>Prețuri transparente ($497 / $997 / $1997)</li>
+      </ul>
+
+      <h3>Gaps critice</h3>
+      <ul>
+        <li><strong>1 pagină indexabilă</strong> vs 50+ la concurenți</li>
+        <li>Limbi RO/RU/RU doar în browser — Google vede în principal EN</li>
+        <li>Fără pagini geo (Chișinău, Bălți, Moldova, România)</li>
+        <li>Fără blog / articole preț / ghiduri SEO</li>
+        <li>Fără pagini servicii dedicate indexabile</li>
+        <li>Service Worker vechi a cauzat probleme mobil (fixat în v3, de deployat)</li>
+      </ul>
+    </section>
+
+    <section id="goals">
+      <h2>3. Obiective &amp; KPI (6–12 luni)</h2>
+      <table>
+        <tr><th>Obiectiv</th><th>KPI</th><th>Target</th></tr>
+        <tr><td>Vizibilitate Google MD/RO</td><td>Pagini indexate</td><td>80–150+</td></tr>
+        <tr><td>Trafic organic</td><td>Sesiuni/lună (GSC)</td><td>+200% în 6 luni</td></tr>
+        <tr><td>Keywords ranking</td><td>Top 20 GSC</td><td>50+ keywords</td></tr>
+        <tr><td>Piață globală EN</td><td>Long-tail US/UK</td><td>10+ pagini EN dedicate</td></tr>
+        <tr><td>AI visibility</td><td>Mentions ChatGPT/Perplexity</td><td>Apare la „web developer Moldova”</td></tr>
+        <tr><td>Performanță</td><td>Lighthouse mobile</td><td>85+</td></tr>
+        <tr><td>Lead-uri</td><td>Form submissions/lună</td><td>5–15</td></tr>
+        <tr><td>Brand</td><td>Site memorabil</td><td>Three.js hero desktop + motion</td></tr>
+      </table>
+    </section>
+
+    <section id="competitive">
+      <h2>4. Audit competitiv (rezumat)</h2>
+      <h3>Moldova — concurenți direcți</h3>
+      <table>
+        <tr><th>Competitor</th><th>Punct forte</th><th>Preț entry</th><th>Tehnologie</th></tr>
+        <tr><td><strong>WebUp.md</strong></td><td>SEO local #1, geo pages, RO+RU, blog, FAQ</td><td>€1.200 site</td><td>Next.js</td></tr>
+        <tr><td>MakeIT.md</td><td>Enterprise, echipă 12, SaaS/AI, UNICEF</td><td>€1.500+</td><td>Custom</td></tr>
+        <tr><td>Uniweb.md</td><td>Copy conversie + SEO local</td><td>—</td><td>HTML/WP</td></tr>
+        <tr><td>NIL4WEB</td><td>Tehnic, EN focus</td><td>—</td><td>WordPress</td></tr>
+      </table>
+
+      <h3>România</h3>
+      <table>
+        <tr><th>Competitor</th><th>Punct forte</th><th>Preț entry</th></tr>
+        <tr><td>websitefirma.ro</td><td>Next.js, PageSpeed 100, remote RO</td><td>€300</td></tr>
+        <tr><td>novaweb.ro</td><td>WordPress, prețuri RON transparente</td><td>3.900 RON</td></tr>
+        <tr><td>esysagency.ro</td><td>WP + Google Ads + SEO</td><td>€350</td></tr>
+      </table>
+
+      <h3>Scor comparativ (estimat)</h3>
+      <table>
+        <tr><th>Criteriu</th><th>SitePerHour</th><th>WebUp</th></tr>
+        <tr><td>Design vizual</td><td>9/10</td><td>7/10</td></tr>
+        <tr><td>Pagini indexabile</td><td>2/10</td><td>9/10</td></tr>
+        <tr><td>SEO local MD</td><td>3/10</td><td>9/10</td></tr>
+        <tr><td>Portofoliu international</td><td>9/10</td><td>5/10</td></tr>
+        <tr><td>Ads services</td><td>8/10</td><td>5/10</td></tr>
+        <tr><td><strong>Total SEO business</strong></td><td><strong>5.2/10</strong></td><td><strong>8.1/10</strong></td></tr>
+      </table>
+    </section>
+
+    <section id="positioning">
+      <h2>5. Poziționare &amp; diferențiere</h2>
+      <table>
+        <tr><th></th><th>WebUp</th><th>SitePerHour</th></tr>
+        <tr><td>Mesaj</td><td>„Agenție SEO locală MD, bilingv RO/RU”</td><td>„Full-stack digital internațional din Moldova”</td></tr>
+        <tr><td>Focus</td><td>SEO + site-uri locale</td><td>Web + Ads + Apps + clienți globali</td></tr>
+        <tr><td>Preț</td><td>€1.200+ site</td><td>$497+ site (agresiv)</td></tr>
+        <tr><td>Unic</td><td>Geo pages, blog MD</td><td>Portofoliu US/UK, Webflow, Google/Meta Ads</td></tr>
+      </table>
+      <div class="callout">
+        <strong>Strategie:</strong> Nu concurăm head-to-head pe „creare site Chișinău” din prima lună. Atacăm EN global + combo Ads+Web, apoi pagini geo RO/MD când structura Next e gata.
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>6. Stack tehnologic (target)</h2>
+      <table>
+        <tr><th>Layer</th><th>Tehnologie</th><th>Rol</th></tr>
+        <tr><td>Framework</td><td>Next.js 15 (App Router)</td><td>SSR/SSG, routing, SEO per pagină</td></tr>
+        <tr><td>UI</td><td>React 19 + TypeScript</td><td>Componente</td></tr>
+        <tr><td>Stil</td><td>Tailwind CSS + design tokens</td><td>Design system</td></tr>
+        <tr><td>Animații</td><td>Framer Motion</td><td>Scroll, transitions (safe mobile)</td></tr>
+        <tr><td>3D</td><td>Three.js + React Three Fiber</td><td>Hero desktop only</td></tr>
+        <tr><td>i18n</td><td>next-intl</td><td>/en, /ro, /ru URL-uri separate</td></tr>
+        <tr><td>CMS (faza 4)</td><td>MDX sau Sanity</td><td>Blog</td></tr>
+        <tr><td>Imagini</td><td>next/image</td><td>WebP/AVIF, responsive</td></tr>
+        <tr><td>Deploy</td><td>Vercel</td><td>CDN, preview, analytics</td></tr>
+        <tr><td>Email</td><td>Nodemailer (API routes)</td><td>Contact, quote</td></tr>
+        <tr><td>SEO</td><td>next-sitemap, JSON-LD</td><td>Sitemap auto, schema</td></tr>
+      </table>
+    </section>
+
+    <section id="architecture">
+      <h2>7. Arhitectură site &amp; pagini</h2>
+      <h3>Structură URL (target)</h3>
+      <pre style="background:#1e293b;padding:16px;border-radius:8px;overflow-x:auto;font-size:0.85rem;color:#94a3b8;">
+/en/                          Homepage EN (global)
+/ro/                          Homepage RO (Moldova + România)
+/ru/                          Homepage RU
+
+/[locale]/about
+/[locale]/services
+/[locale]/services/web-development
+/[locale]/services/wordpress
+/[locale]/services/shopify
+/[locale]/services/webflow
+/[locale]/services/google-ads
+/[locale]/services/meta-ads
+/[locale]/services/seo
+/[locale]/services/mobile-apps
+/[locale]/services/ecommerce
+/[locale]/services/branding
+/[locale]/services/maintenance
+/[locale]/pricing
+/[locale]/pricing/basic | medium | premium | custom
+/[locale]/projects
+/[locale]/projects/[slug]          (8 case studies)
+/[locale]/process
+/[locale]/contact
+/[locale]/faq
+/[locale]/blog
+/[locale]/blog/[slug]
+
+/ro/servicii/dezvoltare-web-chisinau      (geo — Faza C)
+/ro/servicii/dezvoltare-web-moldova
+/ro/servicii/creare-site-bucuresti
+... (5–15 pagini geo)
+
+/llms.txt
+/llms-full.txt
+/sitemap.xml (auto)
+/robots.txt
+      </pre>
+      <p><strong>Estimare pagini Faza 1–2:</strong> ~40–60 URL-uri. <strong>Faza 3 geo:</strong> +15–30. <strong>Faza 4 blog:</strong> +20–50 în 12 luni.</p>
+    </section>
+
+    <section id="i18n">
+      <h2>8. Multilingv &amp; geo (localități)</h2>
+      <h3>Limbi</h3>
+      <table>
+        <tr><th>Limbă</th><th>URL</th><th>Focus piață</th><th>Status</th></tr>
+        <tr><td>English</td><td>/en/*</td><td>US, UK, EU remote hire</td><td><span class="badge badge-wip">Conținut există</span></td></tr>
+        <tr><td>Română</td><td>/ro/*</td><td>Moldova + România</td><td><span class="badge badge-wip">Conținut există</span></td></tr>
+        <tr><td>Rusă</td><td>/ru/*</td><td>MD diaspora, RU speakers</td><td><span class="badge badge-wip">Conținut există</span></td></tr>
+      </table>
+      <p>Fiecare limbă = <strong>URL propriu + hreflang + cuvinte cheie proprii</strong> (nu traducere automată).</p>
+
+      <h3>Localități propuse (de confirmat)</h3>
+      <table>
+        <tr><th>Oraș / Zonă</th><th>Tip pagină</th><th>Prioritate</th><th>Decizie</th></tr>
+        <tr><td>Chișinău</td><td>dezvoltare-web-chisinau</td><td>P0</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>Moldova (general)</td><td>creare-site-moldova</td><td>P0</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>Bălți</td><td>dezvoltare-web-balti</td><td>P1</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>Cahul</td><td>creare-site-cahul</td><td>P2</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>Ungheni</td><td>creare-site-ungheni</td><td>P2</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>Orhei</td><td>creare-site-orhei</td><td>P2</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>București</td><td>creare-site-bucuresti</td><td>P1</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+        <tr><td>România (general)</td><td>agentie-web-romania</td><td>P1</td><td><span class="badge badge-block">De confirmat</span></td></tr>
+      </table>
+      <p><em>Model WebUp: fiecare pagină geo are conținut unic (context economic local), nu doar orașul schimbat în titlu.</em></p>
+    </section>
+
+    <section id="services">
+      <h2>9. Servicii &amp; prețuri (DE STABILIT)</h2>
+      <div class="callout warning">
+        <strong>Blocant pentru pagini servicii + geo:</strong> Lista finală servicii, prețuri „de la” și monedă (EUR/USD/MDL/RON) trebuie confirmate de Mihail înainte de publicare.
+      </div>
+
+      <h3>Servicii propuse (draft)</h3>
+      <table>
+        <tr><th>Serviciu</th><th>Slug EN</th><th>Preț actual / propus</th><th>Status</th></tr>
+        <tr><td>Web Development</td><td>web-development</td><td>$497+ (Basic)</td><td><span class="badge badge-block">Confirmare</span></td></tr>
+        <tr><td>WordPress</td><td>wordpress</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Shopify</td><td>shopify</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Webflow</td><td>webflow</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Tilda</td><td>tilda</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>E-commerce / WooCommerce</td><td>ecommerce</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Landing Page</td><td>landing-page</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Mobile Apps</td><td>mobile-apps</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Google Ads</td><td>google-ads</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Meta Ads</td><td>meta-ads</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>SEO / Promovare</td><td>seo</td><td>TBD/lună</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Audit SEO</td><td>seo-audit</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Copywriting</td><td>copywriting</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Mentenanță lunară</td><td>maintenance</td><td>TBD/lună</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Branding / UI-UX</td><td>branding</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+        <tr><td>Redesign &amp; Migrare</td><td>redesign</td><td>TBD</td><td><span class="badge badge-todo">De stabilit</span></td></tr>
+      </table>
+
+      <h3>Pachete existente (de revizuit)</h3>
+      <table>
+        <tr><th>Pachet</th><th>Preț USD</th><th>Include</th><th>Livrare</th></tr>
+        <tr><td>Basic</td><td>$497</td><td>5 pagini responsive</td><td>7–10 zile</td></tr>
+        <tr><td>Medium</td><td>$997</td><td>10 pagini, CMS, e-commerce basic</td><td>10–14 zile</td></tr>
+        <tr><td>Premium</td><td>$1,997</td><td>Unlimited, enterprise</td><td>14–21 zile</td></tr>
+        <tr><td>Custom</td><td>Ofertă</td><td>Apps, ads, complex</td><td>Flexibil</td></tr>
+      </table>
+    </section>
+
+    <section id="seo">
+      <h2>10. SEO, Schema Markup, LLM &amp; AI</h2>
+      <h3>On-page SEO (per pagină)</h3>
+      <ul>
+        <li>Title unic 50–60 caractere, keyword în primele 40</li>
+        <li>Meta description 150–160 caractere</li>
+        <li>H1 unic cu keyword principal</li>
+        <li>Canonical + hreflang (en, en-US, ro, ru, x-default)</li>
+        <li>Open Graph + Twitter Card</li>
+        <li>Alt text imagini descriptiv</li>
+        <li>Internal linking (service → project → contact)</li>
+        <li>Minim 400–800 cuvinte pe pagini servicii/geo</li>
+      </ul>
+
+      <h3>Schema JSON-LD per tip pagină</h3>
+      <table>
+        <tr><th>Tip pagină</th><th>Schema types</th></tr>
+        <tr><td>Global</td><td>Organization, ProfessionalService, WebSite</td></tr>
+        <tr><td>Homepage</td><td>FAQPage, OfferCatalog</td></tr>
+        <tr><td>Service</td><td>Service, Offer, FAQPage</td></tr>
+        <tr><td>Pricing</td><td>Offer, AggregateOffer</td></tr>
+        <tr><td>Project</td><td>CreativeWork</td></tr>
+        <tr><td>Blog</td><td>BlogPosting, Article</td></tr>
+        <tr><td>Geo local</td><td>LocalBusiness / areaServed</td></tr>
+        <tr><td>Toate</td><td>BreadcrumbList</td></tr>
+      </table>
+
+      <h3>Geo targeting</h3>
+      <ul>
+        <li>areaServed: Moldova, Romania, United States, Worldwide</li>
+        <li>Google Business Profile — Chișinău (off-site)</li>
+        <li>NAP consistent: Mihail Mihail, +373 79 33 11 04, mihail.mihai2001@gmail.com</li>
+      </ul>
+
+      <h3>LLM / AI visibility</h3>
+      <ul>
+        <li><strong>/llms.txt</strong> — rezumat servicii, prețuri, contact, geo</li>
+        <li><strong>/llms-full.txt</strong> — proiecte, FAQ, stack, comparări</li>
+        <li>Propoziții clare la începutul paginilor pentru extragere AI</li>
+        <li>FAQ cu întrebări reale (15+ pe homepage sau /faq)</li>
+      </ul>
+
+      <h3>Off-site (post-launch)</h3>
+      <ul>
+        <li>Google Search Console — sitemap, indexare, monitorizare</li>
+        <li>Clutch.co profile</li>
+        <li>GoodFirms, DesignRush (opțional)</li>
+        <li>Facebook + GitHub sameAs în schema</li>
+        <li>Blog 2 articole/lună</li>
+      </ul>
+    </section>
+
+    <section id="visual">
+      <h2>11. Experiență vizuală „Wow” (fără să moară mobilul)</h2>
+      <h3>Reguli de performanță</h3>
+      <table>
+        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+        <tr><td>Three.js hero</td><td>Scene 3D interactivă (glob/wireframe)</td><td>Poster static / CSS gradient</td></tr>
+        <tr><td>Framer Motion</td><td>Parallax, stagger, page transitions</td><td>whileInView once, prefers-reduced-motion</td></tr>
+        <tr><td>Particles</td><td>Canvas 2D (opțional, subtil)</td><td>OFF</td></tr>
+        <tr><td>Spline</td><td>ELIMINAT</td><td>OFF</td></tr>
+        <tr><td>Imagini</td><td>next/image WebP/AVIF</td><td>Sizes responsive, lazy</td></tr>
+      </table>
+
+      <h3>Design system Tailwind</h3>
+      <ul>
+        <li>Tokens: --primary, --glow, dark mode default</li>
+        <li>Componente: Button, Card, Badge, Section, GlowBorder</li>
+        <li>Typography: display font (ex. Clash Display) + Inter body</li>
+      </ul>
+
+      <h3>Elemente vizuale planificate</h3>
+      <ul>
+        <li>Hero 3D — glob cu puncte (clienți 8+ țări), rotație mouse</li>
+        <li>Services — card tilt 3D (CSS)</li>
+        <li>Projects — hover depth + screenshot reveal</li>
+        <li>Process — timeline animat scroll</li>
+        <li>Page transitions — fade/slide între rute</li>
+        <li>Easter egg — Konami code sau /play (opțional, Faza 4)</li>
+      </ul>
+    </section>
+
+    <section id="roadmap">
+      <h2>12. Roadmap — faze &amp; timeline</h2>
+
+      <div class="phase">
+        <div class="phase-header">
+          <h3>Faza A — Fundație Next.js</h3>
+          <span class="badge badge-wip">Săptămâna 1–2</span>
+        </div>
+        <p><strong>Obiectiv:</strong> Site Next.js live, 3 homepage-uri indexabile, design păstrat.</p>
+        <ul class="checkbox-list">
+          <li>Scaffold Next.js 15 App Router</li>
+          <li>Routing /en, /ro, /ru</li>
+          <li>Port componente: Navbar, Footer, Hero, About, Services, Projects, Contact</li>
+          <li>Design system Tailwind (tokens, Button, Card, Section)</li>
+          <li>Framer Motion basic (whileInView once)</li>
+          <li>prefers-reduced-motion + particles OFF mobil</li>
+          <li>API contact/quote migrat</li>
+          <li>Schema global + sitemap automat</li>
+          <li>Redirect 301 URL-uri vechi</li>
+          <li>Service Worker v3 deploy</li>
+          <li>Deploy staging Vercel → review → production</li>
+        </ul>
+        <p><strong>Nu include:</strong> Three.js, pagini geo, prețuri finale servicii.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <h3>Faza B — Pagini &amp; template-uri</h3>
+          <span class="badge badge-todo">Săptămâna 3–4</span>
+        </div>
+        <p><strong>Obiectiv:</strong> 40–60 pagini indexabile, servicii + proiecte + pricing.</p>
+        <ul class="checkbox-list">
+          <li>8 servicii × 3 limbi = 24 pagini (prețuri după confirmare Mihail)</li>
+          <li>8 project case studies × 3 limbi (sau EN + RO)</li>
+          <li>Pricing pages (Basic/Medium/Premium/Custom)</li>
+          <li>FAQ extins (15+ întrebări)</li>
+          <li>Schema per tip pagină</li>
+          <li>Card tilt 3D, projects hover, process timeline</li>
+          <li>Page transitions Next.js layout</li>
+          <li>llms.txt v2 + llms-full.txt</li>
+        </ul>
+        <p><strong>Dependență:</strong> Lista servicii + prețuri confirmate.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <h3>Faza C — Geo &amp; localități</h3>
+          <span class="badge badge-todo">Săptămâna 5–6</span>
+        </div>
+        <p><strong>Obiectiv:</strong> Pagini locale MD/RO ca WebUp.</p>
+        <ul class="checkbox-list">
+          <li>5–15 pagini geo (Chișinău, Moldova, Bălți, București, etc.)</li>
+          <li>Conținut unic per oraș (nu clone)</li>
+          <li>RU separat pentru MD (dacă confirmat)</li>
+          <li>Articol „Cât costă un site în Moldova 2026”</li>
+          <li>GSC indexare batch</li>
+          <li>Google Business Profile setup</li>
+        </ul>
+        <p><strong>Dependență:</strong> Lista orașe confirmată.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <h3>Faza D — Wow vizual (Three.js)</h3>
+          <span class="badge badge-todo">Săptămâna 5–6 (paralel/ după B)</span>
+        </div>
+        <p><strong>Obiectiv:</strong> Hero memorabil desktop, mobil rămâne rapid.</p>
+        <ul class="checkbox-list">
+          <li>Hero Three.js glob/wireframe (desktop only)</li>
+          <li>Mobile fallback gradient static</li>
+          <li>Lighthouse mobile 85+ verificat</li>
+          <li>Easter egg /play (opțional)</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <h3>Faza E — Conținut &amp; scalare</h3>
+          <span class="badge badge-todo">Ongoing (luna 3+)</span>
+        </div>
+        <ul class="checkbox-list">
+          <li>Blog MDX — 2 articole/lună</li>
+          <li>Clutch.co profile + reviews</li>
+          <li>Pagini industrii (restaurant, ecommerce, recruiting)</li>
+          <li>A/B test CTA</li>
+          <li>Ahrefs 1 lună pentru keyword validation (opțional)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="deliverables">
+      <h2>13. Deliverables per fază</h2>
+      <table>
+        <tr><th>Fază</th><th>Deliverables</th><th>URL review</th></tr>
+        <tr><td>A</td><td>Next app, 3 homepages, forms, schema, sitemap</td><td>staging.vercel.app</td></tr>
+        <tr><td>B</td><td>24+ service pages, 8 projects, pricing, FAQ</td><td>staging + production</td></tr>
+        <tr><td>C</td><td>Geo pages, blog articol 1, GSC</td><td>production</td></tr>
+        <tr><td>D</td><td>Three.js hero, performance audit</td><td>production</td></tr>
+        <tr><td>E</td><td>Blog, Clutch, monthly reports</td><td>ongoing</td></tr>
+      </table>
+    </section>
+
+    <section id="input">
+      <h2>14. Ce trebuie decis de Mihail (checklist)</h2>
+      <h3>Servicii — bifează ce oferi</h3>
+      <ul class="checkbox-list">
+        <li>Dezvoltare web (React, Next, custom)</li>
+        <li>WordPress / WooCommerce</li>
+        <li>Shopify</li>
+        <li>Webflow</li>
+        <li>Tilda</li>
+        <li>Landing page</li>
+        <li>Redesign &amp; migrare</li>
+        <li>Aplicații mobile</li>
+        <li>Google Ads</li>
+        <li>Meta Ads</li>
+        <li>SEO / promovare lunară</li>
+        <li>Audit SEO</li>
+        <li>Copywriting</li>
+        <li>Mentenanță lunară</li>
+        <li>Branding / UI-UX</li>
+      </ul>
+
+      <h3>Prețuri — completează „de la”</h3>
+      <table>
+        <tr><th>Serviciu</th><th>Preț de la</th><th>Monedă</th><th>Notă</th></tr>
+        <tr><td>Site prezentare</td><td>_______</td><td>EUR / USD / MDL</td><td></td></tr>
+        <tr><td>Site mediu + CMS</td><td>_______</td><td></td><td></td></tr>
+        <tr><td>Magazin online</td><td>_______</td><td></td><td></td></tr>
+        <tr><td>Landing page</td><td>_______</td><td></td><td></td></tr>
+        <tr><td>SEO lunar</td><td>_______</td><td></td><td></td></tr>
+        <tr><td>Google Ads setup</td><td>_______</td><td></td><td></td></tr>
+        <tr><td>Mentenanță/lună</td><td>_______</td><td></td><td></td></tr>
+      </table>
+
+      <h3>Localități</h3>
+      <ul class="checkbox-list">
+        <li>Chișinău</li>
+        <li>Moldova (general)</li>
+        <li>Bălți</li>
+        <li>Cahul</li>
+        <li>Ungheni</li>
+        <li>Orhei</li>
+        <li>București</li>
+        <li>România (general)</li>
+        <li>Rusă separat pentru MD — DA / NU</li>
+      </ul>
+
+      <h3>Altele</h3>
+      <ul class="checkbox-list">
+        <li>WhatsApp pe site — DA / NU (număr?)</li>
+        <li>Monedă afișată pe site — USD / EUR / ambele</li>
+        <li>Testimoniale cu nume reale — DA / NU</li>
+        <li>Metrici proiecte (% creștere) — furnizează dacă ai</li>
+      </ul>
+    </section>
+
+    <section id="risks">
+      <h2>15. Riscuri &amp; mitigare</h2>
+      <table>
+        <tr><th>Risc</th><th>Impact</th><th>Mitigare</th></tr>
+        <tr><td>Migrare Next strică SEO</td><td>Alto</td><td>301 redirects, păstrare URL unde posibil</td></tr>
+        <tr><td>Three.js încetinește mobil</td><td>Mediu</td><td>Desktop only, fallback static</td></tr>
+        <tr><td>Prețuri neconfirmate</td><td>Mediu</td><td>Template cu TBD, launch fără preț pe geo</td></tr>
+        <tr><td>Pagini geo thin content</td><td>Alto</td><td>Min 400 cuvinte unice per oraș</td></tr>
+        <tr><td>Service Worker cache</td><td>Mediu</td><td>SW v3 deployed, network-first HTML</td></tr>
+        <tr><td>Concurență WebUp</td><td>Mediu</td><td>Diferențiere EN global + Ads + preț</td></tr>
+      </table>
+    </section>
+
+    <section id="tools">
+      <h2>16. Instrumente — Ahrefs/Semrush vs AI</h2>
+      <table>
+        <tr><th>Instrument</th><th>Când</th><th>Cost</th></tr>
+        <tr><td>Google Search Console</td><td>Acum, gratuit</td><td>$0</td></tr>
+        <tr><td>PageSpeed Insights</td><td>Acum, gratuit</td><td>$0</td></tr>
+        <tr><td>Rich Results Test</td><td>La fiecare tip pagină</td><td>$0</td></tr>
+        <tr><td>AI (audit strategic)</td><td>Acum — acest brief</td><td>Inclus</td></tr>
+        <tr><td>Ahrefs sau Semrush</td><td>După 50+ pagini live, 1 lună</td><td>~$99/lună</td></tr>
+      </table>
+      <p>AI acoperă ~70% din audit strategic. Ahrefs devine util pentru volume keywords exacte și backlink analysis la scară.</p>
+    </section>
+
+    <section id="keywords">
+      <h2>17. Strategie cuvinte cheie — ce folosim &amp; când</h2>
+
+      <div class="callout">
+        <strong>Reguli de bază:</strong>
+        <ul style="margin-top:8px; margin-bottom:0;">
+          <li><strong>1 pagină = 1 keyword principal</strong> — Google înțelege mai bine</li>
+          <li><strong>RO pe /ro</strong>, <strong>EN pe /en</strong>, <strong>RU pe /ru</strong> — URL-uri separate indexabile</li>
+          <li><strong>Geo pages</strong> doar în Faza C (săpt 5–6), după servicii live</li>
+          <li><strong>Blog</strong> pentru long-tail („cât costă site Moldova 2026”)</li>
+        </ul>
+      </div>
+
+      <h3>17.1 Faza A — Homepage (săpt 1–2)</h3>
+      <p>3–5 keywords per homepage, în <code>&lt;title&gt;</code>, H1 și primul paragraf.</p>
+
+      <h4>/en/ — Global, US, UK</h4>
+      <table>
+        <tr><th>Keyword principal</th><th>Unde</th><th>Title exemplu</th></tr>
+        <tr><td>hire remote web developer</td><td>H1 / title</td><td>Hire a Remote Web Developer | SitePerHour</td></tr>
+        <tr><td>full stack developer Moldova</td><td>primul paragraf</td><td>—</td></tr>
+        <tr><td>digital marketing agency</td><td>subtitle</td><td>—</td></tr>
+        <tr><td>web development agency Europe</td><td>meta description</td><td>—</td></tr>
+      </table>
+      <p><strong>Secundare în text:</strong> React developer, Shopify developer, Webflow developer, Google Ads specialist</p>
+
+      <h4>/ro/ — Moldova + România</h4>
+      <table>
+        <tr><th>Keyword principal</th><th>Unde</th></tr>
+        <tr><td>dezvoltare web Moldova</td><td>H1</td></tr>
+        <tr><td>creare site web Chișinău</td><td>primul paragraf</td></tr>
+        <tr><td>agenție web Moldova</td><td>title</td></tr>
+        <tr><td>magazin online Moldova</td><td>secțiune servicii</td></tr>
+        <tr><td>promovare Google Ads Moldova</td><td>secțiune ads</td></tr>
+      </table>
+      <p><strong>Secundare:</strong> site web profesional, dezvoltator web, creare website, optimizare SEO</p>
+
+      <h4>/ru/ — MD diaspora</h4>
+      <table>
+        <tr><th>Keyword principal</th><th>Unde</th></tr>
+        <tr><td>создание сайтов Молдова</td><td>H1</td></tr>
+        <tr><td>разработка сайтов Кишинёв</td><td>primul paragraf</td></tr>
+        <tr><td>веб разработка</td><td>title</td></tr>
+        <tr><td>интернет магазин Молдова</td><td>servicii</td></tr>
+      </table>
+      <p><em>RU nu e traducere din RO — termenii sunt diferiți (model WebUp).</em></p>
+
+      <h3>17.2 Faza B — Pagini servicii (săpt 3–4)</h3>
+      <p><strong>24 pagini</strong> (8 servicii × 3 limbi). Fiecare pagină = 1 keyword principal.</p>
+
+      <h4>Servicii RO — /ro/servicii/...</h4>
+      <table>
+        <tr><th>Pagină</th><th>URL slug</th><th>Keyword principal</th><th>Title pagină (exemplu)</th></tr>
+        <tr><td>Web Development</td><td>dezvoltare-web</td><td>dezvoltare web Moldova</td><td>Dezvoltare Web Moldova — React, WordPress | SitePerHour</td></tr>
+        <tr><td>WordPress</td><td>wordpress</td><td>creare site WordPress Moldova</td><td>Creare Site WordPress în Moldova | SitePerHour</td></tr>
+        <tr><td>Shopify</td><td>shopify</td><td>magazin Shopify Moldova</td><td>Magazin Online Shopify Moldova | SitePerHour</td></tr>
+        <tr><td>Webflow</td><td>webflow</td><td>dezvoltator Webflow</td><td>Dezvoltator Webflow — Site-uri Premium | SitePerHour</td></tr>
+        <tr><td>E-commerce</td><td>magazin-online</td><td>magazin online Moldova</td><td>Magazin Online Moldova — WooCommerce | SitePerHour</td></tr>
+        <tr><td>Google Ads</td><td>google-ads</td><td>Google Ads Moldova</td><td>Campanii Google Ads Moldova | SitePerHour</td></tr>
+        <tr><td>Meta Ads</td><td>reclame-facebook</td><td>reclame Facebook Instagram Moldova</td><td>Reclame Facebook &amp; Instagram | SitePerHour</td></tr>
+        <tr><td>SEO</td><td>promovare-seo</td><td>promovare SEO Moldova</td><td>Promovare SEO Moldova | SitePerHour</td></tr>
+      </table>
+
+      <h4>Servicii EN — /en/services/...</h4>
+      <table>
+        <tr><th>Pagină</th><th>Keyword principal</th></tr>
+        <tr><td>web-development</td><td>hire web developer Eastern Europe</td></tr>
+        <tr><td>wordpress</td><td>WordPress developer for hire</td></tr>
+        <tr><td>shopify</td><td>Shopify developer Europe</td></tr>
+        <tr><td>webflow</td><td>Webflow developer for hire</td></tr>
+        <tr><td>google-ads</td><td>Google Ads management services</td></tr>
+        <tr><td>meta-ads</td><td>Meta Ads Facebook Instagram agency</td></tr>
+        <tr><td>seo</td><td>SEO services for small business</td></tr>
+        <tr><td>mobile-apps</td><td>mobile app development hire</td></tr>
+      </table>
+
+      <h4>Servicii RU — /ru/uslugi/...</h4>
+      <table>
+        <tr><th>Pagină</th><th>Keyword principal</th></tr>
+        <tr><td>veb-razrabotka</td><td>создание сайтов Молдова</td></tr>
+        <tr><td>wordpress</td><td>сайт WordPress Молдова</td></tr>
+        <tr><td>google-ads</td><td>реклама Google Молдова</td></tr>
+        <tr><td>seo</td><td>SEO продвижение Молдова</td></tr>
+      </table>
+
+      <h4>Proiecte (8 case studies) — Faza B</h4>
+      <p>Keywords <strong>platformă + industrie</strong>, nu geo: ex. „site Webflow AI consulting”, „magazin WooCommerce România”, „Webflow developer portfolio”.</p>
+
+      <h3>17.3 Faza C — Pagini geo (săpt 5–6)</h3>
+      <p>1 oraș + 1 serviciu = 1 pagină. Conținut unic, min. 400 cuvinte. <span class="badge badge-block">Orașe — de confirmat secțiunea 14</span></p>
+
+      <h4>Prioritate P0 (primele 5 pagini)</h4>
+      <table>
+        <tr><th>Pagină RO</th><th>Keyword principal</th><th>Când</th></tr>
+        <tr><td>/ro/servicii/dezvoltare-web-chisinau</td><td>creare site web Chișinău</td><td>Săpt 5</td></tr>
+        <tr><td>/ro/servicii/creare-site-moldova</td><td>creare site web Moldova</td><td>Săpt 5</td></tr>
+        <tr><td>/ro/servicii/magazin-online-chisinau</td><td>magazin online Chișinău</td><td>Săpt 5</td></tr>
+        <tr><td>/ro/servicii/promovare-seo-chisinau</td><td>promovare SEO Chișinău</td><td>Săpt 6</td></tr>
+        <tr><td>/ro/servicii/creare-site-bucuresti</td><td>creare site web București</td><td>Săpt 6</td></tr>
+      </table>
+
+      <h4>Prioritate P1 (săpt 6–8)</h4>
+      <table>
+        <tr><th>Pagină</th><th>Keyword principal</th></tr>
+        <tr><td>dezvoltare-web-balti</td><td>creare site Bălți</td></tr>
+        <tr><td>creare-site-cahul</td><td>site web Cahul</td></tr>
+        <tr><td>creare-site-ungheni</td><td>dezvoltare web Ungheni</td></tr>
+        <tr><td>agentie-web-romania</td><td>agenție web design România</td></tr>
+        <tr><td>google-ads-moldova</td><td>Google Ads Moldova</td></tr>
+      </table>
+
+      <h4>Prioritate P2 (luna 3+)</h4>
+      <p>Orhei, Comrat, Cluj, Iași — după indexare P0/P1 în Google Search Console.</p>
+
+      <h3>17.4 Blog &amp; FAQ — long-tail (luna 2+)</h3>
+      <p><strong>2 articole/lună.</strong> Fiecare articol = 1 keyword pe care pagina de serviciu nu îl acoperă singură.</p>
+      <table>
+        <tr><th>Articol</th><th>Keyword target</th><th>Când</th></tr>
+        <tr><td>Cât costă un site web în Moldova 2026</td><td>cât costă site web Moldova</td><td>Luna 2</td></tr>
+        <tr><td>WordPress vs Webflow vs React</td><td>wordpress vs webflow</td><td>Luna 2</td></tr>
+        <tr><td>Site bilingv RO/RU — ghid SEO</td><td>site bilingv română rusă SEO</td><td>Luna 3</td></tr>
+        <tr><td>Hire remote developer Eastern Europe</td><td>hire remote developer Eastern Europe</td><td>Luna 3 (EN)</td></tr>
+        <tr><td>Google Ads vs SEO Moldova</td><td>google ads sau seo moldova</td><td>Luna 4</td></tr>
+        <tr><td>WooCommerce + BT Transilvania</td><td>magazin online plăți România</td><td>Luna 4</td></tr>
+        <tr><td>Case study CT Labs</td><td>webflow developer portfolio</td><td>Luna 5</td></tr>
+      </table>
+
+      <h4>FAQ &amp; Pricing — featured snippets Google</h4>
+      <table>
+        <tr><th>Pagină</th><th>Keywords în FAQ</th></tr>
+        <tr><td>/ro/preturi</td><td>cât costă un site, preț site web Moldova, cost magazin online</td></tr>
+        <tr><td>/ro/faq</td><td>cât durează un site, cât costă SEO lunar, de ce site nu apare în Google</td></tr>
+        <tr><td>/en/pricing</td><td>how much does a website cost, web development pricing</td></tr>
+      </table>
+
+      <h3>17.5 Calendar keywords — rezumat</h3>
+      <table>
+        <tr><th>Perioadă</th><th>Fază</th><th>Keywords active</th></tr>
+        <tr><td>Săpt 1–2</td><td>A</td><td>Homepage EN/RO/RU (3×5 keywords)</td></tr>
+        <tr><td>Săpt 3–4</td><td>B</td><td>24 pagini servicii + 8 proiecte + FAQ/prețuri</td></tr>
+        <tr><td>Săpt 5–6</td><td>C</td><td>5–10 pagini geo RO + articol preț Moldova</td></tr>
+        <tr><td>Luna 3+</td><td>E</td><td>Blog long-tail, geo P2, validare Ahrefs (opțional)</td></tr>
+      </table>
+      <p><strong>Estimare total:</strong> ~50–80 keywords activi în 3 luni · 150+ în 12 luni.</p>
+
+      <h3>17.6 Keywords de evitat acum (prea competitive)</h3>
+      <table>
+        <tr><th>Keyword</th><th>Motiv</th></tr>
+        <tr><td>creare site web (generic RO)</td><td>Saturat, branduri mari</td></tr>
+        <tr><td>web design (generic)</td><td>Prea larg, fără intenție clară</td></tr>
+        <tr><td>agenție marketing (generic)</td><td>Nu e focusul SitePerHour</td></tr>
+        <tr><td>dezvoltare web (fără geo)</td><td>Competiție enormă</td></tr>
+      </table>
+      <p>Atacăm <strong>geo + serviciu + long-tail</strong> — acolo WebUp câștigă și SitePerHour poate concura.</p>
+
+      <h3>17.7 Unde pui keyword-ul pe pagină (checklist SEO)</h3>
+      <table>
+        <tr><th>Loc</th><th>Regulă</th></tr>
+        <tr><td>&lt;title&gt;</td><td>Keyword principal + SitePerHour (50–60 caractere)</td></tr>
+        <tr><td>&lt;meta description&gt;</td><td>Keyword + CTA + beneficiu (150–160 caractere)</td></tr>
+        <tr><td>&lt;h1&gt;</td><td>Keyword principal, o singură dată</td></tr>
+        <tr><td>Primul paragraf</td><td>Keyword în primele 100 cuvinte</td></tr>
+        <tr><td>&lt;h2&gt;</td><td>Variante și keywords secundare</td></tr>
+        <tr><td>URL slug</td><td>keyword-fara-diacritice (ex: chisinau, moldova)</td></tr>
+        <tr><td>Alt imagini</td><td>Descriptiv, natural (nu spam)</td></tr>
+        <tr><td>Schema JSON-LD</td><td>name, description cu keyword natural</td></tr>
+        <tr><td>llms.txt</td><td>Listă servicii + geo + prețuri pentru AI crawlers</td></tr>
+      </table>
+    </section>
+
+    <section id="approval">
+      <h2>18. Aprobare &amp; next steps</h2>
+      <div class="callout success">
+        <strong>Pas imediat recomandat:</strong> Aprobare Faza A → start migrare Next.js + homepage × 3 limbi. Paralel: Mihail completează secțiunea 14 (servicii, prețuri, localități).
+      </div>
+      <table>
+        <tr><th>Acțiune</th><th>Responsabil</th><th>Termen</th></tr>
+        <tr><td>Aprobare brief v1.1</td><td>Mihail</td><td>___________</td></tr>
+        <tr><td>Start Faza A (Next.js)</td><td>Dev</td><td>După aprobare</td></tr>
+        <tr><td>Completare checklist servicii/prețuri</td><td>Mihail</td><td>Săpt 1–2</td></tr>
+        <tr><td>Review staging</td><td>Mihail</td><td>Săpt 2</td></tr>
+        <tr><td>Go-live Faza A</td><td>Dev</td><td>Săpt 2</td></tr>
+        <tr><td>Start Faza B</td><td>Dev</td><td>După prețuri confirmate</td></tr>
+      </table>
+
+      <h3>Semnături / acord</h3>
+      <table>
+        <tr><th>Rol</th><th>Nume</th><th>Data</th><th>Semnătură</th></tr>
+        <tr><td>Client / Founder</td><td>Mihail Mihail</td><td></td><td></td></tr>
+        <tr><td>Development</td><td></td><td></td><td></td></tr>
+      </table>
+    </section>
+
+    <footer class="doc-footer">
+      <p><strong>SitePerHour</strong> — Project Brief v1.1</p>
+      <p>siteperhour.com · Chișinău, Moldova · mihail.mihai2001@gmail.com · +373 79 33 11 04</p>
+      <p>Document actualizat: 8 septembrie 2026 (v1.1 — adăugată strategie keywords). Următoarea revizie: după completarea checklist secțiunea 14.</p>
+    </footer>
+
+  </div>
+</body>
+</html>

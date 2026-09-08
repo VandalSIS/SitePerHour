@@ -1,3 +1,4 @@
+// @ts-nocheck — legacy Vite component; Next.js uses generateMetadata instead
 import { Helmet } from 'react-helmet';
 
 interface SEOHeadProps {

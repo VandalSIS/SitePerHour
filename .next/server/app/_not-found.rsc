@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[9766,[],""]
+3:I[8924,[],""]
+4:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","345","static/chunks/app/not-found-3c23f7b3e90119e1.js"],""]
+5:I[9616,["177","static/chunks/app/layout-72f6e7e989414d6e.js"],"Analytics"]
+6:I[4431,[],"OutletBoundary"]
+8:I[5278,[],"AsyncMetadataOutlet"]
+a:I[4431,[],"ViewportBoundary"]
+c:I[4431,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[7150,[],""]
+:HL["/_next/static/media/0b78ff376f6b9734-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/8a1d8947e5852e30-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bb3ef058b751a6ad-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/aa277bef0d76094f.css","style"]
+:HL["/_next/static/css/70fe528168248d5b.css","style"]
+0:{"P":null,"b":"9PbJ-9DzqR0mPLQu4oWWB","p":"","c":["","_not-found"],"i":false,"f":[[["",{"children":["/_not-found",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/aa277bef0d76094f.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/70fe528168248d5b.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark __variable_8adcd2 __variable_744198 __variable_3c557b","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen font-sans","children":[["$","div",null,{"className":"grain-overlay","aria-hidden":"true"}],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex flex-col items-center justify-center bg-background text-foreground px-4","children":[["$","h1",null,{"className":"text-6xl font-heading font-bold text-gradient mb-4","children":"404"}],["$","p",null,{"className":"text-muted-foreground mb-8 text-center max-w-md","children":"Page not found. The page you are looking for does not exist or has been moved."}],["$","$L4",null,{"href":"/en","className":"px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors","children":"Back to Home"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L5",null,{}]]}]}]]}],{"children":["/_not-found",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen flex flex-col items-center justify-center bg-background text-foreground px-4","children":[["$","h1",null,{"className":"text-6xl font-heading font-bold text-gradient mb-4","children":"404"}],["$","p",null,{"className":"text-muted-foreground mb-8 text-center max-w-md","children":"Page not found. The page you are looking for does not exist or has been moved."}],["$","$L4",null,{"href":"/en","className":"px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors","children":"Back to Home"}]]}],null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],[["$","$La",null,{"children":"$Lb"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+10:I[622,[],"IconMark"]
+9:{"metadata":[["$","title","0",{"children":"SitePerHour — Web Development, Ads & Digital Marketing"}],["$","meta","1",{"name":"description","content":"Full-service digital agency: web development, Google & Meta Ads, CRM, SEO. Based in Chișinău, serving clients worldwide."}],["$","link","2",{"rel":"icon","href":"/favicon.ico"}],["$","$L10","3",{}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"

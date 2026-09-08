@@ -15,10 +15,6 @@
       ]
     }
   ],
-  "framework": "vite",
-  "buildCommand": "bun run build",
-  "outputDirectory": "dist",
-  "installCommand": "bun install",
   "redirects": [
     {
       "source": "/(.*)",
@@ -26,9 +22,5 @@
       "destination": "https://siteperhour.com/$1",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/((?!api).*)", "destination": "/" }
   ]
 }
