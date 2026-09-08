@@ -1,6 +1,7 @@
-import { CheckCircle, Code2, Sparkles, Users2, Globe2, Clock } from "lucide-react";
+import { CheckCircle, Code2, Users2, Globe2, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import SectionHeader from "@/components/motion/SectionHeader";
 
 const AboutSection = () => {
   const { t } = useTranslation();
@@ -28,24 +29,11 @@ const AboutSection = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px]" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-sm text-primary font-medium">{t("about.badge")}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1">
-            {t("about.title")}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("about.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={t("about.badge")}
+          title={t("about.title")}
+          subtitle={t("about.subtitle")}
+        />
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
           <motion.div

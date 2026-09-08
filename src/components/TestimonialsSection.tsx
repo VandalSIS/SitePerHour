@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Quote, Sparkles, Star } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SectionHeader from "@/components/motion/SectionHeader";
 
 type Testimonial = {
   name: string;
@@ -55,24 +56,11 @@ const TestimonialsSection = () => {
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[200px]" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-sm text-primary font-medium">{t("testimonials.badge")}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1">
-            {t("testimonials.title")}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("testimonials.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={t("testimonials.badge")}
+          title={t("testimonials.title")}
+          subtitle={t("testimonials.subtitle")}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {TESTIMONIALS.map((tst, i) => (

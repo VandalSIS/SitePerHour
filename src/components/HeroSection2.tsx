@@ -2,32 +2,30 @@
 
 import { ArrowRight, Sparkles, MousePointer2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useRef } from "react";
+import DisplayHeading from "@/components/motion/DisplayHeading";
 
 const TECH_STACK = [
   "React", "Next.js", "TypeScript", "WordPress", "Shopify",
   "Webflow", "Google Ads", "Meta Ads", "HubSpot", "SEO",
 ];
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { delay: 0.15 + i * 0.08, duration: 0.5, ease: "easeOut" as const },
-  }),
-};
-
 const HeroSection = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const titleLine1 = t("hero.title1");
-  const titleLine2 = t("hero.title2");
-  const titleLine3 = t("hero.title3");
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -40 : -140]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 0.55], [1, 0.96]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -36,8 +34,9 @@ const HeroSection = () => {
   return (
     <>
       <section
+        ref={sectionRef}
         id="home"
-        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 pb-8 mesh-gradient dot-grid"
+        className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-8 mesh-gradient dot-grid"
       >
         <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-20" />
 
@@ -61,12 +60,15 @@ const HeroSection = () => {
           </>
         )}
 
-        <div className="container-custom relative z-10 text-center max-w-5xl mx-auto px-4 flex-1 flex flex-col justify-center">
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity, scale: contentScale }}
+          className="container-custom relative z-10 text-center max-w-6xl mx-auto px-4 flex-1 flex flex-col justify-center will-change-transform"
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm self-center"
+            className="inline-flex items-center gap-2 px-4 py-2 mb-10 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm self-center"
           >
             <Sparkles size={14} className="text-primary" />
             <span className="text-xs md:text-sm text-primary font-medium tracking-wide">
@@ -74,53 +76,29 @@ const HeroSection = () => {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-[1.25] sm:leading-[1.2] tracking-[-0.02em]">
-            <span className="block py-1">
-              {titleLine1.split(" ").map((word, i) => (
-                <motion.span
-                  key={`l1-${word}-${i}`}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={wordVariants}
-                  className="inline-block mr-[0.25em] pb-0.5"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-            <span className="block py-1">
-              <motion.span
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                variants={wordVariants}
-                className="text-gradient inline-block pb-1 pt-0.5"
-              >
-                {titleLine2}
-              </motion.span>
-            </span>
-            <span className="block py-1">
-              {titleLine3.split(" ").map((word, i) => (
-                <motion.span
-                  key={`l3-${word}-${i}`}
-                  custom={i + 4}
-                  initial="hidden"
-                  animate="visible"
-                  variants={wordVariants}
-                  className="inline-block mr-[0.25em] pb-0.5"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-          </h1>
+          <div className="mb-8">
+            <DisplayHeading as="h1" size="hero" revealOnScroll={false} className="mb-2">
+              {t("hero.title1")}
+            </DisplayHeading>
+            <DisplayHeading
+              as="h1"
+              size="hero"
+              revealOnScroll={false}
+              gradient
+              className="mb-2"
+            >
+              {t("hero.title2")}
+            </DisplayHeading>
+            <DisplayHeading as="h1" size="hero" revealOnScroll={false}>
+              {t("hero.title3")}
+            </DisplayHeading>
+          </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-muted-foreground text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-muted-foreground text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
           >
             {t("hero.description")}
           </motion.p>
@@ -133,7 +111,7 @@ const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 group"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 group font-semibold"
               onClick={() => scrollTo("contact")}
             >
               {t("hero.cta")}
@@ -142,7 +120,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-8 h-12 text-base border-white/20 hover:bg-white/5"
+              className="rounded-full px-8 h-12 text-base border-white/20 hover:bg-white/5 font-semibold"
               onClick={() => scrollTo("projects")}
             >
               {t("hero.portfolio")}
@@ -167,7 +145,7 @@ const HeroSection = () => {
             <MousePointer2 size={16} className="animate-bounce" />
             <span className="text-xs">{t("hero.scrollDown")}</span>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="relative bg-secondary/30 border-y border-white/5 py-4 overflow-hidden">

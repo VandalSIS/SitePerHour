@@ -299,37 +299,37 @@
     "_originalRedirects": [
       {
         "source": "/",
-        "destination": "/en",
+        "destination": "/ro",
         "permanent": true
       },
       {
         "source": "/contact",
-        "destination": "/en#contact",
+        "destination": "/ro#contact",
         "permanent": true
       },
       {
         "source": "/privacy-policy",
-        "destination": "/en/privacy-policy",
+        "destination": "/ro/privacy-policy",
         "permanent": true
       },
       {
         "source": "/terms",
-        "destination": "/en/terms",
+        "destination": "/ro/terms",
         "permanent": true
       },
       {
         "source": "/pricing/:path*",
-        "destination": "/en/pricing/:path*",
+        "destination": "/ro/pricing/:path*",
         "permanent": true
       },
       {
         "source": "/services/:path*",
-        "destination": "/en/services/:path*",
+        "destination": "/ro/services/:path*",
         "permanent": true
       },
       {
         "source": "/blog",
-        "destination": "/en/blog",
+        "destination": "/ro/blog",
         "permanent": true
       }
     ]

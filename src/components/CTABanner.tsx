@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
+import DisplayHeading from "@/components/motion/DisplayHeading";
 
 const CTABanner = () => {
   const { t } = useTranslation();
@@ -40,15 +41,9 @@ const CTABanner = () => {
           )}
 
           <div className="relative z-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1 text-white"
-            >
+            <DisplayHeading as="h2" size="section" className="text-white mb-4">
               {t("cta.title")}
-            </motion.h2>
+            </DisplayHeading>
             <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto">
               {t("cta.subtitle")}
             </p>

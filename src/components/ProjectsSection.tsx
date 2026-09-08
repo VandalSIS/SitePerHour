@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ArrowUpRight, Sparkles, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
+import SectionHeader from "@/components/motion/SectionHeader";
 
 type Project = {
   title: string;
@@ -136,24 +137,11 @@ const ProjectsSection = () => {
       <div className="absolute top-1/4 right-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[180px]" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-sm text-primary font-medium">{t("projects.badge")}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1">
-            {t("projects.title")}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("projects.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={t("projects.badge")}
+          title={t("projects.title")}
+          subtitle={t("projects.subtitle")}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (

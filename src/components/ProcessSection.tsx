@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Search, Pencil, Code, Rocket, Sparkles } from "lucide-react";
+import { Search, Pencil, Code, Rocket } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SectionHeader from "@/components/motion/SectionHeader";
 
 const ProcessSection = () => {
   const { t } = useTranslation();
@@ -17,24 +18,11 @@ const ProcessSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary/20" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-sm text-primary font-medium">{t("process.badge")}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-[1.15] pb-1">
-            {t("process.title")}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("process.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={t("process.badge")}
+          title={t("process.title")}
+          subtitle={t("process.subtitle")}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {/* Connecting line — desktop */}

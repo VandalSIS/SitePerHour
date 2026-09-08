@@ -2,10 +2,11 @@
 
 import {
   Code2, ShoppingBag, Smartphone, Megaphone, Target,
-  Search, Wrench, Sparkles, ArrowUpRight, Workflow, LineChart,
+  Search, Wrench, ArrowUpRight, Workflow, LineChart,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import SectionHeader from "@/components/motion/SectionHeader";
 
 type ServiceKey =
   | "webDev"
@@ -89,24 +90,11 @@ const ServicesSection = () => {
       <div className="absolute inset-0 mesh-gradient opacity-50" />
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-primary/30 bg-primary/10">
-            <Sparkles size={14} className="text-primary" />
-            <span className="text-sm text-primary font-medium">{t("services.badge")}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading mb-4 leading-[1.2] pb-2">
-            {t("services.title")}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("services.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={t("services.badge")}
+          title={t("services.title")}
+          subtitle={t("services.subtitle")}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(140px,auto)]">
           {services.map((service, i) => {
