@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Syne, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-jakarta",
   display: "swap",
+  weight: ["600", "700", "800"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -24,6 +25,15 @@ export const metadata: Metadata = {
   },
   description:
     "Full-service digital agency: web development, Google & Meta Ads, CRM, SEO. Based in Chișinău, serving clients worldwide.",
+  alternates: {
+    canonical: "https://siteperhour.com/ro",
+    languages: {
+      ro: "https://siteperhour.com/ro",
+      en: "https://siteperhour.com/en",
+      ru: "https://siteperhour.com/ru",
+      "x-default": "https://siteperhour.com/ro",
+    },
+  },
   icons: {
     icon: "/favicon.ico",
   },
@@ -36,8 +46,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      className={`dark ${GeistSans.variable} ${syne.variable} ${jetbrainsMono.variable}`}
+      lang="ro"
+      className={`dark ${GeistSans.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen font-sans">

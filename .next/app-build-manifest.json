@@ -5,7 +5,7 @@
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
       "static/chunks/255-37e0f0325134c4d7.js",
       "static/chunks/main-app-27f2fbe6b9f21fc7.js",
-      "static/chunks/app/_not-found/page-87df1fb7fb821ee1.js"
+      "static/chunks/app/_not-found/page-cb341e928b02687f.js"
     ],
     "/not-found": [
       "static/chunks/webpack-32ac0c30c213ffa6.js",
@@ -24,33 +24,40 @@
       "static/css/70fe528168248d5b.css",
       "static/chunks/app/layout-72f6e7e989414d6e.js"
     ],
-    "/robots.txt/route": [
-      "static/chunks/webpack-32ac0c30c213ffa6.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-37e0f0325134c4d7.js",
-      "static/chunks/main-app-27f2fbe6b9f21fc7.js",
-      "static/chunks/app/robots.txt/route-87df1fb7fb821ee1.js"
-    ],
     "/sitemap.xml/route": [
       "static/chunks/webpack-32ac0c30c213ffa6.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
       "static/chunks/255-37e0f0325134c4d7.js",
       "static/chunks/main-app-27f2fbe6b9f21fc7.js",
-      "static/chunks/app/sitemap.xml/route-87df1fb7fb821ee1.js"
+      "static/chunks/app/sitemap.xml/route-cb341e928b02687f.js"
+    ],
+    "/robots.txt/route": [
+      "static/chunks/webpack-32ac0c30c213ffa6.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-37e0f0325134c4d7.js",
+      "static/chunks/main-app-27f2fbe6b9f21fc7.js",
+      "static/chunks/app/robots.txt/route-cb341e928b02687f.js"
     ],
     "/api/quote/route": [
       "static/chunks/webpack-32ac0c30c213ffa6.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
       "static/chunks/255-37e0f0325134c4d7.js",
       "static/chunks/main-app-27f2fbe6b9f21fc7.js",
-      "static/chunks/app/api/quote/route-87df1fb7fb821ee1.js"
+      "static/chunks/app/api/quote/route-cb341e928b02687f.js"
     ],
     "/api/contact/route": [
       "static/chunks/webpack-32ac0c30c213ffa6.js",
       "static/chunks/4bd1b696-c023c6e3521b1417.js",
       "static/chunks/255-37e0f0325134c4d7.js",
       "static/chunks/main-app-27f2fbe6b9f21fc7.js",
-      "static/chunks/app/api/contact/route-87df1fb7fb821ee1.js"
+      "static/chunks/app/api/contact/route-cb341e928b02687f.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-32ac0c30c213ffa6.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-37e0f0325134c4d7.js",
+      "static/chunks/main-app-27f2fbe6b9f21fc7.js",
+      "static/chunks/app/page-cb341e928b02687f.js"
     ],
     "/[locale]/layout": [
       "static/chunks/webpack-32ac0c30c213ffa6.js",

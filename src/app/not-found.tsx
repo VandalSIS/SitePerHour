@@ -8,7 +8,7 @@ export default function NotFound() {
         Page not found. The page you are looking for does not exist or has been moved.
       </p>
       <Link
-        href="/en"
+        href="/"
         className="px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
       >
         Back to Home

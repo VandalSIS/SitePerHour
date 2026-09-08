@@ -20,6 +20,11 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "destination": "/ro",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "siteperhour.vercel.app" }],
       "destination": "https://siteperhour.com/$1",

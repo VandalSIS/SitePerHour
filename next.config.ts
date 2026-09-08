@@ -19,12 +19,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/contact", destination: "/en#contact", permanent: true },
-      { source: "/privacy-policy", destination: "/en/privacy-policy", permanent: true },
-      { source: "/terms", destination: "/en/terms", permanent: true },
-      { source: "/pricing/:path*", destination: "/en/pricing/:path*", permanent: true },
-      { source: "/services/:path*", destination: "/en/services/:path*", permanent: true },
-      { source: "/blog", destination: "/en/blog", permanent: true },
+      { source: "/", destination: "/ro", permanent: true },
+      { source: "/contact", destination: "/ro#contact", permanent: true },
+      { source: "/privacy-policy", destination: "/ro/privacy-policy", permanent: true },
+      { source: "/terms", destination: "/ro/terms", permanent: true },
+      { source: "/pricing/:path*", destination: "/ro/pricing/:path*", permanent: true },
+      { source: "/services/:path*", destination: "/ro/services/:path*", permanent: true },
+      { source: "/blog", destination: "/ro/blog", permanent: true },
     ];
   },
 };

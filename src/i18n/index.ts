@@ -15,7 +15,7 @@ i18n
       ro: { translation: ro },
       ru: { translation: ru },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'ro',
     supportedLngs: ['en', 'ro', 'ru'],
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],

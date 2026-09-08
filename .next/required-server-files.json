@@ -298,6 +298,11 @@
     },
     "_originalRedirects": [
       {
+        "source": "/",
+        "destination": "/en",
+        "permanent": true
+      },
+      {
         "source": "/contact",
         "destination": "/en#contact",
         "permanent": true

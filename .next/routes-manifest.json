@@ -12,6 +12,12 @@
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     },
     {
+      "source": "/",
+      "destination": "/en",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/(?:/)?$"
+    },
+    {
       "source": "/contact",
       "destination": "/en#contact",
       "statusCode": 308,
@@ -65,6 +71,12 @@
     }
   ],
   "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
     {
       "page": "/_not-found",
       "regex": "^/_not\\-found(?:/)?$",

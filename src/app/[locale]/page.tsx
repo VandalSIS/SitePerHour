@@ -51,10 +51,10 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://siteperhour.com/${lang}`,
       languages: {
-        en: "https://siteperhour.com/en",
         ro: "https://siteperhour.com/ro",
+        en: "https://siteperhour.com/en",
         ru: "https://siteperhour.com/ru",
-        "x-default": "https://siteperhour.com/en",
+        "x-default": "https://siteperhour.com/ro",
       },
     },
     openGraph: {
