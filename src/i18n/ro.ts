@@ -30,9 +30,9 @@ const ro = {
   },
   hero: {
     badge: "Web · Ads · CRM · Marketing",
-    title1: "Site-uri și",
-    title2: "Creștere Digitală",
-    title3: "Care Convertesc.",
+    title1: "Site-uri",
+    title2: "și Creștere",
+    title3: "Digitală care convertesc.",
     description: "Construiesc site-uri rapide și moderne și rulez campanii de reclame digitale care transformă vizitatorii în clienți. Web development, aplicații mobile, Google & Meta Ads, SEO — tot ce ai nevoie să crești online.",
     cta: "Începe Proiectul",
     consultation: "Consultație Gratuită",

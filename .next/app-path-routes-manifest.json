@@ -1,9 +1,9 @@
 {
   "/_not-found/page": "/_not-found",
+  "/api/quote/route": "/api/quote",
+  "/sitemap.xml/route": "/sitemap.xml",
   "/robots.txt/route": "/robots.txt",
   "/api/contact/route": "/api/contact",
-  "/sitemap.xml/route": "/sitemap.xml",
-  "/api/quote/route": "/api/quote",
   "/page": "/",
   "/[locale]/page": "/[locale]"
 }

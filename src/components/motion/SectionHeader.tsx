@@ -1,6 +1,5 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import DisplayHeading from "./DisplayHeading";
 
@@ -9,6 +8,7 @@ type SectionHeaderProps = {
   title: string;
   subtitle?: string;
   titleGradient?: boolean;
+  align?: "left" | "center";
 };
 
 export default function SectionHeader({
@@ -16,31 +16,42 @@ export default function SectionHeader({
   title,
   subtitle,
   titleGradient = false,
+  align = "left",
 }: SectionHeaderProps) {
+  const isCenter = align === "center";
+
   return (
-    <div className="text-center mb-16 md:mb-20">
+    <div
+      className={`mb-14 md:mb-20 ${isCenter ? "text-center" : "text-left max-w-4xl"}`}
+    >
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: isCenter ? 0 : -12 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.45 }}
-        className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-primary/30 bg-primary/10"
+        className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm ${
+          isCenter ? "mx-auto" : ""
+        }`}
       >
-        <Sparkles size={14} className="text-primary" />
-        <span className="text-sm text-primary font-medium tracking-wide">{badge}</span>
+        <span className="label-mono">{badge}</span>
       </motion.div>
 
-      <DisplayHeading as="h2" size="section" gradient={titleGradient}>
+      <DisplayHeading
+        as="h2"
+        size="section"
+        gradient={titleGradient}
+        align={align}
+      >
         {title}
       </DisplayHeading>
 
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mt-6 leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.12 }}
+          className={`body-lead mt-5 md:mt-6 max-w-2xl ${isCenter ? "mx-auto" : ""}`}
         >
           {subtitle}
         </motion.p>

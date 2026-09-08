@@ -42,7 +42,7 @@ const HeroSection = () => {
       <section
         ref={sectionRef}
         id="home"
-        className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-24 pb-10 md:pb-14"
+        className="relative min-h-[100svh] flex flex-col justify-center overflow-x-hidden pt-24 pb-10 md:pb-14"
       >
         <div className="absolute inset-0 bg-background" />
         <div className="absolute inset-0 mesh-gradient opacity-40" />
@@ -70,7 +70,7 @@ const HeroSection = () => {
 
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="relative z-10 w-full max-w-[min(100%,1440px)] mx-auto px-5 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center will-change-transform"
+          className="relative z-10 w-full max-w-[min(100%,1280px)] mx-auto px-5 sm:px-8 lg:px-10 flex-1 flex flex-col justify-center will-change-transform"
         >
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -79,7 +79,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm self-start"
           >
             <Sparkles size={12} className="text-primary" />
-            <span className="text-[11px] md:text-xs text-muted-foreground font-medium tracking-[0.12em] uppercase">
+            <span className="label-mono text-primary/80">
               {t("hero.badge")}
             </span>
           </motion.div>
@@ -92,7 +92,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-xl mt-8 md:mt-10 mb-8 md:mb-10 leading-relaxed font-medium"
+            className="body-lead max-w-xl mt-8 md:mt-10 mb-8 md:mb-10"
           >
             {t("hero.description")}
           </motion.p>

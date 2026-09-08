@@ -42,10 +42,10 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            <h3 className="font-heading font-bold text-2xl md:text-3xl mb-6 leading-[1.15] tracking-[-0.03em]">
               {t("about.heading")}
             </h3>
-            <p className="text-muted-foreground text-base md:text-lg mb-5 leading-relaxed">
+            <p className="body-lead mb-5">
               {t("about.desc1")}
             </p>
             <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">

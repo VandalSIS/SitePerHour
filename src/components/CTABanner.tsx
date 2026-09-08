@@ -17,7 +17,7 @@ const CTABanner = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="relative bg-gradient-to-br from-primary/30 via-purple-600/20 to-primary/30 border border-primary/30 rounded-3xl p-8 md:p-16 text-center overflow-hidden"
+          className="relative bg-gradient-to-br from-primary/20 via-purple-600/10 to-primary/20 border border-white/10 rounded-3xl p-8 md:p-14 overflow-hidden text-left"
         >
           {/* Decorative blobs — animated on desktop, static on mobile */}
           {isMobile ? (
@@ -40,14 +40,14 @@ const CTABanner = () => {
             </>
           )}
 
-          <div className="relative z-10">
+          <div className="relative z-10 max-w-3xl">
             <DisplayHeading as="h2" size="section" className="text-white mb-4">
               {t("cta.title")}
             </DisplayHeading>
-            <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            <p className="body-lead mb-8 max-w-xl">
               {t("cta.subtitle")}
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <a href="#contact">
                 <Button
                   size="lg"

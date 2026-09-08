@@ -30,9 +30,9 @@ const en = {
   },
   hero: {
     badge: "Web · Ads · CRM · Marketing",
-    title1: "Websites &",
-    title2: "Digital Growth",
-    title3: "That Convert.",
+    title1: "Websites",
+    title2: "& Digital",
+    title3: "Growth that converts.",
     description: "I build fast, modern websites and run digital ad campaigns that turn visitors into customers. Web development, mobile apps, Google & Meta Ads, SEO — everything you need to grow online.",
     cta: "Start Your Project",
     consultation: "Free Consultation",

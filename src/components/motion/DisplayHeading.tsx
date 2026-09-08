@@ -9,25 +9,25 @@ type DisplayHeadingProps = {
   size?: "hero" | "section" | "card";
   className?: string;
   gradient?: boolean;
-  /** Animate on scroll into view (section titles) */
+  uppercase?: boolean;
+  align?: "left" | "center";
   revealOnScroll?: boolean;
 };
 
 const sizeClasses = {
-  hero: "text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem] leading-[1.15] sm:leading-[1.1]",
-  section:
-    "text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.15] sm:leading-[1.12]",
-  card: "text-2xl sm:text-3xl leading-[1.2]",
+  hero: "display-hero",
+  section: "display-section",
+  card: "font-heading font-bold text-2xl sm:text-3xl leading-[1.2] tracking-[-0.03em] py-1",
 };
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 48 },
+  hidden: { opacity: 0, y: 36 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.06,
-      duration: 0.55,
+      delay: i * 0.05,
+      duration: 0.5,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
@@ -39,18 +39,21 @@ export default function DisplayHeading({
   size = "section",
   className = "",
   gradient = false,
+  uppercase = true,
+  align = "left",
   revealOnScroll = true,
 }: DisplayHeadingProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const words = children.split(" ");
-
   const Tag = as;
 
+  const alignClass = align === "center" ? "text-center" : "text-left";
+
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={`${alignClass} ${className}`}>
       <Tag
-        className={`font-heading font-bold tracking-[-0.04em] text-balance py-1 ${sizeClasses[size]}`}
+        className={`${sizeClasses[size]} ${uppercase && size !== "card" ? "uppercase" : ""}`}
       >
         {words.map((word, i) => (
           <motion.span
@@ -59,7 +62,7 @@ export default function DisplayHeading({
             initial="hidden"
             animate={revealOnScroll ? (isInView ? "visible" : "hidden") : "visible"}
             variants={wordVariants}
-            className={`inline-block mr-[0.28em] last:mr-0 pb-1 ${
+            className={`inline-block mr-[0.26em] last:mr-0 overflow-visible ${
               gradient ? "text-gradient-vivid" : ""
             }`}
           >

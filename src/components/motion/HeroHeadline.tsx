@@ -12,7 +12,7 @@ type HeroHeadlineProps = {
 };
 
 const lineVariants = {
-  hidden: { opacity: 0, y: 72 },
+  hidden: { opacity: 0, y: 56 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
@@ -26,10 +26,7 @@ const lineVariants = {
 
 export default function HeroHeadline({ lines }: HeroHeadlineProps) {
   return (
-    <h1
-      className="font-heading font-bold uppercase tracking-[-0.05em] text-[clamp(2.65rem,11.5vw,10.5rem)] leading-[0.9] sm:leading-[0.88] text-white"
-      style={{ fontFeatureSettings: '"case" 1' }}
-    >
+    <h1 className="display-hero text-white">
       {lines.map((line, i) => (
         <motion.span
           key={`${line.text}-${i}`}
@@ -37,7 +34,7 @@ export default function HeroHeadline({ lines }: HeroHeadlineProps) {
           initial="hidden"
           animate="visible"
           variants={lineVariants}
-          className={`block overflow-visible pb-[0.06em] ${
+          className={`block overflow-visible ${
             line.gradient ? "text-gradient" : ""
           }`}
         >
