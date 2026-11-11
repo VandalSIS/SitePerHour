@@ -172,6 +172,13 @@ const en = {
     q6: "Do you offer ongoing maintenance?",
     a6: "Yes. Monthly maintenance plans from $97/month — includes security updates, backups, performance tuning, content edits, and priority support. Most clients stay on after launch.",
   },
+  midCta: {
+    badge: "Next step",
+    title: "Let's talk about your project",
+    subtitle: "Free consultation — clear scope and pricing, no obligation.",
+    primary: "Contact me",
+    secondary: "Go to form",
+  },
   cta: {
     title: "Ready to Grow Your Business Online?",
     subtitle: "Free 30-minute consultation. No commitment. Let's see if we're a fit.",

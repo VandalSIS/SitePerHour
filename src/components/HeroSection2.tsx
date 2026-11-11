@@ -23,9 +23,10 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -60 : -180]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const headlineY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -30 : -100]);
+  // Skip heavy scroll-linked transforms on mobile
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -120]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 1 : 0]);
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -80]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -48,25 +49,9 @@ const HeroSection = () => {
         <div className="absolute inset-0 mesh-gradient opacity-40" />
         <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-[0.07]" />
 
-        {isMobile ? (
-          <>
-            <div className="absolute top-1/3 -left-40 w-72 h-72 bg-primary/15 rounded-full blur-[120px]" />
-            <div className="absolute bottom-1/4 -right-40 w-72 h-72 bg-accent/10 rounded-full blur-[120px]" />
-          </>
-        ) : (
-          <>
-            <motion.div
-              className="absolute top-1/3 -left-48 w-[28rem] h-[28rem] bg-primary/12 rounded-full blur-[140px]"
-              animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 -right-48 w-[28rem] h-[28rem] bg-accent/10 rounded-full blur-[140px]"
-              animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </>
-        )}
+        {/* Static glows only — animated blur blobs were expensive on GPU */}
+        <div className="absolute top-1/3 -left-40 w-72 h-72 md:w-[28rem] md:h-[28rem] bg-primary/12 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-72 h-72 md:w-[28rem] md:h-[28rem] bg-accent/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
 
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}

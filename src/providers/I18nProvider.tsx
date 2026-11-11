@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/i18n";
 import type { Locale } from "@/lib/i18n/config";
+import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
 
 export function I18nProvider({
   locale,
@@ -18,5 +19,9 @@ export function I18nProvider({
     }
   }, [locale]);
 
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+  return (
+    <I18nextProvider i18n={i18n}>
+      <SmoothScrollProvider>{children}</SmoothScrollProvider>
+    </I18nextProvider>
+  );
 }

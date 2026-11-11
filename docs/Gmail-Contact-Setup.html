@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SitePerHour — Setup Gmail formular contact</title>
+  <style>
+    :root { --primary:#3b82f6; --bg:#0f172a; --card:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --border:#334155; --success:#22c55e; --warn:#f59e0b; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:15px}
+    .doc{max-width:760px;margin:0 auto;padding:48px 28px 80px}
+    h1{font-size:1.8rem;margin-bottom:8px} h1 span{color:var(--primary)}
+    h2{color:var(--primary);margin:32px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+    p,li{color:#cbd5e1;margin-bottom:8px}
+    ol,ul{margin:0 0 16px 22px}
+    code{font-family:ui-monospace,monospace;background:var(--card);padding:2px 7px;border-radius:4px;border:1px solid var(--border);font-size:.85em}
+    .callout{background:var(--card);border-left:4px solid var(--primary);padding:14px 18px;margin:16px 0;border-radius:0 8px 8px 0}
+    .callout.warn{border-left-color:var(--warn)}
+    .callout.ok{border-left-color:var(--success)}
+    a{color:var(--primary)}
+    table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:.9rem}
+    th,td{border:1px solid var(--border);padding:10px 12px;text-align:left}
+    th{background:var(--card);color:var(--primary)}
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <h1>Setup <span>Gmail</span> — formular contact</h1>
+    <p>Ca formularul să trimită pe <code>mihail.mihai2001@gmail.com</code> (necesar înainte de Google Ads).</p>
+
+    <div class="callout warn">
+      <strong>Important:</strong> Nu folosi parola normală de Gmail. Ai nevoie de <strong>App Password</strong> (16 caractere).
+    </div>
+
+    <h2>1. Creează App Password (2 minute)</h2>
+    <ol>
+      <li>Deschide <a href="https://myaccount.google.com/security" target="_blank" rel="noopener">Google Account → Security</a></li>
+      <li>Activează <strong>2-Step Verification</strong> (dacă nu e deja)</li>
+      <li>Mergi la <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">App passwords</a></li>
+      <li>App name: <code>SitePerHour</code> → Generate</li>
+      <li>Copiază parola de 16 caractere (ex: <code>abcd efgh ijkl mnop</code>)</li>
+    </ol>
+
+    <h2>2. Variabile pe Vercel (production)</h2>
+    <p>Vercel → Project <strong>SitePerHour</strong> → <strong>Settings → Environment Variables</strong> → adaugă:</p>
+    <table>
+      <tr><th>Name</th><th>Value</th></tr>
+      <tr><td><code>GMAIL_USER</code></td><td><code>mihail.mihai2001@gmail.com</code></td></tr>
+      <tr><td><code>GMAIL_APP_PASSWORD</code></td><td>parola App Password (fără spații sau cu spații — ambele merge)</td></tr>
+      <tr><td><code>CONTACT_TO</code></td><td><code>mihail.mihai2001@gmail.com</code> (unde primești mesajele)</td></tr>
+    </table>
+    <p>Environments: <strong>Production</strong> (+ Preview dacă vrei).</p>
+    <p>Apoi: <strong>Deployments → Redeploy</strong> (sau push pe main).</p>
+
+    <h2>3. Local (opțional)</h2>
+    <ol>
+      <li>Copiază <code>.env.example</code> → <code>.env.local</code></li>
+      <li>Pune App Password-ul</li>
+      <li><code>bun run dev</code> → testează formularul pe <code>/ro#contact</code></li>
+    </ol>
+
+    <h2>4. Test rapid</h2>
+    <ol>
+      <li>Deschide <a href="https://siteperhour.com/ro#contact" target="_blank" rel="noopener">siteperhour.com/ro#contact</a></li>
+      <li>Trimite un mesaj de test</li>
+      <li>Verifică inbox + spam pe Gmail</li>
+      <li>Reply din Gmail trebuie să meargă la emailul clientului (<code>Reply-To</code>)</li>
+    </ol>
+
+    <div class="callout ok">
+      Codul e gata: <code>/api/contact</code> + <code>/api/quote</code> folosesc Nodemailer → Gmail.
+      Dacă lipsește App Password, API returnează 503 „Email service not configured”.
+    </div>
+
+    <h2>5. Dacă nu merge</h2>
+    <ul>
+      <li>„Username and Password not accepted” → App Password greșit sau 2FA off</li>
+      <li>Mesaj nu apare → verifică Spam / Promotions</li>
+      <li>Vercel logs: Project → Deployments → Functions → /api/contact</li>
+      <li>Nu pune App Password în Git / chat — doar în Vercel / .env.local</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -172,6 +172,13 @@ const ro = {
     q6: "Oferi mentenanță continuă?",
     a6: "Da. Planuri lunare de mentenanță de la $97/lună — includ update-uri de securitate, backups, optimizare performanță, edits de content și suport prioritar. Majoritatea clienților rămân după lansare.",
   },
+  midCta: {
+    badge: "Următorul pas",
+    title: "Hai să vorbim despre proiectul tău",
+    subtitle: "Consultație gratuită — îți spun clar ce ai nevoie și cât costă, fără obligații.",
+    primary: "Contactează-mă",
+    secondary: "Mergi la formular",
+  },
   cta: {
     title: "Gata să Crești Online?",
     subtitle: "Consultație gratuită 30 de minute. Fără obligații. Hai să vedem dacă ne potrivim.",

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SitePerHour — Inspirație Scroll &amp; Motion</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --success: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    .doc {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 48px 32px 80px;
+    }
+    .cover {
+      padding: 40px 28px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      margin-bottom: 40px;
+    }
+    .cover h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .cover h1 span { color: var(--primary); }
+    .cover p { color: var(--muted); margin-bottom: 16px; }
+    .cover .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .cover .meta span {
+      background: var(--card);
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin: 22px 0 10px;
+      color: #e2e8f0;
+    }
+    p { margin-bottom: 12px; color: #cbd5e1; }
+    ul { margin: 0 0 16px 22px; color: #cbd5e1; }
+    li { margin-bottom: 8px; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 22px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--card);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: rgba(30, 41, 59, 0.45); }
+    .callout {
+      background: var(--card);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .callout.success { border-left-color: var(--success); }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--primary);
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+    .doc-footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.85em;
+      background: var(--card);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <header class="cover">
+      <h1>Inspirație <span>Scroll &amp; Motion</span></h1>
+      <p>Catalog de hub-uri, galerii și site-uri de referință pentru efecte tip scrollytelling, pin, kinetic type — pentru SitePerHour.</p>
+      <div class="meta">
+        <span>v1.0</span>
+        <span>9 septembrie 2026</span>
+        <span>Complement la Project Brief §11b</span>
+      </div>
+    </header>
+
+    <div class="callout success">
+      <strong>Referință principală locală:</strong>
+      <a href="https://dixi.md/" target="_blank" rel="noopener">dixi.md</a>
+      — pinned section, text care se schimbă la scroll, vizual 3D, progress bar.
+    </div>
+
+    <h2>1. Hub-uri cu multe demo-uri (stil „manual”)</h2>
+    <p>Aici vezi <strong>multe efecte pe același site</strong> — cel mai apropiat de un catalog tip GeeksforGeeks pentru motion.</p>
+    <table>
+      <tr>
+        <th>Site</th>
+        <th>Ce găsești</th>
+      </tr>
+      <tr>
+        <td><a href="https://scroll-driven-animations.style/" target="_blank" rel="noopener">scroll-driven-animations.style</a></td>
+        <td>Zeci de demo-uri scroll pe o singură pagină — cel mai „manual”</td>
+      </tr>
+      <tr>
+        <td><a href="https://gsap.com/showcase/" target="_blank" rel="noopener">GSAP Showcase</a></td>
+        <td>Site-uri reale cu pin, scrub, scrollytelling</td>
+      </tr>
+      <tr>
+        <td><a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/" target="_blank" rel="noopener">GSAP ScrollTrigger docs</a></td>
+        <td>Demo-uri + explicații tehnice</td>
+      </tr>
+      <tr>
+        <td><a href="https://tympanus.net/codrops/" target="_blank" rel="noopener">Codrops</a></td>
+        <td>Catalog mare: scroll, WebGL, typography — fiecare cu demo</td>
+      </tr>
+      <tr>
+        <td><a href="https://ui.aceternity.com/" target="_blank" rel="noopener">Aceternity UI</a></td>
+        <td>Componente React gata (scroll, reveal, 3D)</td>
+      </tr>
+      <tr>
+        <td><a href="https://magicui.design/" target="_blank" rel="noopener">Magic UI</a></td>
+        <td>Efecte React/Next gata de folosit</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.reactbits.dev/" target="_blank" rel="noopener">React Bits</a></td>
+        <td>Gallery de animații React</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.hover.dev/" target="_blank" rel="noopener">Hover.dev</a></td>
+        <td>Micro-interacțiuni + motion examples</td>
+      </tr>
+    </table>
+
+    <h2>2. Galerii de site-uri live (cu filtre)</h2>
+    <p>Browsing zilnic — site-uri reale care au deja efectele.</p>
+    <table>
+      <tr>
+        <th>Site</th>
+        <th>Ce filtrezi / de ce</th>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/scroll/" target="_blank" rel="noopener">Awwwards — Scroll</a></td>
+        <td>Mii de site-uri cu scroll effects</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/storytelling/" target="_blank" rel="noopener">Awwwards — Storytelling</a></td>
+        <td>Narative pe scroll (stil dixi)</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/horizontal-scrolling/" target="_blank" rel="noopener">Awwwards — Horizontal</a></td>
+        <td>Scroll vertical → slide orizontal</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/typography/" target="_blank" rel="noopener">Awwwards — Typography</a></td>
+        <td>Titluri enorme, kinetic type</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/webgl/" target="_blank" rel="noopener">Awwwards — WebGL</a></td>
+        <td>Three.js / WebGL + scroll</td>
+      </tr>
+      <tr>
+        <td><a href="https://godly.website/" target="_blank" rel="noopener">Godly</a></td>
+        <td>Curated, calitate mare, rapid de browsat</td>
+      </tr>
+      <tr>
+        <td><a href="https://maxibestof.one/" target="_blank" rel="noopener">Maxibestof</a></td>
+        <td>Inspirație web selectată</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.siteinspire.com/" target="_blank" rel="noopener">SiteInspire</a></td>
+        <td>Filtre pe stil / layout</td>
+      </tr>
+      <tr>
+        <td><a href="https://land-book.com/" target="_blank" rel="noopener">Land-book</a></td>
+        <td>Landing-uri, multe cu motion</td>
+      </tr>
+      <tr>
+        <td><a href="https://onepagelove.com/" target="_blank" rel="noopener">One Page Love</a></td>
+        <td>One-pagers cu scroll storytelling</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.dark.design/" target="_blank" rel="noopener">Dark Design</a></td>
+        <td>Dark sites (aproape de vibe SitePerHour)</td>
+      </tr>
+      <tr>
+        <td><a href="https://httpster.net/" target="_blank" rel="noopener">Httpster</a></td>
+        <td>Gallery random, multe „wow”</td>
+      </tr>
+    </table>
+
+    <h2>3. Tipografie &amp; text pe scroll</h2>
+    <table>
+      <tr>
+        <th>Site</th>
+        <th>Focus</th>
+      </tr>
+      <tr>
+        <td><a href="https://www.awwwards.com/websites/typography/" target="_blank" rel="noopener">Awwwards Typography</a></td>
+        <td>Kinetic type, display headlines</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.typewolf.com/" target="_blank" rel="noopener">Typewolf</a></td>
+        <td>Font pairing pe site-uri reale</td>
+      </tr>
+      <tr>
+        <td><a href="https://fontsinuse.com/" target="_blank" rel="noopener">Fonts In Use</a></td>
+        <td>Cum e folosit un font pe proiecte reale</td>
+      </tr>
+    </table>
+
+    <h2>4. Exemple concrete de studiat</h2>
+    <table>
+      <tr>
+        <th>Site</th>
+        <th>Ce să observi</th>
+      </tr>
+      <tr>
+        <td><a href="https://dixi.md/" target="_blank" rel="noopener">dixi.md</a> <span class="tag">MD</span></td>
+        <td>Pinned steps + text swap + 3D — referință principală</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.lusion.co/" target="_blank" rel="noopener">lusion.co</a></td>
+        <td>WebGL + scroll premium (agency)</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.apple.com/airpods-pro/" target="_blank" rel="noopener">Apple product pages</a></td>
+        <td>Scrollytelling clasic (produs pinned, scene)</td>
+      </tr>
+      <tr>
+        <td><a href="https://stripe.com/" target="_blank" rel="noopener">stripe.com</a></td>
+        <td>Motion subtil, scroll polish, tipografie</td>
+      </tr>
+      <tr>
+        <td><a href="https://linear.app/" target="_blank" rel="noopener">linear.app</a></td>
+        <td>Product storytelling, reveal curat</td>
+      </tr>
+    </table>
+
+    <h2>5. Cum se numesc efectele (cuvinte de căutat)</h2>
+    <table>
+      <tr>
+        <th>Termen</th>
+        <th>Ce înseamnă</th>
+      </tr>
+      <tr>
+        <td><strong>Scrollytelling</strong></td>
+        <td>Povestea avansează pe măsură ce scrollezi</td>
+      </tr>
+      <tr>
+        <td><strong>Pinned / sticky section</strong></td>
+        <td>Secțiunea rămâne fixă cât rulează animația</td>
+      </tr>
+      <tr>
+        <td><strong>Scroll scrub</strong></td>
+        <td>Animația e legată de progresul scroll-ului</td>
+      </tr>
+      <tr>
+        <td><strong>Scroll-triggered animation</strong></td>
+        <td>Elemente apar / dispar la scroll</td>
+      </tr>
+      <tr>
+        <td><strong>Chapter / step scroll</strong></td>
+        <td>Mai multe pași de text în aceeași scenă</td>
+      </tr>
+      <tr>
+        <td><strong>Scroll progress indicator</strong></td>
+        <td>Bara care arată progresul în scenă</td>
+      </tr>
+      <tr>
+        <td><strong>Horizontal scroll</strong></td>
+        <td>Scroll vertical → conținut orizontal</td>
+      </tr>
+      <tr>
+        <td><strong>Parallax</strong></td>
+        <td>Straturi la viteze diferite</td>
+      </tr>
+      <tr>
+        <td><strong>Kinetic typography</strong></td>
+        <td>Tipografie mare animată</td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <strong>Căutare rapidă pe Awwwards / Google:</strong>
+      <code>scrollytelling</code> ·
+      <code>pinned scroll</code> ·
+      <code>sticky scroll section</code> ·
+      <code>scroll scrub</code> ·
+      <code>kinetic typography</code> ·
+      <code>horizontal scroll</code> ·
+      <code>WebGL scroll</code> ·
+      <code>GSAP ScrollTrigger</code>
+    </div>
+
+    <h2>6. Rutină de browsing (recomandat)</h2>
+    <ol style="margin: 0 0 16px 22px; color: #cbd5e1;">
+      <li style="margin-bottom:8px;"><a href="https://godly.website/" target="_blank" rel="noopener">Godly</a> + <a href="https://www.awwwards.com/websites/scroll/" target="_blank" rel="noopener">Awwwards Scroll</a> — site-uri reale</li>
+      <li style="margin-bottom:8px;"><a href="https://scroll-driven-animations.style/" target="_blank" rel="noopener">scroll-driven-animations.style</a> — înțelegi mecanica</li>
+      <li style="margin-bottom:8px;"><a href="https://dixi.md/" target="_blank" rel="noopener">dixi.md</a> — referința pe care o vrem pe SitePerHour</li>
+      <li><a href="https://ui.aceternity.com/" target="_blank" rel="noopener">Aceternity</a> / <a href="https://magicui.design/" target="_blank" rel="noopener">Magic UI</a> — dacă vrei componente gata</li>
+    </ol>
+
+    <footer class="doc-footer">
+      <p><strong>SitePerHour</strong> — Inspiration Scroll &amp; Motion v1.0</p>
+      <p>Fișier: <code>docs/Inspiration-Scroll-Motion.html</code> · legat de Project Brief §11b</p>
+      <p>Actualizat: 9 septembrie 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

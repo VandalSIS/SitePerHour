@@ -178,8 +178,8 @@
       <p class="subtitle">Project Brief &amp; Strategic Roadmap</p>
       <p style="color:#94a3b8; margin-bottom:20px;">Transformare platformă digitală: de la landing la agenție indexabilă, multilingvă, memorabilă vizual</p>
       <div class="meta">
-        <span>Document v1.1</span>
-        <span>8 septembrie 2026</span>
+        <span>Document v1.2</span>
+        <span>9 septembrie 2026</span>
         <span>siteperhour.com</span>
         <span>Confidențial — SitePerHour</span>
       </div>
@@ -199,6 +199,7 @@
         <li><a href="#services">Servicii &amp; prețuri (de stabilit)</a></li>
         <li><a href="#seo">SEO, Schema, LLM &amp; AI</a></li>
         <li><a href="#visual">Experiență vizuală „Wow”</a></li>
+        <li><a href="#scrollytelling">Scrollytelling &amp; inspirație motion</a></li>
         <li><a href="#roadmap">Roadmap — faze &amp; timeline</a></li>
         <li><a href="#deliverables">Deliverables per fază</a></li>
         <li><a href="#input">Ce trebuie decis de Mihail</a></li>
@@ -517,10 +518,104 @@
         <li>Hero 3D — glob cu puncte (clienți 8+ țări), rotație mouse</li>
         <li>Services — card tilt 3D (CSS)</li>
         <li>Projects — hover depth + screenshot reveal</li>
-        <li>Process — timeline animat scroll</li>
+        <li>Process — timeline / scrollytelling pinned (vezi §11b)</li>
         <li>Page transitions — fade/slide între rute</li>
         <li>Easter egg — Konami code sau /play (opțional, Faza 4)</li>
       </ul>
+    </section>
+
+    <section id="scrollytelling">
+      <h2>11b. Scrollytelling &amp; inspirație motion</h2>
+      <div class="callout">
+        <strong>Referință locală:</strong> <a href="https://dixi.md/" style="color:var(--primary)">dixi.md</a> — la scroll, secțiunea rămâne „lipită” pe ecran, textul se schimbă, obiectul 3D evoluează, apoi treci la următoarea secțiune. Progress bar pe verticală.
+      </div>
+
+      <h3>Cum se numește efectul</h3>
+      <table>
+        <tr><th>Termen</th><th>Ce înseamnă</th></tr>
+        <tr><td><strong>Scrollytelling</strong></td><td>Povestea avansează pe măsură ce scrollezi (narativă pe scroll)</td></tr>
+        <tr><td><strong>Pinned / sticky section</strong></td><td>Secțiunea rămâne fixă în viewport cât rulează animația internă</td></tr>
+        <tr><td><strong>Scroll scrub</strong></td><td>Animația e legată de progresul scroll-ului (nu doar trigger on/off)</td></tr>
+        <tr><td><strong>Scroll-triggered animation</strong></td><td>Elemente apar / dispar / se schimbă la scroll</td></tr>
+        <tr><td><strong>Chapter / step scroll</strong></td><td>Mai multe „pași” de text în aceeași scenă (ex. vei fi cunoscut → ales → iubit)</td></tr>
+        <tr><td><strong>Scroll progress indicator</strong></td><td>Bara verticală care arată cât ai avansat în scenă</td></tr>
+        <tr><td><strong>Horizontal scroll section</strong></td><td>Scroll vertical → conținut glisează orizontal (variantă populară)</td></tr>
+        <tr><td><strong>Parallax</strong></td><td>Straturi se mișcă la viteze diferite</td></tr>
+        <tr><td><strong>Kinetic typography</strong></td><td>Tipografie mare care se animă (reveal, fall, mask)</td></tr>
+      </table>
+
+      <h3>Unde îl folosim pe SitePerHour</h3>
+      <ul>
+        <li><strong>Secțiune „Ce facem” / Benefits</strong> — text stânga + vizual dreapta; 4–6 pași pe scroll (ca dixi.md)</li>
+        <li><strong>Process</strong> — pașii de colaborare pinned + scrub</li>
+        <li><strong>Tech / stack</strong> (opțional) — highlight tehnologii pe scroll</li>
+      </ul>
+      <p><strong>Stack recomandat:</strong> GSAP + ScrollTrigger (pin + scrub) · Lenis (smooth scroll) · Framer Motion pentru micro-interacțiuni · vizual: imagine / video / R3F (desktop only)</p>
+      <p><strong>Mobil:</strong> fără pin greu — fade/slide simplu between steps sau accordion; <code>prefers-reduced-motion</code> = static.</p>
+      <p><strong>Fază:</strong> Faza D (Wow vizual), după Faza A+ tipografie stabilă. Poate începe și în Faza B pe Process.</p>
+
+      <div class="callout success">
+        <strong>Catalog dedicat (browsing):</strong>
+        <code>docs/Inspiration-Scroll-Motion.html</code> — hub-uri, galerii, exemple, termeni de căutare.
+        Deschide fișierul în browser.
+      </div>
+
+      <h3>Site-uri &amp; galerii de inspirație</h3>
+      <table>
+        <tr><th>Unde</th><th>Ce cauți / ce vezi</th></tr>
+        <tr>
+          <td><a href="https://www.awwwards.com/websites/scroll/" style="color:var(--primary)">Awwwards — Scroll</a></td>
+          <td>Mii de site-uri premiate cu filtre: scroll, storytelling, horizontal</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.awwwards.com/websites/storytelling/" style="color:var(--primary)">Awwwards — Storytelling</a></td>
+          <td>Narative pe scroll, brand campaigns</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.awwwards.com/websites/horizontal-scrolling/" style="color:var(--primary)">Awwwards — Horizontal scrolling</a></td>
+          <td>Secțiuni care glisează lateral pe scroll vertical</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.awwwards.com/websites/typography/" style="color:var(--primary)">Awwwards — Typography</a></td>
+          <td>Kinetic type, titluri enorme, mask reveals</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.awwwards.com/websites/webgl/" style="color:var(--primary)">Awwwards — WebGL / 3D</a></td>
+          <td>Three.js / WebGL legate de scroll</td>
+        </tr>
+        <tr>
+          <td><a href="https://gsap.com/showcase/" style="color:var(--primary)">GSAP Showcase</a></td>
+          <td>Exemple reale ScrollTrigger, pin, scrub</td>
+        </tr>
+        <tr>
+          <td><a href="https://scroll-driven-animations.style/" style="color:var(--primary)">scroll-driven-animations.style</a></td>
+          <td>Demo-uri CSS scroll-driven (standard modern)</td>
+        </tr>
+        <tr>
+          <td><a href="https://tympanus.net/codrops/" style="color:var(--primary)">Codrops</a></td>
+          <td>Tutoriale + demo-uri: scroll, WebGL, typography</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.lusion.co/" style="color:var(--primary)">lusion.co</a></td>
+          <td>Referință premium WebGL + scroll (agency)</td>
+        </tr>
+        <tr>
+          <td><a href="https://dixi.md/" style="color:var(--primary)">dixi.md</a></td>
+          <td>Referință locală MD — pinned chapter scroll + 3D</td>
+        </tr>
+      </table>
+
+      <h3>Exemple concrete de site-uri (de studiat)</h3>
+      <ul>
+        <li><a href="https://dixi.md/" style="color:var(--primary)">dixi.md</a> — pinned steps + text swap + 3D (referință principală)</li>
+        <li><a href="https://www.apple.com/airpods-pro/" style="color:var(--primary)">Apple product pages</a> — scrollytelling clasic (produs pinned, scene)</li>
+        <li><a href="https://stripe.com/" style="color:var(--primary)">stripe.com</a> — motion subtil, scroll polish, tipografie</li>
+        <li><a href="https://linear.app/" style="color:var(--primary)">linear.app</a> — product storytelling, reveal curat</li>
+        <li><a href="https://www.immaculate.com/" style="color:var(--primary)">immaculate.com</a> / brand sites pe Awwwards — horizontal + pin</li>
+      </ul>
+      <div class="callout success">
+        <strong>Cuvinte de căutat pe Awwwards / Google:</strong> scrollytelling · pinned scroll · sticky scroll section · scroll scrub · scroll hijacking (evitat dacă e agresiv) · kinetic typography · horizontal scroll · WebGL scroll · GSAP ScrollTrigger
+      </div>
     </section>
 
     <section id="roadmap">
@@ -560,7 +655,7 @@
           <li>Pricing pages (Basic/Medium/Premium/Custom)</li>
           <li>FAQ extins (15+ întrebări)</li>
           <li>Schema per tip pagină</li>
-          <li>Card tilt 3D, projects hover, process timeline</li>
+          <li>Card tilt 3D, projects hover, process timeline (bază scrollytelling)</li>
           <li>Page transitions Next.js layout</li>
           <li>llms.txt v2 + llms-full.txt</li>
         </ul>
@@ -592,6 +687,8 @@
         <p><strong>Obiectiv:</strong> Hero memorabil desktop, mobil rămâne rapid.</p>
         <ul class="checkbox-list">
           <li>Hero Three.js glob/wireframe (desktop only)</li>
+          <li>Secțiune scrollytelling pinned (Benefits / Process) — stil dixi.md</li>
+          <li>GSAP ScrollTrigger + Lenis (desktop); fallback simplu pe mobil</li>
           <li>Mobile fallback gradient static</li>
           <li>Lighthouse mobile 85+ verificat</li>
           <li>Easter egg /play (opțional)</li>
@@ -620,7 +717,7 @@
         <tr><td>A</td><td>Next app, 3 homepages, forms, schema, sitemap</td><td>staging.vercel.app</td></tr>
         <tr><td>B</td><td>24+ service pages, 8 projects, pricing, FAQ</td><td>staging + production</td></tr>
         <tr><td>C</td><td>Geo pages, blog articol 1, GSC</td><td>production</td></tr>
-        <tr><td>D</td><td>Three.js hero, performance audit</td><td>production</td></tr>
+        <tr><td>D</td><td>Three.js hero, scrollytelling pinned section, performance audit</td><td>production</td></tr>
         <tr><td>E</td><td>Blog, Clutch, monthly reports</td><td>ongoing</td></tr>
       </table>
     </section>
@@ -883,7 +980,7 @@
       </div>
       <table>
         <tr><th>Acțiune</th><th>Responsabil</th><th>Termen</th></tr>
-        <tr><td>Aprobare brief v1.1</td><td>Mihail</td><td>___________</td></tr>
+        <tr><td>Aprobare brief v1.2</td><td>Mihail</td><td>___________</td></tr>
         <tr><td>Start Faza A (Next.js)</td><td>Dev</td><td>După aprobare</td></tr>
         <tr><td>Completare checklist servicii/prețuri</td><td>Mihail</td><td>Săpt 1–2</td></tr>
         <tr><td>Review staging</td><td>Mihail</td><td>Săpt 2</td></tr>
@@ -900,9 +997,9 @@
     </section>
 
     <footer class="doc-footer">
-      <p><strong>SitePerHour</strong> — Project Brief v1.1</p>
+      <p><strong>SitePerHour</strong> — Project Brief v1.2</p>
       <p>siteperhour.com · Chișinău, Moldova · mihail.mihai2001@gmail.com · +373 79 33 11 04</p>
-      <p>Document actualizat: 8 septembrie 2026 (v1.1 — adăugată strategie keywords). Următoarea revizie: după completarea checklist secțiunea 14.</p>
+      <p>Document actualizat: 9 septembrie 2026 (v1.2 — scrollytelling dixi.md + inspirație Awwwards/GSAP). Următoarea revizie: după completarea checklist secțiunea 14.</p>
     </footer>
 
   </div>

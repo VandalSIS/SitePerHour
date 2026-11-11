@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SitePerHour — Catalog Animații &amp; Efecte</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    .doc { max-width: 920px; margin: 0 auto; padding: 48px 32px 80px; }
+    .cover {
+      padding: 40px 28px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      margin-bottom: 40px;
+    }
+    .cover h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
+    .cover h1 span { color: var(--primary); }
+    .cover p { color: var(--muted); margin-bottom: 16px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; color: var(--muted); }
+    .meta span {
+      background: var(--card);
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    h3 { font-size: 1.05rem; margin: 22px 0 10px; color: #e2e8f0; }
+    p { margin-bottom: 12px; color: #cbd5e1; }
+    ul, ol { margin: 0 0 16px 22px; color: #cbd5e1; }
+    li { margin-bottom: 8px; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 22px;
+      font-size: 0.88rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--card); color: var(--primary); font-weight: 600; }
+    tr:nth-child(even) td { background: rgba(30, 41, 59, 0.45); }
+    .badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .must { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+    .good { background: rgba(59, 130, 246, 0.2); color: var(--primary); }
+    .later { background: rgba(148, 163, 184, 0.2); color: var(--muted); }
+    .skip { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    .callout {
+      background: var(--card);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .callout.warn { border-left-color: var(--warning); }
+    .callout.success { border-left-color: var(--success); }
+    code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.84em;
+      background: var(--card);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .doc-footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+    <header class="cover">
+      <h1>Catalog <span>Animații &amp; Efecte</span></h1>
+      <p>Lista practică de motion bun pentru SitePerHour — ce merită, unde, cu ce librărie. Nu tot ce există pe Awwwards — doar ce se potrivește unui site de agenție dark, rapid, RO.</p>
+      <div class="meta">
+        <span>v1.0</span>
+        <span>13 septembrie 2026</span>
+        <span>Complement la Inspiration-Scroll-Motion</span>
+      </div>
+    </header>
+
+    <div class="callout success">
+      <strong>Legendă prioritate:</strong>
+      <span class="badge must">MUST</span> = impact mare, fă acum ·
+      <span class="badge good">GOOD</span> = merită în Faza B/D ·
+      <span class="badge later">LATER</span> = opțional ·
+      <span class="badge skip">SKIP</span> = evită (generic / greu / rău pe mobil)
+    </div>
+
+    <!-- ========== TIPOGRAFIE ========== -->
+    <h2>1. Tipografie &amp; headline motion</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Word / line reveal</strong></td>
+        <td>Cuvintele sau rândurile apar unul câte unul (urcă din jos)</td>
+        <td>Hero, titluri secțiuni</td>
+        <td>Framer Motion</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Split text stagger</strong></td>
+        <td>Fiecare literă/cuvânt cu delay scurt</td>
+        <td>Hero load, CTA titles</td>
+        <td>Framer Motion / GSAP SplitText</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Mask reveal</strong></td>
+        <td>Textul „iese” dintr-o mască (clip-path)</td>
+        <td>Titluri mari, About</td>
+        <td>CSS + Motion / GSAP</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Kinetic type on scroll</strong></td>
+        <td>Titlul se mișcă / scale / fade la scroll</td>
+        <td>Hero exit, section headers</td>
+        <td>useScroll + useTransform</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Text swap (chapter)</strong></td>
+        <td>Textul se schimbă în aceeași scenă (ca dixi.md)</td>
+        <td>Benefits / Process</td>
+        <td>GSAP ScrollTrigger</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Typewriter</strong></td>
+        <td>Scrie literă cu literă</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+      <tr>
+        <td><strong>Glitch text</strong></td>
+        <td>Distorsiune / RGB split</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== SCROLL ========== -->
+    <h2>2. Scroll &amp; scrollytelling</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Smooth scroll (Lenis)</strong></td>
+        <td>Scroll „buttery”, ca pe site-uri premium</td>
+        <td>Tot site-ul (desktop)</td>
+        <td>Lenis</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Pinned section</strong></td>
+        <td>Secțiunea rămâne lipită cât rulează animația</td>
+        <td>Benefits, Process (stil dixi)</td>
+        <td>GSAP ScrollTrigger</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Scroll scrub</strong></td>
+        <td>Animația urmărește progresul scroll-ului</td>
+        <td>Pinned scenes, parallax</td>
+        <td>GSAP / Framer useScroll</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Scroll progress bar</strong></td>
+        <td>Bară verticală / top care arată progresul</td>
+        <td>Scenă pinned sau pagină</td>
+        <td>CSS + scrollY</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Parallax layers</strong></td>
+        <td>Fundal / vizual se mișcă mai lent decât textul</td>
+        <td>Hero, Projects</td>
+        <td>Framer Motion</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Stagger on enter</strong></td>
+        <td>Cardurile apar unul după altul la scroll</td>
+        <td>Services, Projects, Tech</td>
+        <td>Framer whileInView</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Horizontal scroll section</strong></td>
+        <td>Scroll vertical → galerie laterală</td>
+        <td>Projects / case studies</td>
+        <td>GSAP / CSS scroll-timeline</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fullpage snap</strong></td>
+        <td>Fiecare scroll = o pagină întreagă</td>
+        <td>—</td>
+        <td>fullPage.js</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+      <tr>
+        <td><strong>Heavy scroll hijacking</strong></td>
+        <td>Blochează scroll-ul agresiv</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== UI / MICRO ========== -->
+    <h2>3. Micro-interacțiuni UI</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Button hover glow</strong></td>
+        <td>Glow / lift subtil pe CTA</td>
+        <td>Butoane primary</td>
+        <td>CSS</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Magnetic button</strong></td>
+        <td>Butonul „trage” cursorul</td>
+        <td>CTA principal (desktop)</td>
+        <td>JS + Motion</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Card tilt (3D)</strong></td>
+        <td>Cardul se înclină după mouse</td>
+        <td>Services, Projects</td>
+        <td>CSS transform / Framer</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Link underline draw</strong></td>
+        <td>Linia apare la hover</td>
+        <td>Nav, footer links</td>
+        <td>CSS</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Icon morph / rotate</strong></td>
+        <td>Iconițe mici se animează la hover</td>
+        <td>Services icons</td>
+        <td>CSS / Lucide</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Custom cursor</strong></td>
+        <td>Cursor personalizat / follower</td>
+        <td>Desktop only</td>
+        <td>JS</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Page transition</strong></td>
+        <td>Fade/slide între /ro /en /ru</td>
+        <td>Routing Next.js</td>
+        <td>View Transitions / Motion</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Marquee / ticker</strong></td>
+        <td>Bandă care rulează (tech stack)</td>
+        <td>Sub hero — deja există</td>
+        <td>CSS animation</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Bouncing emoji / confetti</strong></td>
+        <td>Efecte „playful” generice</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== ATMOSFERĂ ========== -->
+    <h2>4. Atmosferă &amp; fundal</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Mesh gradient drift</strong></td>
+        <td>Blob-uri colorate care se mișcă lent</td>
+        <td>Hero, CTA — deja există</td>
+        <td>Framer / CSS</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Grain / noise overlay</strong></td>
+        <td>Textură film subtilă</td>
+        <td>Global — deja există</td>
+        <td>CSS</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Dot grid</strong></td>
+        <td>Grid de puncte subtil</td>
+        <td>Hero / sections</td>
+        <td>CSS</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Particles (canvas 2D)</strong></td>
+        <td>Particule discrete</td>
+        <td>Desktop only, subtil</td>
+        <td>Canvas (ai deja)</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Video loop background</strong></td>
+        <td>Clip abstract loop (tip Higgsfield)</td>
+        <td>Hero desktop</td>
+        <td>MP4/WebM + opacity</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Heavy particle rain</strong></td>
+        <td>Mii de particule pe tot ecranul</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+      <tr>
+        <td><strong>Purple glow everywhere</strong></td>
+        <td>Glow excesiv pe tot</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== 3D ========== -->
+    <h2>5. 3D / WebGL</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Wireframe globe</strong></td>
+        <td>Glob cu puncte (8+ țări)</td>
+        <td>Hero desktop</td>
+        <td>R3F + drei</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Floating object scrub</strong></td>
+        <td>Obiect 3D care evoluează pe scroll (ca dixi)</td>
+        <td>Benefits pinned</td>
+        <td>R3F / video / image sequence</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Shader gradient</strong></td>
+        <td>Fundal WebGL fluid</td>
+        <td>Hero (alternativă)</td>
+        <td>Three.js shader</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+      <tr>
+        <td><strong>Spline pe tot site-ul</strong></td>
+        <td>Scene Spline grele peste tot</td>
+        <td>—</td>
+        <td>Spline</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+      <tr>
+        <td><strong>3D pe mobil</strong></td>
+        <td>WebGL pe telefon</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge skip">SKIP</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== IMAGINI / MEDIA ========== -->
+    <h2>6. Imagini, proiecte, media</h2>
+    <table>
+      <tr>
+        <th>Efect</th>
+        <th>Ce face</th>
+        <th>Unde pe site</th>
+        <th>Tech</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><strong>Image reveal (clip / wipe)</strong></td>
+        <td>Imaginea apare cu wipe</td>
+        <td>Projects, About</td>
+        <td>Framer / GSAP</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Hover depth / scale</strong></td>
+        <td>Screenshot se mărește subtil la hover</td>
+        <td>Project cards</td>
+        <td>CSS</td>
+        <td><span class="badge must">MUST</span></td>
+      </tr>
+      <tr>
+        <td><strong>Lightbox / case expand</strong></td>
+        <td>Deschide detalii proiect</td>
+        <td>Projects</td>
+        <td>Dialog / Motion</td>
+        <td><span class="badge good">GOOD</span></td>
+      </tr>
+      <tr>
+        <td><strong>Ken Burns slow zoom</strong></td>
+        <td>Zoom lent pe imagini</td>
+        <td>Hero media (dacă există)</td>
+        <td>CSS</td>
+        <td><span class="badge later">LATER</span></td>
+      </tr>
+    </table>
+
+    <!-- ========== STACK ========== -->
+    <h2>7. Stack recomandat (pe scurt)</h2>
+    <table>
+      <tr>
+        <th>Librărie</th>
+        <th>Pentru</th>
+        <th>Când</th>
+      </tr>
+      <tr>
+        <td><strong>Framer Motion</strong></td>
+        <td>Reveal, stagger, parallax, micro UI</td>
+        <td>Deja instalat — baza</td>
+      </tr>
+      <tr>
+        <td><strong>Lenis</strong></td>
+        <td>Smooth scroll</td>
+        <td>Următorul MUST</td>
+      </tr>
+      <tr>
+        <td><strong>GSAP + ScrollTrigger</strong></td>
+        <td>Pinned scrollytelling (dixi-style)</td>
+        <td>Faza D / Process</td>
+      </tr>
+      <tr>
+        <td><strong>@react-three/fiber</strong></td>
+        <td>Globe / 3D hero</td>
+        <td>Faza D, desktop only</td>
+      </tr>
+      <tr>
+        <td><strong>CSS only</strong></td>
+        <td>Hover, marquee, grain, underline</td>
+        <td>Mereu — 0 bundle</td>
+      </tr>
+    </table>
+
+    <!-- ========== SHORTLIST ========== -->
+    <h2>8. Shortlist SitePerHour (ordine de implementare)</h2>
+    <ol>
+      <li><strong>Lenis</strong> — smooth scroll pe tot site-ul</li>
+      <li><strong>Stagger cards</strong> — Services + Projects la scroll</li>
+      <li><strong>Hero kinetic</strong> — deja început; fine-tune diacritice + parallax</li>
+      <li><strong>Section headers</strong> — word reveal editorial (Space Grotesk)</li>
+      <li><strong>Pinned Benefits</strong> — scrollytelling tip dixi.md (text swap + vizual)</li>
+      <li><strong>Magnetic CTA + card tilt</strong> — polish desktop</li>
+      <li><strong>Three.js globe</strong> — hero desktop only</li>
+      <li><strong>Horizontal projects</strong> — opțional, later</li>
+    </ol>
+
+    <div class="callout warn">
+      <strong>Regulă de aur:</strong> max 1–2 efecte „grele” pe pagină (pin SAU 3D, nu ambele pe mobil).
+      Mereu <code>prefers-reduced-motion</code> → version statică.
+      Dacă un efect nu se înțelege în 1 secundă, e zgomot — taie-l.
+    </div>
+
+    <div class="callout">
+      <strong>Legături:</strong>
+      <a href="./Inspiration-Scroll-Motion.html">Inspiration-Scroll-Motion.html</a> (unde vezi exemple) ·
+      <a href="./SitePerHour-Project-Brief.html#scrollytelling">Brief §11b</a> (scrollytelling)
+    </div>
+
+    <footer class="doc-footer">
+      <p><strong>SitePerHour</strong> — Catalog Animații &amp; Efecte v1.0</p>
+      <p>Fișier: <code>docs/Motion-Effects-Catalog.html</code></p>
+      <p>Actualizat: 13 septembrie 2026</p>
+    </footer>
+  </div>
+</body>
+</html>

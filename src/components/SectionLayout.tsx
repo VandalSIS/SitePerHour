@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import ParticlesBackground from './ParticlesBackground';
+import { ReactNode } from "react";
 
 interface SectionLayoutProps {
   children: ReactNode;
@@ -7,15 +6,13 @@ interface SectionLayoutProps {
   id?: string;
 }
 
+/** Lightweight section wrapper — no per-section canvas (was freezing mobile/desktop). */
 const SectionLayout = ({ children, className = "", id }: SectionLayoutProps) => {
   return (
-    <section id={id} className={`relative overflow-hidden ${className}`}>
-      <ParticlesBackground />
-      <div className="relative z-10">
-        {children}
-      </div>
+    <section id={id} className={`relative ${className}`}>
+      {children}
     </section>
   );
 };
 
-export default SectionLayout; 
+export default SectionLayout;

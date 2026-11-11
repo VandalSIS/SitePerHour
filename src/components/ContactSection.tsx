@@ -28,18 +28,31 @@ const ContactSection = () => {
         return;
       }
 
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error('Failed');
+      const data = await res.json().catch(() => ({}));
 
-      toast({ title: t('contact.successTitle'), description: t('contact.successDesc') });
+      if (!res.ok) {
+        throw new Error(
+          typeof data.error === "string" ? data.error : "Failed"
+        );
+      }
+
+      toast({
+        title: t("contact.successTitle"),
+        description: t("contact.successDesc"),
+      });
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
-      toast({ title: t('contact.errorTitle'), description: t('contact.errorDesc'), variant: "destructive" });
+    } catch {
+      toast({
+        title: t("contact.errorTitle"),
+        description: t("contact.errorDesc"),
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }

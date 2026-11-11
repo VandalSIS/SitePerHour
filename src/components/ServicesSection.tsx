@@ -7,6 +7,7 @@ import {
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "@/components/motion/SectionHeader";
+import TiltCard from "@/components/motion/TiltCard";
 
 type ServiceKey =
   | "webDev"
@@ -104,40 +105,47 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={service.key}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.04 }}
-                whileHover={{ y: -6 }}
-                className={`group relative border-gradient rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden ${service.className}`}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.55,
+                  delay: i * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={service.className}
               >
-                <div
-                  className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-500`}
-                />
-
-                <div className="relative z-10 h-full flex flex-col">
-                  <div
-                    className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 w-fit`}
-                  >
-                    <Icon size={isLarge ? 28 : 22} className="text-white" />
-                  </div>
-
-                  <h3
-                    className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
-                      isLarge ? "text-2xl" : "text-lg"
-                    }`}
-                  >
-                    {t(`services.${service.key}`)}
-                    <ArrowUpRight
-                      size={18}
-                      className="shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                <TiltCard className="h-full">
+                  <div className="group relative border-gradient rounded-2xl p-6 h-full hover:shadow-xl hover:shadow-primary/5 transition-shadow duration-300 overflow-hidden">
+                    <div
+                      className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-500`}
                     />
-                  </h3>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                    {t(`services.${service.key}Desc`)}
-                  </p>
-                </div>
+                    <div className="relative z-10 h-full flex flex-col">
+                      <div
+                        className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 w-fit`}
+                      >
+                        <Icon size={isLarge ? 28 : 22} className="text-white" />
+                      </div>
+
+                      <h3
+                        className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
+                          isLarge ? "text-2xl" : "text-lg"
+                        }`}
+                      >
+                        {t(`services.${service.key}`)}
+                        <ArrowUpRight
+                          size={18}
+                          className="shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                        />
+                      </h3>
+
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                        {t(`services.${service.key}Desc`)}
+                      </p>
+                    </div>
+                  </div>
+                </TiltCard>
               </motion.div>
             );
           })}

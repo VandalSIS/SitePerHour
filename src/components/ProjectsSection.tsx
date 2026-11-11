@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionHeader from "@/components/motion/SectionHeader";
+import TiltCard from "@/components/motion/TiltCard";
 
 type Project = {
   title: string;
@@ -145,51 +146,57 @@ const ProjectsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (
-            <motion.a
+            <motion.div
               key={project.url}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="group relative bg-card/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.55,
+                delay: (i % 3) * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              <ProjectThumbnail project={project} />
+              <TiltCard maxTilt={6}>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block bg-card/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors duration-300"
+                >
+                  <ProjectThumbnail project={project} />
 
-              {/* Category badge */}
-              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-xs font-medium text-primary border border-primary/30 z-[3]">
-                {t(`projects.cats.${project.catKey}`)}
-              </div>
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-xs font-medium text-primary border border-primary/30 z-[3]">
+                    {t(`projects.cats.${project.catKey}`)}
+                  </div>
 
-              {project.catKey === "maintenance" && (
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 backdrop-blur-md text-xs font-medium text-white z-[3]">
-                  {t("projects.inProgress")}
-                </div>
-              )}
+                  {project.catKey === "maintenance" && (
+                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 backdrop-blur-md text-xs font-medium text-white z-[3]">
+                      {t("projects.inProgress")}
+                    </div>
+                  )}
 
-              {/* Content */}
-              <div className="p-5 relative z-[3]">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <ArrowUpRight
-                    size={20}
-                    className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all shrink-0"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                  <ExternalLink size={11} />
-                  {project.domain}
-                </p>
-                <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
-                  {project.desc}
-                </p>
-              </div>
-            </motion.a>
+                  <div className="p-5 relative z-[3]">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight
+                        size={20}
+                        className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all shrink-0"
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
+                      <ExternalLink size={11} />
+                      {project.domain}
+                    </p>
+                    <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
+                      {project.desc}
+                    </p>
+                  </div>
+                </a>
+              </TiltCard>
+            </motion.div>
           ))}
         </div>
       </div>
