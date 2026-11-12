@@ -1,29 +1,28 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-import en from './en';
-import ro from './ro';
-import ru from './ru';
+import en from "./en";
+import ro from "./ro";
+import ru from "./ru";
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
+// Locale comes from Next.js /[locale] — no browser LanguageDetector (saves work on mobile)
+if (!i18n.isInitialized) {
+  i18n.use(initReactI18next).init({
     resources: {
       en: { translation: en },
       ro: { translation: ro },
       ru: { translation: ru },
     },
-    fallbackLng: 'ro',
-    supportedLngs: ['en', 'ro', 'ru'],
-    detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'],
-    },
+    lng: "ro",
+    fallbackLng: "ro",
+    supportedLngs: ["en", "ro", "ru"],
     interpolation: {
       escapeValue: false,
     },
+    react: {
+      useSuspense: false,
+    },
   });
+}
 
 export default i18n;

@@ -90,16 +90,16 @@ const ProjectThumbnail = ({ project }: { project: Project }) => {
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const isMobile = useIsMobile();
-  const width = isMobile ? 480 : 900;
+
+  // Mobile: gradient only — mShots × 8 kills mobile network/CPU
+  const showShot = !isMobile;
 
   return (
     <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-      {/* Always-on gradient fallback (visible while loading too) */}
       <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
       <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover opacity-20 mix-blend-overlay" />
 
-      {/* Project title overlay on the gradient (always visible if image fails) */}
-      {(!imgLoaded || imgError) && (
+      {(!imgLoaded || imgError || !showShot) && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-[1]">
           <div className="text-5xl md:text-6xl font-black text-white/95 drop-shadow-lg tracking-tighter mb-2">
             {project.title.split(" ").map((w) => w[0]).join("").slice(0, 3)}
@@ -108,13 +108,13 @@ const ProjectThumbnail = ({ project }: { project: Project }) => {
         </div>
       )}
 
-      {/* Live screenshot via mShots */}
-      {!imgError && (
+      {showShot && !imgError && (
         <img
-          src={screenshotUrl(project.url, width)}
+          src={screenshotUrl(project.url, 720)}
           alt={project.title}
           loading="lazy"
           decoding="async"
+          fetchPriority="low"
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgError(true)}
           className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
@@ -123,7 +123,6 @@ const ProjectThumbnail = ({ project }: { project: Project }) => {
         />
       )}
 
-      {/* Gradient bottom overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent z-[2]" />
     </div>
   );

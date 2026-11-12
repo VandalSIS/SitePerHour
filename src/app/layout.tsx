@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
+import DeferredAnalytics from "@/components/DeferredAnalytics";
 
-// Self-hosted fonts — no Google Fonts fetch at build time (fixes Vercel build failures)
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/space-grotesk/500.css";
-import "@fontsource/space-grotesk/600.css";
-import "@fontsource/space-grotesk/700.css";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
+// Minimal fonts: latin + latin-ext (RO diacritics). Cyrillic loaded in [locale] for /ru only.
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-ext-400.css";
+import "@fontsource/inter/cyrillic-400.css";
+import "@fontsource/space-grotesk/latin-700.css";
+import "@fontsource/space-grotesk/latin-ext-700.css";
 
 import "./globals.css";
 
@@ -43,9 +40,8 @@ export default function RootLayout({
   return (
     <html lang="ro" className="dark" suppressHydrationWarning>
       <body className="min-h-screen font-sans">
-        <div className="grain-overlay" aria-hidden="true" />
         {children}
-        <Analytics />
+        <DeferredAnalytics />
       </body>
     </html>
   );
