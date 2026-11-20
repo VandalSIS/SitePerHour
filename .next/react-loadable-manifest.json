@@ -8,15 +8,15 @@
   "views/HomePage.tsx -> @/components/AboutSection": {
     "id": 156,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/156.614f55f474da67f0.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/156.3694888a7fb9d9f7.js"
     ]
   },
   "views/HomePage.tsx -> @/components/CTABanner": {
     "id": 3438,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/438.94b532143a4834a1.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/438.89c58fd362e21eec.js"
     ]
   },
   "views/HomePage.tsx -> @/components/ContactSection": {
@@ -28,8 +28,9 @@
   "views/HomePage.tsx -> @/components/FAQSection": {
     "id": 1510,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/510.4a113309d711c4eb.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/28.21c96edcd3ee1a5e.js",
+      "static/chunks/510.6c289f41e41175f1.js"
     ]
   },
   "views/HomePage.tsx -> @/components/Footer": {
@@ -41,44 +42,44 @@
   "views/HomePage.tsx -> @/components/MidCTASection": {
     "id": 206,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/206.daf9566502d3ecfb.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/206.33ee07b4e79368fc.js"
     ]
   },
   "views/HomePage.tsx -> @/components/ProcessSection": {
-    "id": 8089,
+    "id": 6664,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/138.4bf052d6c71821e9.js",
-      "static/chunks/89.cc92eb8014fdb1a7.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/28.21c96edcd3ee1a5e.js",
+      "static/chunks/664.88350278b7c9c7bb.js"
     ]
   },
   "views/HomePage.tsx -> @/components/ProjectsSection": {
     "id": 3829,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/829.b83698ea52dc04c5.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/829.66983e2892e192be.js"
     ]
   },
   "views/HomePage.tsx -> @/components/ServicesSection": {
     "id": 3991,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/991.cf17d09d786d22ab.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/991.bab158446c86ee50.js"
     ]
   },
   "views/HomePage.tsx -> @/components/TechStackSection": {
     "id": 3592,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/592.688c9f9989f2d4a8.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/592.9e2595883440e4ec.js"
     ]
   },
   "views/HomePage.tsx -> @/components/TestimonialsSection": {
     "id": 2495,
     "files": [
-      "static/chunks/228.d684a696616eb8d8.js",
-      "static/chunks/495.c89de44b18e41736.js"
+      "static/chunks/297.75af4b7eeeff0205.js",
+      "static/chunks/495.c89b34f02cecfe3d.js"
     ]
   }
 }

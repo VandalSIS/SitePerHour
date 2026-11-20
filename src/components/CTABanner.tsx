@@ -19,24 +19,11 @@ const CTABanner = () => {
           transition={{ duration: 0.6 }}
           className="relative bg-gradient-to-br from-primary/20 via-purple-600/10 to-primary/20 border border-white/10 rounded-3xl p-8 md:p-14 overflow-hidden text-left"
         >
-          {/* Decorative blobs — animated on desktop, static on mobile */}
-          {isMobile ? (
+          {/* Blobs only on desktop — blur paints crush mobile scroll */}
+          {!isMobile && (
             <>
-              <div className="absolute -top-20 -left-20 w-80 h-80 bg-primary/30 rounded-full blur-[100px]" />
-              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]" />
-            </>
-          ) : (
-            <>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 30, 0] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-20 -left-20 w-80 h-80 bg-primary/30 rounded-full blur-[100px]"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.3, 1], rotate: [0, -30, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px]"
-              />
+              <div className="absolute -top-20 -left-20 w-80 h-80 bg-primary/25 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
             </>
           )}
 

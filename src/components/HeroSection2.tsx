@@ -79,8 +79,19 @@ const HeroSection = () => {
         </div>
       </section>
 
-      <section className="relative bg-secondary/30 border-y border-white/5 py-4 overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
+      <section className="relative bg-secondary/30 border-y border-white/5 py-3 md:py-4 overflow-hidden">
+        {/* Static wrap on mobile (no continuous animation); marquee only md+ */}
+        <div className="md:hidden flex flex-wrap justify-center gap-x-4 gap-y-2 px-4">
+          {TECH_STACK.map((tech) => (
+            <span
+              key={tech}
+              className="text-xs font-mono text-muted-foreground/70"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="hidden md:flex animate-marquee whitespace-nowrap">
           {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
             <span
               key={`${tech}-${i}`}

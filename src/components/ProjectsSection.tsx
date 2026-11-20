@@ -1,10 +1,10 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionHeader from "@/components/motion/SectionHeader";
-import TiltCard from "@/components/motion/TiltCard";
 
 type Project = {
   title: string;
@@ -16,6 +16,46 @@ type Project = {
 };
 
 const PROJECTS: Project[] = [
+  {
+    title: "Hire AI Leaders",
+    url: "https://www.hireaileaders.com",
+    domain: "hireaileaders.com",
+    catKey: "webflow",
+    desc: "Research hub for CEOs and CHROs hiring AI leadership — role library, hiring playbooks, weekly brief and interview kits.",
+    gradient: "from-zinc-900 via-slate-700 to-sky-600",
+  },
+  {
+    title: "Data Center Leadership",
+    url: "https://www.datacenterleadership.com",
+    domain: "datacenterleadership.com",
+    catKey: "webflow",
+    desc: "Talent intelligence for data center hiring — pay benchmarks, demand indexes, workforce trends and recruiter data.",
+    gradient: "from-slate-950 via-blue-900 to-cyan-600",
+  },
+  {
+    title: "CFO Recruiting Firm",
+    url: "https://www.cforecruitingfirm.com",
+    domain: "cforecruitingfirm.com",
+    catKey: "webflow",
+    desc: "Data-backed CFO hiring guidance — market pulse, finance leader finder, industry playbooks and search insights.",
+    gradient: "from-emerald-950 via-teal-800 to-lime-500",
+  },
+  {
+    title: "RadioADS",
+    url: "https://radioads.md",
+    domain: "radioads.md",
+    catKey: "react",
+    desc: "Online radio advertising platform for Moldova — live price calculator, packages, voice demos, ratings and blog.",
+    gradient: "from-rose-700 via-red-600 to-orange-500",
+  },
+  {
+    title: "Sălcuța Wine",
+    url: "https://salcutawine.md",
+    domain: "salcutawine.md",
+    catKey: "wordpress",
+    desc: "Winery website for three generations of Moldovan wine — collections, story, vineyards and Wine Club.",
+    gradient: "from-amber-950 via-yellow-800 to-stone-600",
+  },
   {
     title: "CT Labs",
     url: "https://ctlabs.ai",
@@ -82,59 +122,89 @@ const PROJECTS: Project[] = [
   },
 ];
 
-// WordPress mShots — free, no auth, cached server-side
 const screenshotUrl = (url: string, width: number) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${Math.round(width * 0.75)}`;
 
-const ProjectThumbnail = ({ project }: { project: Project }) => {
+/** Load image only when near viewport — keeps scroll smooth on mobile */
+const ProjectThumbnail = ({
+  project,
+  width,
+}: {
+  project: Project;
+  width: number;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
-  const isMobile = useIsMobile();
 
-  // Mobile: gradient only — mShots × 8 kills mobile network/CPU
-  const showShot = !isMobile;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px", threshold: 0.01 }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+    <div ref={ref} className="relative aspect-[4/3] overflow-hidden bg-secondary">
       <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
-      <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover opacity-20 mix-blend-overlay" />
 
-      {(!imgLoaded || imgError || !showShot) && (
+      {(!imgLoaded || imgError) && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-[1]">
-          <div className="text-5xl md:text-6xl font-black text-white/95 drop-shadow-lg tracking-tighter mb-2">
-            {project.title.split(" ").map((w) => w[0]).join("").slice(0, 3)}
+          <div className="text-4xl sm:text-5xl font-heading font-black text-white/95 tracking-tighter mb-2">
+            {project.title
+              .split(" ")
+              .map((w) => w[0])
+              .join("")
+              .slice(0, 3)}
           </div>
           <div className="text-white/80 text-sm font-medium">{project.domain}</div>
         </div>
       )}
 
-      {showShot && !imgError && (
+      {shouldLoad && !imgError && (
         <img
-          src={screenshotUrl(project.url, 720)}
-          alt={project.title}
+          src={screenshotUrl(project.url, width)}
+          alt=""
           loading="lazy"
           decoding="async"
           fetchPriority="low"
+          sizes="(max-width: 768px) 100vw, 33vw"
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgError(true)}
-          className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
+          className={`absolute inset-0 w-full h-full object-cover object-top ${
             imgLoaded ? "opacity-100" : "opacity-0"
-          } group-hover:scale-105 transition-transform`}
+          }`}
+          style={{ contentVisibility: "auto" }}
         />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent z-[2] pointer-events-none" />
     </div>
   );
 };
 
 const ProjectsSection = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  const shotWidth = isMobile ? 400 : 720;
 
   return (
     <section id="projects" className="section-spacing relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      <div className="absolute top-1/4 right-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[180px]" />
+      {/* Heavy blur only on desktop — kills mobile scroll FPS */}
+      <div className="hidden md:block absolute top-1/4 right-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[180px]" />
 
       <div className="container-custom relative z-10">
         <SectionHeader
@@ -143,59 +213,46 @@ const ProjectsSection = () => {
           subtitle={t("projects.subtitle")}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, i) => (
-            <motion.div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {PROJECTS.map((project) => (
+            <a
               key={project.url}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{
-                duration: 0.55,
-                delay: (i % 3) * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block bg-card/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors contain-paint"
             >
-              <TiltCard maxTilt={6}>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative block bg-card/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors duration-300"
-                >
-                  <ProjectThumbnail project={project} />
+              <ProjectThumbnail project={project} width={shotWidth} />
 
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-xs font-medium text-primary border border-primary/30 z-[3]">
-                    {t(`projects.cats.${project.catKey}`)}
-                  </div>
+              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 text-xs font-medium text-primary border border-primary/30 z-[3]">
+                {t(`projects.cats.${project.catKey}`)}
+              </div>
 
-                  {project.catKey === "maintenance" && (
-                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 backdrop-blur-md text-xs font-medium text-white z-[3]">
-                      {t("projects.inProgress")}
-                    </div>
-                  )}
+              {project.catKey === "maintenance" && (
+                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 text-xs font-medium text-white z-[3]">
+                  {t("projects.inProgress")}
+                </div>
+              )}
 
-                  <div className="p-5 relative z-[3]">
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <h3 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <ArrowUpRight
-                        size={20}
-                        className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all shrink-0"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                      <ExternalLink size={11} />
-                      {project.domain}
-                    </p>
-                    <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
-                      {project.desc}
-                    </p>
-                  </div>
-                </a>
-              </TiltCard>
-            </motion.div>
+              <div className="p-4 md:p-5 relative z-[3]">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <h3 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <ArrowUpRight
+                    size={20}
+                    className="text-muted-foreground shrink-0"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+                  <ExternalLink size={11} />
+                  {project.domain}
+                </p>
+                <p className="text-sm text-white/70 leading-relaxed line-clamp-2 md:line-clamp-3">
+                  {project.desc}
+                </p>
+              </div>
+            </a>
           ))}
         </div>
       </div>

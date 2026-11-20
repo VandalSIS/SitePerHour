@@ -4,10 +4,8 @@ import {
   Code2, ShoppingBag, Smartphone, Megaphone, Target,
   Search, Wrench, ArrowUpRight, Workflow, LineChart,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "@/components/motion/SectionHeader";
-import TiltCard from "@/components/motion/TiltCard";
 
 type ServiceKey =
   | "webDev"
@@ -98,55 +96,38 @@ const ServicesSection = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(140px,auto)]">
-          {services.map((service, i) => {
+          {services.map((service) => {
             const Icon = service.icon;
             const isLarge = service.className.includes("row-span-2");
 
             return (
-              <motion.div
-                key={service.key}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.55,
-                  delay: i * 0.06,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className={service.className}
-              >
-                <TiltCard className="h-full">
-                  <div className="group relative border-gradient rounded-2xl p-6 h-full hover:shadow-xl hover:shadow-primary/5 transition-shadow duration-300 overflow-hidden">
+              <div key={service.key} className={service.className}>
+                <div className="group relative border-gradient rounded-2xl p-5 md:p-6 h-full overflow-hidden">
+                  <div className="relative z-10 h-full flex flex-col">
                     <div
-                      className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-500`}
-                    />
-
-                    <div className="relative z-10 h-full flex flex-col">
-                      <div
-                        className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 w-fit`}
-                      >
-                        <Icon size={isLarge ? 28 : 22} className="text-white" />
-                      </div>
-
-                      <h3
-                        className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
-                          isLarge ? "text-2xl" : "text-lg"
-                        }`}
-                      >
-                        {t(`services.${service.key}`)}
-                        <ArrowUpRight
-                          size={18}
-                          className="shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-                        />
-                      </h3>
-
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                        {t(`services.${service.key}Desc`)}
-                      </p>
+                      className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 w-fit`}
+                    >
+                      <Icon size={isLarge ? 28 : 22} className="text-white" />
                     </div>
+
+                    <h3
+                      className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
+                        isLarge ? "text-2xl" : "text-lg"
+                      }`}
+                    >
+                      {t(`services.${service.key}`)}
+                      <ArrowUpRight
+                        size={18}
+                        className="shrink-0 text-muted-foreground"
+                      />
+                    </h3>
+
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                      {t(`services.${service.key}Desc`)}
+                    </p>
                   </div>
-                </TiltCard>
-              </motion.div>
+                </div>
+              </div>
             );
           })}
         </div>

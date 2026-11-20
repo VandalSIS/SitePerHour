@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import DisplayHeading from "./DisplayHeading";
 
 type SectionHeaderProps = {
@@ -24,37 +23,24 @@ export default function SectionHeader({
     <div
       className={`mb-14 md:mb-20 ${isCenter ? "text-center" : "text-left max-w-4xl"}`}
     >
-      <motion.div
-        initial={{ opacity: 0, x: isCenter ? 0 : -12 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.45 }}
-        className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm ${
+      <div
+        className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/[0.04] ${
           isCenter ? "mx-auto" : ""
         }`}
       >
         <span className="label-mono">{badge}</span>
-      </motion.div>
+      </div>
 
-      <DisplayHeading
-        as="h2"
-        size="section"
-        gradient={titleGradient}
-        align={align}
-      >
+      <DisplayHeading as="h2" size="section" gradient={titleGradient} align={align}>
         {title}
       </DisplayHeading>
 
       {subtitle && (
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.12 }}
+        <p
           className={`body-lead mt-5 md:mt-6 max-w-2xl ${isCenter ? "mx-auto" : ""}`}
         >
           {subtitle}
-        </motion.p>
+        </p>
       )}
     </div>
   );
