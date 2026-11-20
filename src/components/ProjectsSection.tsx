@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionHeader from "@/components/motion/SectionHeader";
@@ -13,6 +13,8 @@ type Project = {
   catKey: string;
   desc: string;
   gradient: string;
+  /** Local screenshot in /public/projects — omit if site is offline */
+  image?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -23,6 +25,7 @@ const PROJECTS: Project[] = [
     catKey: "webflow",
     desc: "Research hub for CEOs and CHROs hiring AI leadership — role library, hiring playbooks, weekly brief and interview kits.",
     gradient: "from-zinc-900 via-slate-700 to-sky-600",
+    image: "/projects/hireaileaders.png",
   },
   {
     title: "Data Center Leadership",
@@ -31,6 +34,7 @@ const PROJECTS: Project[] = [
     catKey: "webflow",
     desc: "Talent intelligence for data center hiring — pay benchmarks, demand indexes, workforce trends and recruiter data.",
     gradient: "from-slate-950 via-blue-900 to-cyan-600",
+    image: "/projects/datacenterleadership.png",
   },
   {
     title: "CFO Recruiting Firm",
@@ -39,6 +43,7 @@ const PROJECTS: Project[] = [
     catKey: "webflow",
     desc: "Data-backed CFO hiring guidance — market pulse, finance leader finder, industry playbooks and search insights.",
     gradient: "from-emerald-950 via-teal-800 to-lime-500",
+    image: "/projects/cforecruitingfirm.png",
   },
   {
     title: "RadioADS",
@@ -47,6 +52,7 @@ const PROJECTS: Project[] = [
     catKey: "react",
     desc: "Online radio advertising platform for Moldova — live price calculator, packages, voice demos, ratings and blog.",
     gradient: "from-rose-700 via-red-600 to-orange-500",
+    image: "/projects/radioads.png",
   },
   {
     title: "Sălcuța Wine",
@@ -55,6 +61,7 @@ const PROJECTS: Project[] = [
     catKey: "wordpress",
     desc: "Winery website for three generations of Moldovan wine — collections, story, vineyards and Wine Club.",
     gradient: "from-amber-950 via-yellow-800 to-stone-600",
+    image: "/projects/salcutawine.png",
   },
   {
     title: "CT Labs",
@@ -63,6 +70,7 @@ const PROJECTS: Project[] = [
     catKey: "webflow",
     desc: "AI consulting platform on Webflow with CMS on Insight, FAQ and Team pages.",
     gradient: "from-purple-600 via-blue-600 to-cyan-500",
+    image: "/projects/ctlabs.png",
   },
   {
     title: "Top Executive Recruiting",
@@ -71,6 +79,7 @@ const PROJECTS: Project[] = [
     catKey: "webflow",
     desc: "Premium executive recruiting site on Webflow with CMS for News and Insights pages.",
     gradient: "from-slate-800 via-blue-700 to-indigo-600",
+    image: "/projects/topexecrecruiting.png",
   },
   {
     title: "Christian & Timbers",
@@ -79,6 +88,7 @@ const PROJECTS: Project[] = [
     catKey: "maintenance",
     desc: "Webflow site under ongoing maintenance — collect forms and CMS implementation.",
     gradient: "from-amber-700 via-orange-600 to-red-600",
+    image: "/projects/christianandtimbers.png",
   },
   {
     title: "Pasat Elena",
@@ -87,6 +97,7 @@ const PROJECTS: Project[] = [
     catKey: "tilda",
     desc: "Online psychology platform on Tilda with CMS-managed blog for clients.",
     gradient: "from-pink-500 via-rose-500 to-orange-400",
+    image: "/projects/pasatelena.png",
   },
   {
     title: "Cartek",
@@ -95,6 +106,7 @@ const PROJECTS: Project[] = [
     catKey: "woocommerce",
     desc: "WordPress + WooCommerce automotive e-commerce with BT Transilvania payment integration.",
     gradient: "from-red-600 via-rose-600 to-pink-700",
+    // cartek.ro is currently suspended — gradient fallback until a real screen is available
   },
   {
     title: "Cricova Restaurant",
@@ -103,6 +115,7 @@ const PROJECTS: Project[] = [
     catKey: "wordpress",
     desc: "WordPress + custom HTML/CSS/JS for the famous Cricova winery restaurant.",
     gradient: "from-amber-800 via-yellow-700 to-orange-700",
+    image: "/projects/cricova.png",
   },
   {
     title: "Financial Agent UK",
@@ -111,6 +124,7 @@ const PROJECTS: Project[] = [
     catKey: "wordpress",
     desc: "UK financial services site on WordPress — blog posts and e-signature integration.",
     gradient: "from-emerald-700 via-teal-600 to-cyan-700",
+    image: "/projects/financialagent.png",
   },
   {
     title: "Pop Iulia Portfolio",
@@ -119,77 +133,19 @@ const PROJECTS: Project[] = [
     catKey: "react",
     desc: "Personal portfolio built with React, TypeScript and Vite. Fully custom, blazing fast.",
     gradient: "from-violet-600 via-fuchsia-600 to-pink-600",
+    image: "/projects/popaiulia.png",
   },
 ];
 
-/** Screenshot sources — mShots often stuck on "Generating Preview…" so we skip it */
-const screenshotSources = (url: string, width: number) => {
-  const h = Math.round(width * 0.75);
-  return [
-    `https://image.thum.io/get/width/${width}/crop/${h}/noanimate/${url}`,
-    `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`,
-  ];
-};
-
-/** Load image only when near viewport — keeps scroll smooth on mobile */
-const ProjectThumbnail = ({
-  project,
-  width,
-}: {
-  project: Project;
-  width: number;
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [sourceIndex, setSourceIndex] = useState(0);
-  const [imgLoaded, setImgLoaded] = useState(false);
-  const sources = screenshotSources(project.url, width);
-  const exhausted = sourceIndex >= sources.length;
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "240px 0px", threshold: 0.01 }
-    );
-
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  // Reset when project/url changes
-  useEffect(() => {
-    setSourceIndex(0);
-    setImgLoaded(false);
-  }, [project.url, width]);
-
-  const onError = () => {
-    setImgLoaded(false);
-    setSourceIndex((i) => i + 1);
-  };
-
-  const onLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    // Reject tiny / placeholder responses
-    if (img.naturalWidth < 80 || img.naturalHeight < 80) {
-      onError();
-      return;
-    }
-    setImgLoaded(true);
-  };
+const ProjectThumbnail = ({ project }: { project: Project }) => {
+  const [ok, setOk] = useState(Boolean(project.image));
+  const showImg = Boolean(project.image) && ok;
 
   return (
-    <div ref={ref} className="relative aspect-[4/3] overflow-hidden bg-secondary">
+    <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
       <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
 
-      {(!imgLoaded || exhausted) && (
+      {!showImg && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-[1]">
           <div className="text-4xl sm:text-5xl font-heading font-black text-white/95 tracking-tighter mb-2">
             {project.title
@@ -199,33 +155,23 @@ const ProjectThumbnail = ({
               .slice(0, 3)}
           </div>
           <div className="text-white/80 text-sm font-medium">{project.domain}</div>
-          {shouldLoad && !exhausted && !imgLoaded && (
-            <div className="mt-3 h-1 w-16 rounded-full bg-white/20 overflow-hidden">
-              <div className="h-full w-1/2 bg-white/50 animate-pulse" />
-            </div>
-          )}
         </div>
       )}
 
-      {shouldLoad && !exhausted && (
+      {showImg && (
         <img
-          key={sources[sourceIndex]}
-          src={sources[sourceIndex]}
-          alt=""
+          src={project.image}
+          alt={project.title}
           loading="lazy"
           decoding="async"
-          fetchPriority="low"
-          referrerPolicy="no-referrer"
-          sizes="(max-width: 768px) 100vw, 33vw"
-          onLoad={onLoad}
-          onError={onError}
-          className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 ${
-            imgLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          width={800}
+          height={600}
+          onError={() => setOk(false)}
+          className="absolute inset-0 w-full h-full object-cover object-top"
         />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent z-[2] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent z-[2] pointer-events-none" />
     </div>
   );
 };
@@ -233,13 +179,17 @@ const ProjectThumbnail = ({
 const ProjectsSection = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
-  const shotWidth = isMobile ? 400 : 720;
+  const [showAll, setShowAll] = useState(!isMobile);
+
+  useEffect(() => {
+    if (!isMobile) setShowAll(true);
+  }, [isMobile]);
+
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0, 4);
 
   return (
     <section id="projects" className="section-spacing relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      {/* Heavy blur only on desktop — kills mobile scroll FPS */}
-      <div className="hidden md:block absolute top-1/4 right-0 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[180px]" />
 
       <div className="container-custom relative z-10">
         <SectionHeader
@@ -249,7 +199,7 @@ const ProjectsSection = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {PROJECTS.map((project) => (
+          {visible.map((project) => (
             <a
               key={project.url}
               href={project.url}
@@ -257,7 +207,7 @@ const ProjectsSection = () => {
               rel="noopener noreferrer"
               className="group relative block bg-card/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors contain-paint"
             >
-              <ProjectThumbnail project={project} width={shotWidth} />
+              <ProjectThumbnail project={project} />
 
               <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 text-xs font-medium text-primary border border-primary/30 z-[3]">
                 {t(`projects.cats.${project.catKey}`)}
@@ -290,6 +240,18 @@ const ProjectsSection = () => {
             </a>
           ))}
         </div>
+
+        {isMobile && !showAll && PROJECTS.length > 4 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              className="rounded-full border border-white/15 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/5"
+            >
+              {t("projects.viewAll")} ({PROJECTS.length - 4}+)
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
