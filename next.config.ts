@@ -10,11 +10,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "s.wordpress.com",
-        pathname: "/mshots/**",
-      },
+      { protocol: "https", hostname: "image.thum.io", pathname: "/**" },
+      { protocol: "https", hostname: "api.microlink.io", pathname: "/**" },
     ],
   },
   async redirects() {

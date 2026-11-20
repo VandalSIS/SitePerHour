@@ -63,8 +63,13 @@
       "remotePatterns": [
         {
           "protocol": "https",
-          "hostname": "s.wordpress.com",
-          "pathname": "/mshots/**"
+          "hostname": "image.thum.io",
+          "pathname": "/**"
+        },
+        {
+          "protocol": "https",
+          "hostname": "api.microlink.io",
+          "pathname": "/**"
         }
       ],
       "unoptimized": false

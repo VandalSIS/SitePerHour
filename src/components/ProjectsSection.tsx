@@ -122,8 +122,14 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const screenshotUrl = (url: string, width: number) =>
-  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${Math.round(width * 0.75)}`;
+/** Screenshot sources — mShots often stuck on "Generating Preview…" so we skip it */
+const screenshotSources = (url: string, width: number) => {
+  const h = Math.round(width * 0.75);
+  return [
+    `https://image.thum.io/get/width/${width}/crop/${h}/noanimate/${url}`,
+    `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`,
+  ];
+};
 
 /** Load image only when near viewport — keeps scroll smooth on mobile */
 const ProjectThumbnail = ({
@@ -135,8 +141,10 @@ const ProjectThumbnail = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [imgError, setImgError] = useState(false);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const sources = screenshotSources(project.url, width);
+  const exhausted = sourceIndex >= sources.length;
 
   useEffect(() => {
     const el = ref.current;
@@ -149,18 +157,39 @@ const ProjectThumbnail = ({
           io.disconnect();
         }
       },
-      { rootMargin: "200px 0px", threshold: 0.01 }
+      { rootMargin: "240px 0px", threshold: 0.01 }
     );
 
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
+  // Reset when project/url changes
+  useEffect(() => {
+    setSourceIndex(0);
+    setImgLoaded(false);
+  }, [project.url, width]);
+
+  const onError = () => {
+    setImgLoaded(false);
+    setSourceIndex((i) => i + 1);
+  };
+
+  const onLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    // Reject tiny / placeholder responses
+    if (img.naturalWidth < 80 || img.naturalHeight < 80) {
+      onError();
+      return;
+    }
+    setImgLoaded(true);
+  };
+
   return (
     <div ref={ref} className="relative aspect-[4/3] overflow-hidden bg-secondary">
       <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
 
-      {(!imgLoaded || imgError) && (
+      {(!imgLoaded || exhausted) && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-[1]">
           <div className="text-4xl sm:text-5xl font-heading font-black text-white/95 tracking-tighter mb-2">
             {project.title
@@ -170,23 +199,29 @@ const ProjectThumbnail = ({
               .slice(0, 3)}
           </div>
           <div className="text-white/80 text-sm font-medium">{project.domain}</div>
+          {shouldLoad && !exhausted && !imgLoaded && (
+            <div className="mt-3 h-1 w-16 rounded-full bg-white/20 overflow-hidden">
+              <div className="h-full w-1/2 bg-white/50 animate-pulse" />
+            </div>
+          )}
         </div>
       )}
 
-      {shouldLoad && !imgError && (
+      {shouldLoad && !exhausted && (
         <img
-          src={screenshotUrl(project.url, width)}
+          key={sources[sourceIndex]}
+          src={sources[sourceIndex]}
           alt=""
           loading="lazy"
           decoding="async"
           fetchPriority="low"
+          referrerPolicy="no-referrer"
           sizes="(max-width: 768px) 100vw, 33vw"
-          onLoad={() => setImgLoaded(true)}
-          onError={() => setImgError(true)}
-          className={`absolute inset-0 w-full h-full object-cover object-top ${
+          onLoad={onLoad}
+          onError={onError}
+          className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 ${
             imgLoaded ? "opacity-100" : "opacity-0"
           }`}
-          style={{ contentVisibility: "auto" }}
         />
       )}
 
