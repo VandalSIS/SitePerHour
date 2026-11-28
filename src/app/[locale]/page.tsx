@@ -9,25 +9,25 @@ const seo: Record<
   { title: string; description: string; keywords: string }
 > = {
   en: {
-    title: "Web Development, Digital Ads & Marketing | Moldova-Based, Global Clients",
+    title: "Get More Clients Online — Websites, Ads & Growth Help",
     description:
-      "Full-service digital agency: web development (React, WordPress, Webflow, Shopify), mobile apps, Google & Meta Ads, CRM, SEO. Based in Chișinău, serving clients in 8+ countries.",
+      "I help businesses look trustworthy online, attract the right people, and turn interest into real inquiries. Websites, Google & Meta Ads, SEO and support — focused on what you gain.",
     keywords:
-      "web development Moldova, hire remote web developer, Google Ads Moldova, Meta Ads agency, Shopify development, CRM automation, digital marketing agency",
+      "get more clients online, website that converts, Google Ads help, Meta Ads for business, hire web developer Moldova, digital growth partner",
   },
   ro: {
-    title: "Dezvoltare Web, Reclame Digitale & Marketing | Moldova & România",
+    title: "Mai Mulți Clienți Online — Site-uri, Reclame & Creștere",
     description:
-      "Agenție digitală full-service: dezvoltare web, aplicații mobile, Google & Meta Ads, CRM, SEO. Din Chișinău, clienți în 8+ țări.",
+      "Te ajut să arăți serios online, să atragi oamenii potriviți și să transformi interesul în solicitări reale. Site-uri, Google & Meta Ads, SEO și suport — axat pe ce câștigi tu.",
     keywords:
-      "dezvoltare web Moldova, creare site Chișinău, Google Ads Moldova, reclame Facebook, magazin online, CRM automatizare, marketing digital",
+      "mai mulți clienți online, site care convertește, Google Ads Moldova, reclame Facebook, creare site Chișinău, partener digital",
   },
   ru: {
-    title: "Веб-разработка, Реклама и Маркетинг | Молдова, Клиенты по Всему Миру",
+    title: "Больше Клиентов Онлайн — Сайты, Реклама и Рост",
     description:
-      "Цифровое агентство полного цикла: сайты, приложения, Google & Meta Ads, CRM, SEO. Кишинёв, клиенты в 8+ странах.",
+      "Помогаю бизнесу выглядеть надёжно онлайн, привлекать нужных людей и превращать интерес в заявки. Сайты, Google & Meta Ads, SEO и поддержка — с фокусом на вашу выгоду.",
     keywords:
-      "создание сайтов Молдова, разработка сайтов Кишинёв, Google Ads, реклама Facebook, CRM автоматизация, цифровой маркетинг",
+      "больше клиентов онлайн, сайт который продаёт, Google Ads, реклама Facebook, создание сайтов Молдова, цифровой партнёр",
   },
 };
 
