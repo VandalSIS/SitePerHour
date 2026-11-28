@@ -304,37 +304,37 @@
     "_originalRedirects": [
       {
         "source": "/",
-        "destination": "/ro",
+        "destination": "/en",
         "permanent": true
       },
       {
         "source": "/contact",
-        "destination": "/ro#contact",
+        "destination": "/en#contact",
         "permanent": true
       },
       {
         "source": "/privacy-policy",
-        "destination": "/ro/privacy-policy",
+        "destination": "/en/privacy-policy",
         "permanent": true
       },
       {
         "source": "/terms",
-        "destination": "/ro/terms",
+        "destination": "/en/terms",
         "permanent": true
       },
       {
         "source": "/pricing/:path*",
-        "destination": "/ro/pricing/:path*",
+        "destination": "/en/pricing/:path*",
         "permanent": true
       },
       {
         "source": "/services/:path*",
-        "destination": "/ro/services/:path*",
+        "destination": "/en/services/:path*",
         "permanent": true
       },
       {
         "source": "/blog",
-        "destination": "/ro/blog",
+        "destination": "/en/blog",
         "permanent": true
       }
     ]

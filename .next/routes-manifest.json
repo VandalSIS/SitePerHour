@@ -13,43 +13,43 @@
     },
     {
       "source": "/",
-      "destination": "/ro",
+      "destination": "/en",
       "statusCode": 308,
       "regex": "^(?!/_next)/(?:/)?$"
     },
     {
       "source": "/contact",
-      "destination": "/ro#contact",
+      "destination": "/en#contact",
       "statusCode": 308,
       "regex": "^(?!/_next)/contact(?:/)?$"
     },
     {
       "source": "/privacy-policy",
-      "destination": "/ro/privacy-policy",
+      "destination": "/en/privacy-policy",
       "statusCode": 308,
       "regex": "^(?!/_next)/privacy-policy(?:/)?$"
     },
     {
       "source": "/terms",
-      "destination": "/ro/terms",
+      "destination": "/en/terms",
       "statusCode": 308,
       "regex": "^(?!/_next)/terms(?:/)?$"
     },
     {
       "source": "/pricing/:path*",
-      "destination": "/ro/pricing/:path*",
+      "destination": "/en/pricing/:path*",
       "statusCode": 308,
       "regex": "^(?!/_next)/pricing(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
     },
     {
       "source": "/services/:path*",
-      "destination": "/ro/services/:path*",
+      "destination": "/en/services/:path*",
       "statusCode": 308,
       "regex": "^(?!/_next)/services(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
     },
     {
       "source": "/blog",
-      "destination": "/ro/blog",
+      "destination": "/en/blog",
       "statusCode": 308,
       "regex": "^(?!/_next)/blog(?:/)?$"
     }
