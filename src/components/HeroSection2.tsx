@@ -27,48 +27,55 @@ const HeroSection = () => {
     <>
       <section
         id="home"
-        className="relative min-h-[100svh] flex flex-col justify-center overflow-x-hidden pt-24 pb-10 md:pb-14"
+        className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-24 pb-10 md:pb-14"
       >
-        <div className="absolute inset-0 bg-background" />
-        <div className="absolute inset-0 mesh-gradient opacity-40" />
-        <div className="absolute inset-0 bg-[url('/hero-bg.svg')] bg-cover bg-center opacity-[0.07]" />
-
-        <div className="absolute top-1/3 -left-40 w-72 h-72 md:w-[28rem] md:h-[28rem] bg-primary/12 rounded-full blur-[80px] md:blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-40 w-72 h-72 md:w-[28rem] md:h-[28rem] bg-accent/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none" />
+        {/* Full-bleed atmosphere — inspired by jeff / DCL / HireAILeaders depth */}
+        <div className="absolute inset-0 bg-[#070A12]" />
+        <div
+          className="absolute inset-0 bg-[url('/hero-atmosphere.svg')] bg-cover bg-[center_top] md:bg-center opacity-90"
+          aria-hidden
+        />
+        <div className="absolute inset-0 hero-aurora pointer-events-none" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070A12] via-[#070A12]/75 to-transparent md:via-[#070A12]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-[#070A12]/40" />
+        <div className="absolute inset-0 hero-grain pointer-events-none opacity-[0.04] mix-blend-overlay hidden md:block" />
 
         <div className="relative z-10 w-full max-w-[min(100%,1280px)] mx-auto px-5 sm:px-8 lg:px-10 flex-1 flex flex-col justify-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] self-start hero-enter">
-            <span className="label-mono text-primary/80">{t("hero.badge")}</span>
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-sm self-start hero-enter">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="label-mono text-primary/90">{t("hero.badge")}</span>
+            </div>
+
+            <HeroHeadline lines={headlineLines} />
+
+            <p className="body-lead max-w-xl mt-8 md:mt-10 mb-8 md:mb-10 hero-enter hero-enter-delay-3 text-white/70">
+              {t("hero.description")}
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10 hero-enter hero-enter-delay-4">
+              <Button
+                size="lg"
+                className="bg-white text-background hover:bg-white/90 rounded-full px-7 h-11 text-sm shadow-[0_0_40px_-12px_rgba(59,130,246,0.55)] group font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                onClick={() => scrollTo("contact")}
+              >
+                {t("hero.cta")}
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full px-7 h-11 text-sm border-white/15 bg-white/[0.03] backdrop-blur-sm hover:bg-white/8 font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                onClick={() => scrollTo("projects")}
+              >
+                {t("hero.portfolio")}
+              </Button>
+            </div>
+
+            <p className="text-[11px] md:text-xs text-muted-foreground/70 font-mono tracking-wide uppercase hero-enter hero-enter-delay-4">
+              {t("hero.trustedBy")}
+            </p>
           </div>
-
-          <HeroHeadline lines={headlineLines} />
-
-          <p className="body-lead max-w-xl mt-8 md:mt-10 mb-8 md:mb-10 hero-enter hero-enter-delay-3">
-            {t("hero.description")}
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10 hero-enter hero-enter-delay-4">
-            <Button
-              size="lg"
-              className="bg-white text-background hover:bg-white/90 rounded-full px-7 h-11 text-sm shadow-none group font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
-              onClick={() => scrollTo("contact")}
-            >
-              {t("hero.cta")}
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full px-7 h-11 text-sm border-white/15 hover:bg-white/5 font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
-              onClick={() => scrollTo("projects")}
-            >
-              {t("hero.portfolio")}
-            </Button>
-          </div>
-
-          <p className="text-[11px] md:text-xs text-muted-foreground/70 font-mono tracking-wide uppercase hero-enter hero-enter-delay-4">
-            {t("hero.trustedBy")}
-          </p>
         </div>
 
         <div className="absolute bottom-8 left-5 sm:left-8 lg:left-12 z-10 flex items-center gap-2 text-muted-foreground/50">
@@ -79,8 +86,7 @@ const HeroSection = () => {
         </div>
       </section>
 
-      <section className="relative bg-secondary/30 border-y border-white/5 py-3 md:py-4 overflow-hidden">
-        {/* Static wrap on mobile (no continuous animation); marquee only md+ */}
+      <section className="relative bg-secondary/40 border-y border-white/5 py-3 md:py-4 overflow-hidden">
         <div className="md:hidden flex flex-wrap justify-center gap-x-4 gap-y-2 px-4">
           {TECH_STACK.map((tech) => (
             <span
