@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionHeader from "@/components/motion/SectionHeader";
+import Reveal from "@/components/motion/Reveal";
+import TiltCard from "@/components/motion/TiltCard";
 
 type Project = {
   title: string;
@@ -199,45 +201,48 @@ const ProjectsSection = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {visible.map((project) => (
-            <a
-              key={project.url}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block bg-card/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors contain-paint"
-            >
-              <ProjectThumbnail project={project} />
+          {visible.map((project, i) => (
+            <Reveal key={project.url} delay={Math.min(i * 0.05, 0.3)} y={16}>
+              <TiltCard>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block bg-card/50 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors contain-paint motion-zoom"
+                >
+                  <ProjectThumbnail project={project} />
 
-              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 text-xs font-medium text-primary border border-primary/30 z-[3]">
-                {t(`projects.cats.${project.catKey}`)}
-              </div>
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 text-xs font-medium text-primary border border-primary/30 z-[3]">
+                    {t(`projects.cats.${project.catKey}`)}
+                  </div>
 
-              {project.catKey === "maintenance" && (
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 text-xs font-medium text-white z-[3]">
-                  {t("projects.inProgress")}
-                </div>
-              )}
+                  {project.catKey === "maintenance" && (
+                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-orange-500/90 text-xs font-medium text-white z-[3]">
+                      {t("projects.inProgress")}
+                    </div>
+                  )}
 
-              <div className="p-4 md:p-5 relative z-[3]">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h3 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <ArrowUpRight
-                    size={20}
-                    className="text-muted-foreground shrink-0"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
-                  <ExternalLink size={11} />
-                  {project.domain}
-                </p>
-                <p className="text-sm text-white/70 leading-relaxed line-clamp-2 md:line-clamp-3">
-                  {project.desc}
-                </p>
-              </div>
-            </a>
+                  <div className="p-4 md:p-5 relative z-[3]">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight
+                        size={20}
+                        className="text-muted-foreground shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
+                      <ExternalLink size={11} />
+                      {project.domain}
+                    </p>
+                    <p className="text-sm text-white/70 leading-relaxed line-clamp-2 md:line-clamp-3">
+                      {project.desc}
+                    </p>
+                  </div>
+                </a>
+              </TiltCard>
+            </Reveal>
           ))}
         </div>
 

@@ -26,7 +26,7 @@ const AboutSection = () => {
     <section id="about" className="section-spacing relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[80px] md:blur-[150px] blur-heavy-mobile pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <SectionHeader
@@ -77,10 +77,10 @@ const AboutSection = () => {
             className="relative"
           >
             {/* Glow */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-purple-500/30 to-primary/30 rounded-3xl blur-2xl opacity-50" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-purple-500/30 to-primary/30 rounded-3xl blur-xl md:blur-2xl opacity-40 md:opacity-50 pointer-events-none" />
 
             {/* Terminal card */}
-            <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative bg-black/60 md:backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
               {/* Window header */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
                 <div className="flex gap-1.5">
@@ -140,7 +140,7 @@ const AboutSection = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -4 }}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center overflow-hidden hover:border-primary/40 transition-colors"
+                className="group relative motion-card bg-white/5 md:backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center overflow-hidden hover:border-primary/40 transition-colors"
               >
                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors" />
                 <Icon className="mx-auto mb-3 text-primary" size={28} />

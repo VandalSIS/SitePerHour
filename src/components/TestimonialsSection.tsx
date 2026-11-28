@@ -53,7 +53,7 @@ const TestimonialsSection = () => {
   return (
     <section className="section-spacing relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary/20" />
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[200px]" />
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[80px] md:blur-[200px] blur-heavy-mobile pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <SectionHeader
@@ -71,7 +71,7 @@ const TestimonialsSection = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className="relative bg-card/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-primary/40 transition-colors group"
+              className="relative motion-card bg-card/40 md:backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-primary/40 transition-colors group"
             >
               <Quote
                 size={32}

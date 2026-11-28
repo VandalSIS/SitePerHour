@@ -1,6 +1,7 @@
 "use client";
 
 import DisplayHeading from "./DisplayHeading";
+import Reveal from "./Reveal";
 
 type SectionHeaderProps = {
   badge: string;
@@ -23,24 +24,28 @@ export default function SectionHeader({
     <div
       className={`mb-14 md:mb-20 ${isCenter ? "text-center" : "text-left max-w-4xl"}`}
     >
-      <div
-        className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/[0.04] ${
-          isCenter ? "mx-auto" : ""
-        }`}
-      >
-        <span className="label-mono">{badge}</span>
-      </div>
+      <Reveal y={10}>
+        <div
+          className={`inline-flex items-center gap-2 px-3 py-1.5 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/[0.04] ${
+            isCenter ? "mx-auto" : ""
+          }`}
+        >
+          <span className="label-mono">{badge}</span>
+        </div>
+      </Reveal>
 
       <DisplayHeading as="h2" size="section" gradient={titleGradient} align={align}>
         {title}
       </DisplayHeading>
 
       {subtitle && (
-        <p
-          className={`body-lead mt-5 md:mt-6 max-w-2xl ${isCenter ? "mx-auto" : ""}`}
-        >
-          {subtitle}
-        </p>
+        <Reveal delay={0.08} y={12}>
+          <p
+            className={`body-lead mt-5 md:mt-6 max-w-2xl ${isCenter ? "mx-auto" : ""}`}
+          >
+            {subtitle}
+          </p>
+        </Reveal>
       )}
     </div>
   );

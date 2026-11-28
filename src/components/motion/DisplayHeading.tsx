@@ -33,7 +33,7 @@ export default function DisplayHeading({
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const [isMobile, setIsMobile] = useState(true); // default light path for first paint
+  const [isMobile, setIsMobile] = useState(true);
   const words = children.split(" ");
   const Tag = as;
   const alignClass = align === "center" ? "text-center" : "text-left";
@@ -46,9 +46,7 @@ export default function DisplayHeading({
     return () => mq.removeEventListener("change", apply);
   }, []);
 
-  const simple = reduceMotion || isMobile || !revealOnScroll;
-
-  if (simple) {
+  if (reduceMotion || !revealOnScroll) {
     return (
       <div ref={ref} className={`${alignClass} ${className}`}>
         <Tag
@@ -58,6 +56,27 @@ export default function DisplayHeading({
         >
           {children}
         </Tag>
+      </div>
+    );
+  }
+
+  // Mobile: one soft fade-up (cheap). Desktop: word stagger.
+  if (isMobile) {
+    return (
+      <div ref={ref} className={`${alignClass} ${className}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Tag
+            className={`${sizeClasses[size]} ${
+              uppercase && size !== "card" ? "uppercase" : ""
+            } ${gradient ? "text-gradient-vivid" : ""}`}
+          >
+            {children}
+          </Tag>
+        </motion.div>
       </div>
     );
   }
@@ -72,10 +91,10 @@ export default function DisplayHeading({
         {words.map((word, i) => (
           <motion.span
             key={`${word}-${i}`}
-            initial={{ opacity: 0, y: 28 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             transition={{
-              delay: i * 0.04,
+              delay: i * 0.035,
               duration: 0.4,
               ease: [0.22, 1, 0.36, 1],
             }}

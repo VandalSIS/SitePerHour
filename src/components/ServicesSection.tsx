@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "@/components/motion/SectionHeader";
+import Reveal from "@/components/motion/Reveal";
+import TiltCard from "@/components/motion/TiltCard";
 
 type ServiceKey =
   | "webDev"
@@ -96,38 +98,48 @@ const ServicesSection = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(140px,auto)]">
-          {services.map((service) => {
+          {services.map((service, i) => {
             const Icon = service.icon;
             const isLarge = service.className.includes("row-span-2");
 
             return (
-              <div key={service.key} className={service.className}>
-                <div className="group relative border-gradient rounded-2xl p-5 md:p-6 h-full overflow-hidden">
-                  <div className="relative z-10 h-full flex flex-col">
+              <Reveal
+                key={service.key}
+                className={service.className}
+                delay={Math.min(i * 0.04, 0.28)}
+                y={14}
+              >
+                <TiltCard className="h-full">
+                  <div className="group relative border-gradient rounded-2xl p-5 md:p-6 h-full overflow-hidden hover:border-primary/40 transition-colors">
                     <div
-                      className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 w-fit`}
-                    >
-                      <Icon size={isLarge ? 28 : 22} className="text-white" />
+                      className={`absolute -top-10 -right-10 w-28 h-28 rounded-full bg-gradient-to-br ${service.color} opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-30`}
+                    />
+                    <div className="relative z-10 h-full flex flex-col">
+                      <div
+                        className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-4 w-fit transition-transform duration-300 group-hover:scale-110`}
+                      >
+                        <Icon size={isLarge ? 28 : 22} className="text-white" />
+                      </div>
+
+                      <h3
+                        className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
+                          isLarge ? "text-2xl" : "text-lg"
+                        }`}
+                      >
+                        {t(`services.${service.key}`)}
+                        <ArrowUpRight
+                          size={18}
+                          className="shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                        />
+                      </h3>
+
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                        {t(`services.${service.key}Desc`)}
+                      </p>
                     </div>
-
-                    <h3
-                      className={`font-heading font-bold mb-2 text-white flex items-center justify-between gap-2 ${
-                        isLarge ? "text-2xl" : "text-lg"
-                      }`}
-                    >
-                      {t(`services.${service.key}`)}
-                      <ArrowUpRight
-                        size={18}
-                        className="shrink-0 text-muted-foreground"
-                      />
-                    </h3>
-
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                      {t(`services.${service.key}Desc`)}
-                    </p>
                   </div>
-                </div>
-              </div>
+                </TiltCard>
+              </Reveal>
             );
           })}
         </div>

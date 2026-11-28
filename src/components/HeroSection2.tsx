@@ -37,20 +37,20 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 -right-40 w-72 h-72 md:w-[28rem] md:h-[28rem] bg-accent/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-[min(100%,1280px)] mx-auto px-5 sm:px-8 lg:px-10 flex-1 flex flex-col justify-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] self-start">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 md:mb-10 rounded-full border border-white/10 bg-white/[0.04] self-start hero-enter">
             <span className="label-mono text-primary/80">{t("hero.badge")}</span>
           </div>
 
           <HeroHeadline lines={headlineLines} />
 
-          <p className="body-lead max-w-xl mt-8 md:mt-10 mb-8 md:mb-10">
+          <p className="body-lead max-w-xl mt-8 md:mt-10 mb-8 md:mb-10 hero-enter hero-enter-delay-3">
             {t("hero.description")}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10 hero-enter hero-enter-delay-4">
             <Button
               size="lg"
-              className="bg-white text-background hover:bg-white/90 rounded-full px-7 h-11 text-sm shadow-none group font-semibold"
+              className="bg-white text-background hover:bg-white/90 rounded-full px-7 h-11 text-sm shadow-none group font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
               onClick={() => scrollTo("contact")}
             >
               {t("hero.cta")}
@@ -59,14 +59,14 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-7 h-11 text-sm border-white/15 hover:bg-white/5 font-semibold"
+              className="rounded-full px-7 h-11 text-sm border-white/15 hover:bg-white/5 font-semibold transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
               onClick={() => scrollTo("projects")}
             >
               {t("hero.portfolio")}
             </Button>
           </div>
 
-          <p className="text-[11px] md:text-xs text-muted-foreground/70 font-mono tracking-wide uppercase">
+          <p className="text-[11px] md:text-xs text-muted-foreground/70 font-mono tracking-wide uppercase hero-enter hero-enter-delay-4">
             {t("hero.trustedBy")}
           </p>
         </div>
