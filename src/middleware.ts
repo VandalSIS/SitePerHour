@@ -3,6 +3,20 @@ import type { NextRequest } from "next/server";
 import { defaultLocale, isValidLocale, locales } from "@/lib/i18n/config";
 
 function getPreferredLocale(request: NextRequest): string {
+  // Search engines / crawlers → English (main listing language)
+  const ua = request.headers.get("user-agent")?.toLowerCase() ?? "";
+  if (
+    ua.includes("googlebot") ||
+    ua.includes("bingbot") ||
+    ua.includes("yandex") ||
+    ua.includes("duckduckbot") ||
+    ua.includes("baiduspider") ||
+    ua.includes("facebot") ||
+    ua.includes("slurp")
+  ) {
+    return "en";
+  }
+
   const accept = request.headers.get("accept-language");
   if (!accept) return defaultLocale;
 

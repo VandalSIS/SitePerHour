@@ -33,7 +33,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/ro",
+      "destination": "/en",
       "permanent": true
     },
     {

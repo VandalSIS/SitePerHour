@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   description:
     "Full-service digital agency: web development, Google & Meta Ads, CRM, SEO. Based in Chișinău, serving clients worldwide.",
   alternates: {
-    canonical: "https://siteperhour.com/ro",
+    canonical: "https://siteperhour.com/en",
     languages: {
-      ro: "https://siteperhour.com/ro",
       en: "https://siteperhour.com/en",
+      ro: "https://siteperhour.com/ro",
       ru: "https://siteperhour.com/ru",
-      "x-default": "https://siteperhour.com/ro",
+      "x-default": "https://siteperhour.com/en",
     },
   },
   icons: {
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ro" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className="min-h-screen font-sans">
         {children}
         <DeferredAnalytics />

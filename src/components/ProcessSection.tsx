@@ -25,6 +25,7 @@ const ProcessSection = () => {
   const { t } = useTranslation();
   const [isDesktop, setIsDesktop] = useState(false);
   const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0.25);
   const sectionRef = useRef<HTMLElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -41,22 +42,27 @@ const ProcessSection = () => {
     };
   }, []);
 
-  // Pick the step whose center is closest to viewport center — reliable scroll sync
+  /**
+   * Lenis smooth scroll does not always fire reliable window "scroll" events
+   * during the animation. Drive sync from rAF while the section is on screen.
+   */
   useEffect(() => {
     if (!isDesktop) return;
+    const section = sectionRef.current;
+    if (!section) return;
 
-    let ticking = false;
+    let running = false;
+    let rafId = 0;
 
     const update = () => {
-      ticking = false;
-      const mid = window.innerHeight * 0.42;
+      const mid = window.innerHeight * 0.38;
       let best = 0;
       let bestDist = Infinity;
 
       stepRefs.current.forEach((el, i) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
+        const center = rect.top + rect.height * 0.35;
         const dist = Math.abs(center - mid);
         if (dist < bestDist) {
           bestDist = dist;
@@ -65,21 +71,41 @@ const ProcessSection = () => {
       });
 
       setActive((prev) => (prev === best ? prev : best));
+
+      const rect = section.getBoundingClientRect();
+      const total = Math.max(rect.height - window.innerHeight, 1);
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      const p = 0.15 + (scrolled / total) * 0.85;
+      setProgress(p);
     };
 
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
+    const loop = () => {
+      update();
+      if (running) rafId = requestAnimationFrame(loop);
     };
 
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!running) {
+            running = true;
+            rafId = requestAnimationFrame(loop);
+          }
+        } else if (running) {
+          running = false;
+          cancelAnimationFrame(rafId);
+        }
+      },
+      { threshold: 0, rootMargin: "20% 0px 20% 0px" }
+    );
+
+    io.observe(section);
     update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      running = false;
+      cancelAnimationFrame(rafId);
+      io.disconnect();
     };
   }, [isDesktop]);
 
@@ -133,9 +159,8 @@ const ProcessSection = () => {
   }
 
   const ActiveIcon = steps[active].icon;
-  const progress = ((active + 1) / steps.length) * 100;
-  const circumference = 2 * Math.PI * 46; // viewBox circle r=46
-  const dashOffset = circumference - (circumference * progress) / 100;
+  const circumference = 2 * Math.PI * 46;
+  const dashOffset = circumference - circumference * progress;
 
   return (
     <section
@@ -153,7 +178,6 @@ const ProcessSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-          {/* Steps — tall panels so only one sits near viewport center */}
           <div className="lg:col-span-5">
             {steps.map((step, i) => (
               <div
@@ -162,7 +186,7 @@ const ProcessSection = () => {
                   stepRefs.current[i] = el;
                 }}
                 data-step={i}
-                className="min-h-[70vh] flex flex-col justify-center py-10"
+                className="min-h-[75vh] flex flex-col justify-center py-10"
               >
                 <button
                   type="button"
@@ -172,10 +196,10 @@ const ProcessSection = () => {
                       block: "center",
                     });
                   }}
-                  className={`text-left transition-all duration-400 ${
+                  className={`text-left transition-all duration-500 ${
                     i === active
                       ? "opacity-100 translate-x-0"
-                      : "opacity-30 hover:opacity-50"
+                      : "opacity-30 hover:opacity-55"
                   }`}
                 >
                   <p
@@ -193,7 +217,7 @@ const ProcessSection = () => {
                     {t(step.titleKey)}
                   </h3>
                   <p
-                    className={`body-lead max-w-md transition-opacity duration-400 ${
+                    className={`body-lead max-w-md transition-opacity duration-500 ${
                       i === active ? "opacity-100" : "opacity-0"
                     }`}
                   >
@@ -204,21 +228,15 @@ const ProcessSection = () => {
             ))}
           </div>
 
-          {/* Sticky visual — larger + more interesting */}
           <div className="lg:col-span-7 sticky top-24 hidden lg:flex items-center justify-center h-[calc(100vh-8rem)] pointer-events-none">
             <div className="relative w-[min(100%,34rem)] aspect-square">
-              {/* Soft glow */}
               <div
                 className={`absolute inset-[12%] rounded-full bg-gradient-to-br ${steps[active].accent} opacity-20 blur-[60px] transition-colors duration-700`}
               />
 
-              {/* Outer dashed ring */}
               <div className="absolute inset-0 rounded-full border border-dashed border-white/10" />
-
-              {/* Mid ring */}
               <div className="absolute inset-[6%] rounded-full border border-white/[0.07]" />
 
-              {/* Progress SVG ring */}
               <svg
                 className="absolute inset-[3%] w-[94%] h-[94%] -rotate-90"
                 viewBox="0 0 100 100"
@@ -242,7 +260,7 @@ const ProcessSection = () => {
                   strokeLinecap="round"
                   strokeDasharray={circumference}
                   strokeDashoffset={dashOffset}
-                  className="transition-[stroke-dashoffset] duration-500 ease-out"
+                  style={{ transition: "stroke-dashoffset 80ms linear" }}
                 />
                 <defs>
                   <linearGradient id="processGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -252,11 +270,10 @@ const ProcessSection = () => {
                 </defs>
               </svg>
 
-              {/* Step dots on ring */}
               {steps.map((step, i) => {
                 const angle = -90 + (i / steps.length) * 360;
                 const rad = (angle * Math.PI) / 180;
-                const r = 47; // % of half size roughly via left/top
+                const r = 47;
                 const x = 50 + r * Math.cos(rad);
                 const y = 50 + r * Math.sin(rad);
                 return (
@@ -272,7 +289,6 @@ const ProcessSection = () => {
                 );
               })}
 
-              {/* Giant number */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -288,7 +304,6 @@ const ProcessSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Center icon card */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -313,7 +328,6 @@ const ProcessSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Active label under visual */}
               <div className="absolute -bottom-2 left-0 right-0 flex justify-center">
                 <p className="label-mono text-primary/80 bg-background/80 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm">
                   {steps[active].num} — {t(steps[active].titleKey)}
